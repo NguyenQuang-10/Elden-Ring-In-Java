@@ -2,7 +2,9 @@
 # Elden Ring
 
 ## S1_Lab03Team06
-Team members: Arvind Siva, Nhat Quang NguyenNguyen
+Team members: 
++ Arvind Siva (Student 1)
++ Nhat Quang Nguyen (Student 2)
 
 ## Design Rationale
 
