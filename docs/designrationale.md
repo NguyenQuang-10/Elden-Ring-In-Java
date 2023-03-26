@@ -15,3 +15,13 @@ a SpawnEnemyAction instance. Therefore, SpawnBehaviour will be depended on Spawn
 + SpawnEnemyAction extends from Action, it needs to know what kind of enemy to spawn therefore it is depended on the
 Enemy class
 
+
+### Trader
++ Trader is extended from Actor
++ Trader is associated with a Player
++ Trader has BuyBehaviour and SellBehaviour that implements Behaviour
++ When a Player interacts with the Trader, depending on whether the Player choose to buy or sell, the respective 
+Behaviour will evaluate the trade
++ The behaviours' getAction will return their respective BuyAction or SellAction (extended from Action) if condition for 
+a trade is met or null if not.
++ When BuyAction or SellAction is executed, they will make the modification to the Player's rune and inventory
