@@ -5,6 +5,8 @@
 Team members: 
 + Arvind Siva (Student 1)
 + Nhat Quang Nguyen (Student 2)
++ Khanh Nguyen (Student 3)
+
 
 ## Design Rationale
 Draft: https://docs.google.com/document/d/1U1yr61Cpo44j4H-eZfXMZjtNvaea2wzklwij_bu--YI/edit#heading=h.cgs092ud1hy
