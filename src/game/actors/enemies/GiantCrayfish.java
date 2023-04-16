@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 public class GiantCrayfish extends Enemy {
     public GiantCrayfish() {
         super("Giant Crayfish", 'R', 4803);
+        this.addRune(500, 2374);
     }
 
     @Override

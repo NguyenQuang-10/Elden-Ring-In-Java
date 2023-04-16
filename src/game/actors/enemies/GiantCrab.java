@@ -5,10 +5,12 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.behaviours.WanderBehaviour;
 
 public class GiantCrab extends Enemy {
     public GiantCrab() {
         super("Giant Crab", 'C', 407);
+        this.addRune(318, 4961);
     }
 
     @Override

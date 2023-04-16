@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 public class SkeletalBandit extends Enemy {
     public SkeletalBandit() {
         super("Skeletal Bandit", 'b', 184);
+        this.addRune(35, 892);
     }
 
     @Override

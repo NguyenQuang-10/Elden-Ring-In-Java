@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 public class GiantDog extends Enemy {
     public GiantDog() {
         super("Giant Dog", 'G', 693);
+        this.addRune(313, 1808);
     }
 
     @Override

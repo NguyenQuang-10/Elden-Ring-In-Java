@@ -27,7 +27,7 @@ public class LoneWolf extends Enemy {
 
     public LoneWolf() {
         super("Lone Wolf", 'h', 102);
-        this.addBehaviour(999, new WanderBehaviour());
+        this.addRune(55, 1470);
     }
 
     /**
