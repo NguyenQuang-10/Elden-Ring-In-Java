@@ -7,6 +7,9 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.actors.enemies.Enemy;
+import game.actors.enemies.EnemyType;
+import game.utils.Status;
 
 import java.util.Random;
 
@@ -38,13 +41,15 @@ public class AttackAllAction extends Action {
 
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
                     result += actor + " misses " + target + ".\n";
-                } else {
+                } else if (Enemy.isSameEnemy(actor, target)) {
                     int damage = weapon.damage();
                     result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.\n";
                     target.hurt(damage);
                     if (!target.isConscious()) {
                         result += new DeathAction(actor).execute(target, map);
                     }
+                } else {
+                    result += actor + " can't attack " + target + " when attack all ";
                 }
 
             }

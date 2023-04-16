@@ -11,9 +11,8 @@ import game.behaviours.WanderBehaviour;
 
 public class GiantCrab extends Enemy {
     public GiantCrab() {
-        super("Giant Crab", 'C', 407);
+        super("Giant Crab", 'C', 407, EnemyType.SEAANIMAL);
         this.addRune(318, 4961);
-        this.addCapability(EnemyType.SEAANIMAL);
     }
 
     @Override

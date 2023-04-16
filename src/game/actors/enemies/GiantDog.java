@@ -7,12 +7,12 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.Behaviour;
+import game.utils.Status;
 
 public class GiantDog extends Enemy {
     public GiantDog() {
-        super("Giant Dog", 'G', 693);
+        super("Giant Dog", 'G', 693, EnemyType.FOURLEGANIMAL);
         this.addRune(313, 1808);
-        this.addCapability(EnemyType.FOURLEGANIMAL);
     }
 
     @Override

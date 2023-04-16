@@ -10,9 +10,8 @@ import game.behaviours.Behaviour;
 
 public class GiantCrayfish extends Enemy {
     public GiantCrayfish() {
-        super("Giant Crayfish", 'R', 4803);
+        super("Giant Crayfish", 'R', 4803, EnemyType.SEAANIMAL);
         this.addRune(500, 2374);
-        this.addCapability(EnemyType.SEAANIMAL);
     }
 
     @Override
