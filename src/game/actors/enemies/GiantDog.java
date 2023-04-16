@@ -12,6 +12,7 @@ public class GiantDog extends Enemy {
     public GiantDog() {
         super("Giant Dog", 'G', 693);
         this.addRune(313, 1808);
+        this.addCapability(EnemyType.FOURLEGANIMAL);
     }
 
     @Override

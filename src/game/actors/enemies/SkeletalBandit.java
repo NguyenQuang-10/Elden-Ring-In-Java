@@ -11,6 +11,7 @@ public class SkeletalBandit extends Enemy {
     public SkeletalBandit() {
         super("Skeletal Bandit", 'b', 184);
         this.addRune(35, 892);
+        this.addCapability(EnemyType.SKELETON);
     }
 
     @Override

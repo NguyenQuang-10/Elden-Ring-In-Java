@@ -13,6 +13,7 @@ public class GiantCrab extends Enemy {
     public GiantCrab() {
         super("Giant Crab", 'C', 407);
         this.addRune(318, 4961);
+        this.addCapability(EnemyType.SEAANIMAL);
     }
 
     @Override

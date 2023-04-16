@@ -14,6 +14,7 @@ public class HeavySkeletalSwordsman extends Enemy {
     public HeavySkeletalSwordsman() {
         super("Heavy Skeletal Swordsman", 'q', 153);
         this.addRune(35, 892);
+        this.addCapability(EnemyType.SKELETON);
     }
 
     @Override

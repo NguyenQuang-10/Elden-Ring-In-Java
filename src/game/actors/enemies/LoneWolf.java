@@ -28,6 +28,7 @@ public class LoneWolf extends Enemy {
     public LoneWolf() {
         super("Lone Wolf", 'h', 102);
         this.addRune(55, 1470);
+        this.addCapability(EnemyType.FOURLEGANIMAL);
     }
 
     /**
