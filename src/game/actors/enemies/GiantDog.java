@@ -2,9 +2,11 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.behaviours.Behaviour;
 
 public class GiantDog extends Enemy {
     public GiantDog() {
@@ -14,7 +16,12 @@ public class GiantDog extends Enemy {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        return null;
+        for (Behaviour behaviour : getBehaviours().values()) {
+            Action action = behaviour.getAction(this, map);
+            if(action != null)
+                return action;
+        }
+        return new DoNothingAction();
     }
 
     public IntrinsicWeapon getIntrinsicWeapon() {

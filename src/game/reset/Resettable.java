@@ -8,5 +8,5 @@ package game.reset;
  *
  */
 public interface Resettable {
-    void reset();
+    public void reset();
 }
