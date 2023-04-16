@@ -1,4 +1,4 @@
-package game.actors;
+package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -23,12 +23,11 @@ import java.util.Map;
  * Modified by:
  *
  */
-public class LoneWolf extends Actor {
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+public class LoneWolf extends Enemy {
 
     public LoneWolf() {
         super("Lone Wolf", 'h', 102);
-        this.behaviours.put(999, new WanderBehaviour());
+        this.addBehaviour(999, new WanderBehaviour());
     }
 
     /**
@@ -42,7 +41,7 @@ public class LoneWolf extends Actor {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        for (Behaviour behaviour : behaviours.values()) {
+        for (Behaviour behaviour : getBehaviours().values()) {
             Action action = behaviour.getAction(this, map);
             if(action != null)
                 return action;
