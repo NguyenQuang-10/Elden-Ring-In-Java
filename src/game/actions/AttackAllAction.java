@@ -41,17 +41,14 @@ public class AttackAllAction extends Action {
 
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
                     result += actor + " misses " + target + ".\n";
-                } else if (Enemy.isSameEnemy(actor, target)) {
+                } else {
                     int damage = weapon.damage();
                     result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.\n";
                     target.hurt(damage);
                     if (!target.isConscious()) {
                         result += new DeathAction(actor).execute(target, map);
                     }
-                } else {
-                    result += actor + " can't attack " + target + " when attack all ";
                 }
-
             }
         }
 
