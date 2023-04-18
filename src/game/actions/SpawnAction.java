@@ -10,7 +10,7 @@ public class SpawnAction extends Action {
 
     public SpawnAction(Actor actor) {
         this.actor = actor;
-    }
+}
 
     @Override
     public String execute(Actor spawner, GameMap map) {
