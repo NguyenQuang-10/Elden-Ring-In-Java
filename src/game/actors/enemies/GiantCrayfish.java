@@ -7,11 +7,13 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.Behaviour;
+import game.behaviours.WanderBehaviour;
 
 public class GiantCrayfish extends Enemy {
     public GiantCrayfish() {
         super("Giant Crayfish", 'R', 4803, EnemyType.SEAANIMAL);
         this.addRune(500, 2374);
+        this.addBehaviour(999, new WanderBehaviour());
     }
 
     @Override
