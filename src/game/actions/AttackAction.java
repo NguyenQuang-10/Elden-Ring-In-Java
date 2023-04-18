@@ -1,4 +1,4 @@
-package game;
+package game.actions;
 
 import java.util.Random;
 
@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actors.enemies.Enemy;
 
 /**
  * An Action to attack another Actor.
@@ -70,19 +71,22 @@ public class AttackAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		String result = null;
 		if (weapon == null) {
 			weapon = actor.getIntrinsicWeapon();
 		}
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			return actor + " misses " + target + ".";
-		}
-
-		int damage = weapon.damage();
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-		target.hurt(damage);
-		if (!target.isConscious()) {
-			result += new DeathAction(actor).execute(target, map);
+		} else if (!Enemy.isSameEnemy(actor, target)) {
+			int damage = weapon.damage();
+			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+			target.hurt(damage);
+			if (!target.isConscious()) {
+				result += new DeathAction(actor).execute(target, map);
+			}
+		} else {
+			return actor + " can't attack " + target;
 		}
 
 		return result;

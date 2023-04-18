@@ -1,4 +1,4 @@
-package game;
+package game.reset;
 
 /**
  * A resettable interface
@@ -8,5 +8,5 @@ package game;
  *
  */
 public interface Resettable {
-    void reset();
+    public void reset();
 }
