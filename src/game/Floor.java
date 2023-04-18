@@ -1,8 +1,7 @@
-package game.environments;
+package game;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
-import game.utils.Status;
 
 /**
  * A class that represents the floor inside a building.

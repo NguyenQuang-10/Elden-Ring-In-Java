@@ -1,4 +1,4 @@
-package game.utils;
+package game;
 
 /**
  * Use this enum class to give `buff` or `debuff`.
@@ -8,6 +8,5 @@ package game.utils;
 public enum Status {
     HOSTILE_TO_ENEMY,
     RESPAWNABLE,
-    RESTING,
-    ENEMY
+    RESTING
 }
