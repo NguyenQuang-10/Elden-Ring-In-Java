@@ -1,4 +1,4 @@
-package game.actors;
+package game;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -6,9 +6,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
-import game.weapons.Club;
-import game.reset.Resettable;
-import game.utils.Status;
 
 /**
  * Class representing the Player. It implements the Resettable interface.
