@@ -52,5 +52,4 @@ public interface Weapon {
 	default Action getSkill(Actor holder) {
 		return null;
 	}
-
 }
