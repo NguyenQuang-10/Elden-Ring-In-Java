@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import edu.monash.fit2099.engine.weapons.Weapon;
 import game.weapons.Club;
 import game.reset.Resettable;
 import game.utils.Status;
@@ -43,6 +45,11 @@ public class Player extends Actor implements Resettable {
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
+	}
+
+	@Override
+	public IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(11, "punches", 100);
 	}
 
 	@Override

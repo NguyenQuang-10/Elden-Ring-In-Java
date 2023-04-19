@@ -1,9 +1,11 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actions.AttackAllAction;
 
 public class Grossmesser extends WeaponItem implements Weapon {
     /**
