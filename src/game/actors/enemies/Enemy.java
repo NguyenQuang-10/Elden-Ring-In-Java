@@ -14,6 +14,7 @@ import static game.actors.enemies.EnemyType.*;
 
 public abstract class Enemy extends Actor implements Resettable {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    private Actor spawner = null;
 
     public Enemy(String name, char displayChar, int hitPoints, EnemyType enemyType) {
         super(name, displayChar, hitPoints);
@@ -44,6 +45,14 @@ public abstract class Enemy extends Actor implements Resettable {
         } else {
             return false;
         }
+    }
+
+    public Actor getSpawner() {
+        return this.spawner;
+    }
+
+    public void setSpawner(Actor spawner) {
+        this.spawner = spawner;
     }
     public void reset() {}
 }
