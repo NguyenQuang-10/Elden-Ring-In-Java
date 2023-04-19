@@ -20,4 +20,14 @@ public class PileOfBones extends Enemy {
         this.turn += 1;
         return null;
     }
+
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        return super.allowableActions(otherActor, direction, map);
+    }
+
+    @Override
+    public void hurt(int points) {
+        this.hitPoints = 0;
+    }
 }
