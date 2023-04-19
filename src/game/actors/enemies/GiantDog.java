@@ -7,16 +7,14 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.behaviours.AttackAllBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.DespawnBehaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.*;
 import game.utils.Status;
 
 public class GiantDog extends Enemy {
     public GiantDog() {
         super("Giant Dog", 'G', 693, EnemyType.FOURLEGANIMAL);
         this.addRune(313, 1808);
+        this.addBehaviour(97, new AttackBehaviour());
         this.addBehaviour(98, new AttackAllBehaviour());
         this.addBehaviour(99, new WanderBehaviour());
         this.addBehaviour(100, new DespawnBehaviour(10));
