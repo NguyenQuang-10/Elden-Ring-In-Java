@@ -6,10 +6,10 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 
 public class SpawnAction extends Action {
-    private Actor actor;
+    private Actor toSpawn;
 
     public SpawnAction(Actor actor) {
-        this.actor = actor;
+        this.toSpawn = actor;
     }
 
     @Override
@@ -17,9 +17,9 @@ public class SpawnAction extends Action {
         Location location = map.locationOf(spawner);
 
         map.removeActor(spawner);
-        map.addActor(this.actor, location);
+        map.addActor(this.toSpawn, location);
 
-        return spawner + " spawning a " + actor;
+        return spawner + " spawned a " + toSpawn;
     }
 
     @Override
