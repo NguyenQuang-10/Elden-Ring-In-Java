@@ -16,8 +16,6 @@ public class SpawnAction extends Action {
     @Override
     public String execute(Actor spawner, GameMap map) {
         Location location = map.locationOf(spawner);
-
-        this.toSpawn.setSpawner(spawner);
         map.removeActor(spawner);
         map.addActor(this.toSpawn, location);
 

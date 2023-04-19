@@ -16,7 +16,6 @@ public class SpawnBehaviour implements Behaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
         if (!actor.isConscious()) {
-
             return new SpawnAction(this.toSpawn);
         }
         return null;

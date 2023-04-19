@@ -22,7 +22,7 @@ public class GustOfWind extends Ground {
 	public void tick(Location location) {
 		int rand = RandomNumberGenerator.getRandomInt(0, 100);
 		int spawnRatePercent = 33;
-		if (rand < spawnRatePercent) {
+		if (rand < spawnRatePercent && !location.containsAnActor()) {
 			location.addActor(new LoneWolf());
 		}
 	}

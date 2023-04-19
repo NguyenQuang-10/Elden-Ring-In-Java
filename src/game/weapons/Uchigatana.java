@@ -1,5 +1,6 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
@@ -25,8 +26,8 @@ public class Uchigatana extends WeaponItem {
     /**
     *
      */
-    @Override
-    public Action getSkill(Actor target, String direction){
-        return new UnseatheAction(target, direction);
-    }
+//    @Override
+//    public Action getSkill(Actor target, String direction){
+//        return new UnseatheAction(target, direction);
+//    }
 }

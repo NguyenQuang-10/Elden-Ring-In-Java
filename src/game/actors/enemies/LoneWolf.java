@@ -9,7 +9,9 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
+import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
+import game.behaviours.DespawnBehaviour;
 import game.utils.Status;
 import game.behaviours.WanderBehaviour;
 
@@ -29,7 +31,9 @@ public class LoneWolf extends Enemy {
     public LoneWolf() {
         super("Lone Wolf", 'h', 102, EnemyType.FOURLEGANIMAL);
         this.addRune(55, 1470);
-        this.addBehaviour(999, new WanderBehaviour());
+        this.addBehaviour(97, new AttackBehaviour());
+        this.addBehaviour(99, new WanderBehaviour());
+        this.addBehaviour(100, new DespawnBehaviour(10));
     }
 
     /**

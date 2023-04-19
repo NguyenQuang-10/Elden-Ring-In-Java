@@ -51,14 +51,6 @@ public abstract class Enemy extends Actor implements Resettable {
         }
     }
 
-    public Actor getSpawner() {
-        return this.spawner;
-    }
-
-    public void setSpawner(Actor spawner) {
-        this.spawner = spawner;
-    }
-
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
