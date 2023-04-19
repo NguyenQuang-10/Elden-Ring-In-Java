@@ -7,14 +7,14 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.behaviours.Behaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.*;
 
 public class GiantCrab extends Enemy {
     public GiantCrab() {
         super("Giant Crab", 'C', 407, EnemyType.SEAANIMAL);
         this.addRune(318, 4961);
-        this.addBehaviour(999, new WanderBehaviour());
+        this.addBehaviour(99, new WanderBehaviour());
+        this.addBehaviour(100, new DespawnBehaviour(10));
     }
 
     @Override
