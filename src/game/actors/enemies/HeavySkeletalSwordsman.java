@@ -19,7 +19,7 @@ public class HeavySkeletalSwordsman extends Enemy {
         this.addRune(35, 892);
         this.addBehaviour(99, new WanderBehaviour());
         this.addBehaviour(100, new DespawnBehaviour(10));
-        this.addBehaviour(1, new SpawnBehaviour(new PileOfBones()));
+        this.addBehaviour(1, new SpawnBehaviour(new PileOfBones(this)));
     }
 
     @Override
