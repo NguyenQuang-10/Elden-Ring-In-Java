@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.utils.Status;
@@ -60,13 +61,7 @@ public class LoneWolf extends Enemy {
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        ActionList actions = new ActionList();
-        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
-            actions.add(new AttackAction(this, direction));
-            // HINT 1: The AttackAction above allows you to attak the enemy with your intrinsic weapon.
-            // HINT 1: How would you attack the enemy with a weapon?
-        }
-        return actions;
+        return super.allowableActions(otherActor, direction, map);
     }
 
 

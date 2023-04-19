@@ -25,4 +25,9 @@ public class HeavySkeletalSwordsman extends Enemy {
         }
         return new DoNothingAction();
     }
+
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        return super.allowableActions(otherActor, direction, map);
+    }
 }
