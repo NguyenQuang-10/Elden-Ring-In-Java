@@ -65,9 +65,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 			if (destination.containsAnActor() && destination.getActor().hasCapability(Status.TRADER)) {
 				ArrayList<Purchaseable> purchaseables = TradeableList.getInstance().getPurchaseables();
 				for (Purchaseable item: purchaseables) {
-					if (runeBalance() <= item.getPurchasePrice()) {
-						actions.add(new BuyAction(item.purchaseItem(), item.getPurchasePrice(), this));
-					}
+					actions.add(new BuyAction(item.purchaseItem(), item.getPurchasePrice(), this));
 				}
 
 				ArrayList<Sellable> sellables = TradeableList.getInstance().getSellables();
@@ -77,14 +75,6 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 							actions.add(new SellAction(item.sellItem(), item.getSellPrice(), this));
 						}
 					}
-				}
-			}
-		}
-		ArrayList<Sellable> sellables = TradeableList.getInstance().getSellables();
-		for (WeaponItem weapon: getWeaponInventory()) {
-			for (Sellable item: sellables) {
-				if (item.toString().equals(weapon.toString())) {
-					actions.add(new BuyAction(weapon, item.getSellPrice(), this));
 				}
 			}
 		}
