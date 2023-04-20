@@ -1,6 +1,10 @@
 package game.items;
 
+import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.DropAction;
+import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
+import game.actors.BuyerSellerList;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
@@ -20,5 +24,17 @@ public class Rune extends Item {
 
     public int getValue() {
         return this.value;
+    }
+
+    @Override
+    public DropAction getDropAction(Actor actor) {
+        BuyerSellerList buyerSellerList = BuyerSellerList.getInstance();
+        if (buyerSellerList.isBuyerSeller(actor)) {
+            buyerSellerList.getBuyerSeller(actor).addRune(this);
+            return null;
+        } else if (portable) {
+            return new DropItemAction(this);
+        }
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package game.actions.traderactions;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.items.Rune;
 
 /** Implemented by Player (maybe other Actor?) so that Buy and Sell action could be executed on it
  *
@@ -41,4 +42,6 @@ public interface BuySellCapable {
      * @param weapon@return boolean - true if the Actor do have it in their inventory, false otherwise
      */
     boolean isInInventory(WeaponItem weapon);
+
+    void addRune(Rune rune);
 }

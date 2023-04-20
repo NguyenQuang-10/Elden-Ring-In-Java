@@ -11,6 +11,8 @@ import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.actions.AttackAction;
+import game.actions.DeathAction;
 import game.actions.traderactions.BuyAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellAction;
@@ -80,7 +82,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		}
 
 		display.print(this + " has " + runeBalance() + " runes\n");
-		display.print(this + " has [" + this.hitPoints + "/" + this.maxHitPoints + "] hp\n");
+		display.print(this + " has " + this.printHp() + " hp\n");
 		return menu.showMenu(this, actions, display);
 	}
 
@@ -101,7 +103,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		}
 		return balance;
 	}
-
+	// need modification
 	@Override
 	public void modifyRuneBalance(int amount) {
 		int balance = 0;
@@ -133,5 +135,10 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void addRune(Rune rune) {
+		this.runes.add(rune);
 	}
 }

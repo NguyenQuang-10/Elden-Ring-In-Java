@@ -6,6 +6,12 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.actions.traderactions.BuySellCapable;
+import game.actors.BuyerSellerList;
+import game.items.Rune;
+import game.utils.Status;
+
+import java.util.ArrayList;
 
 /**
  * An action executed if an actor is killed.
@@ -35,8 +41,13 @@ public class DeathAction extends Action {
 
         ActionList dropActions = new ActionList();
         // drop all items
-        for (Item item : target.getItemInventory())
-            dropActions.add(item.getDropAction(target));
+        for (Item item : target.getItemInventory()) {
+            if (item.hasCapability(Status.RUNE)) {
+                dropActions.add(item.getDropAction(this.attacker));
+            } else {
+                dropActions.add(item.getDropAction(target));
+            }
+        }
         for (WeaponItem weapon : target.getWeaponInventory())
             dropActions.add(weapon.getDropAction(target));
         for (Action drop : dropActions)
