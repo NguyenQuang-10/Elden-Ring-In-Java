@@ -2,8 +2,8 @@ package game.actions.traderactions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
  * Represent the the action of a BuySellCapable selling to the trader
@@ -14,7 +14,7 @@ public class SellAction extends Action {
     /**
      * Item to be sold
      */
-    final private Item item;
+    final private WeaponItem item;
     /**
      * Price of the item
      */
@@ -30,7 +30,7 @@ public class SellAction extends Action {
      * @param price - price of item
      * @param seller - the seller
      */
-    public SellAction(Item item, int price, BuySellCapable seller){
+    public SellAction(WeaponItem item, int price, BuySellCapable seller){
         this.item = item;
         this.price = price;
         this.seller = seller;
@@ -44,7 +44,7 @@ public class SellAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (this.seller.isItemInInventory(this.item)) {
+        if (this.seller.isInInventory(this.item)) {
             this.seller.modifyRuneBalance(this.price);
             this.seller.removeFromInventory(this.item);
             return "Successfully sold " + this.item.toString() + " for " + this.price;

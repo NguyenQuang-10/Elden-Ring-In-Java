@@ -6,8 +6,9 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAllAction;
+import game.items.Sellable;
 
-public class Grossmesser extends WeaponItem implements Weapon {
+public class Grossmesser extends WeaponItem implements Weapon, Sellable {
     /**
      * A simple weapon carried by Heavy Skeletal Skeleton.
      * It deals 115 damage with 85% hit rate.
@@ -18,7 +19,9 @@ public class Grossmesser extends WeaponItem implements Weapon {
     /**
      * Constructor
      */
-    public Grossmesser() { super("Grossmesser", '?', 115, "", 85); } // Need to update for the sound of Grossmesser.
+    public Grossmesser() {
+        super("Grossmesser", '?', 115, "", 85);
+    } // Need to update for the sound of Grossmesser.
 
     @Override
     public void tick(Location currentLocation, Actor actor) {}
@@ -33,4 +36,13 @@ public class Grossmesser extends WeaponItem implements Weapon {
         return new AttackAllAction(this);
     }
 
+    @Override
+    public int getSellPrice() {
+        return 100;
+    }
+
+    @Override
+    public WeaponItem sellItem() {
+        return new Grossmesser();
+    }
 }

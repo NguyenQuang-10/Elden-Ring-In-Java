@@ -8,7 +8,12 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuyAction;
+import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellAction;
+import game.items.Purchaseable;
+import game.items.Sellable;
+import game.items.TradeableList;
+import game.utils.Status;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,11 +23,10 @@ public class Trader extends Actor {
     /**
      * The price to pay for items when buying from trader
      */
-    private ActionList buyActionList = new ActionList();
+
     /**
      * The price that you get for items when selling to trader
      */
-    private HashMap<String, Integer> sellingPrices = new HashMap<>();
 
     /**
      * Initializes the trader
@@ -43,12 +47,13 @@ public class Trader extends Actor {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 //        ActionList allowedActions = new ActionList();
-//        allowedActions.add(buyActionList);
-//        for (WeaponItem item: otherActor.getWeaponInventory()){
-//            if (this.sellingPrices.containsKey(item.toString())) {
-//                allowedActions.add(SellAction(item, this.sellingPrices.get(item.toString()), otherActor ));
-//            }
+//        ArrayList<Purchaseable> purchaseables = TradeableList.getInstance().getPurchaseables();
+//        ArrayList<Sellable> sellables = TradeableList.getInstance().getSellables();
+//
+//        for (Purchaseable item: purchaseables) {
+//            allowedActions.add(new BuyAction(item.purchaseItem(), item.getPurchasePrice(), otherActor))
 //        }
+        return null;
 
     }
 
