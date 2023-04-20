@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.positions.Location;
+import game.actors.BuyerSellerList;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
@@ -27,17 +27,14 @@ public class Rune extends Item {
     }
 
     @Override
-    public void tick(Location currentLocation, Actor actor) {
-    }
-
-    @Override
-    public void tick(Location currentLocation) {
-    }
-
-    @Override
     public DropAction getDropAction(Actor actor) {
-        if(portable)
+        BuyerSellerList buyerSellerList = BuyerSellerList.getInstance();
+        if (buyerSellerList.isBuyerSeller(actor)) {
+            buyerSellerList.getBuyerSeller(actor).addRune(this);
+            return null;
+        } else if (portable) {
             return new DropItemAction(this);
+        }
         return null;
     }
 }

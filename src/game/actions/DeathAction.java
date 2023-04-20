@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuySellCapable;
 import game.actors.BuyerSellerList;
+import game.items.Rune;
 import game.utils.Status;
 
 import java.util.ArrayList;
@@ -40,18 +41,13 @@ public class DeathAction extends Action {
 
         ActionList dropActions = new ActionList();
         // drop all items
-
-        BuyerSellerList buyerSellerList = BuyerSellerList.getInstance();
-        if (buyerSellerList.isBuyerSeller(this.attacker)) {
-            for (Item item : target.getItemInventory()) {
-                if (item.hasCapability(Status.RUNE)) {
-                    attacker.addItemToInventory(item);
-                    target.removeItemFromInventory(item);
-                }
+        for (Item item : target.getItemInventory()) {
+            if (item.hasCapability(Status.RUNE)) {
+                dropActions.add(item.getDropAction(this.attacker));
+            } else {
+                dropActions.add(item.getDropAction(target));
             }
         }
-        for (Item item : target.getItemInventory())
-            dropActions.add(item.getDropAction(target));
         for (WeaponItem weapon : target.getWeaponInventory())
             dropActions.add(weapon.getDropAction(target));
         for (Action drop : dropActions)

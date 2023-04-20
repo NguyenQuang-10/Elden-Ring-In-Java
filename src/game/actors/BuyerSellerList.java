@@ -31,4 +31,13 @@ public class BuyerSellerList {
         return false;
     }
 
+    public BuySellCapable getBuyerSeller(Actor actor) {
+        for (BuySellCapable buyerSeller: this.buyerSellers) {
+            if (buyerSeller.toString().equals(actor.toString())) {
+                return buyerSeller;
+            }
+        }
+        return null;
+    }
+
 }
