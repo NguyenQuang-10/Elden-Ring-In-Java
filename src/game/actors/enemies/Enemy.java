@@ -2,6 +2,7 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
@@ -11,6 +12,7 @@ import game.items.Rune;
 import game.reset.Resettable;
 import game.utils.Status;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +20,7 @@ import static game.actors.enemies.EnemyType.*;
 
 public abstract class Enemy extends Actor implements Resettable {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    private ArrayList<Rune> runes = new ArrayList<>();
     private Actor spawner = null;
 
     public Enemy(String name, char displayChar, int hitPoints, EnemyType enemyType) {
@@ -62,5 +65,6 @@ public abstract class Enemy extends Actor implements Resettable {
         }
         return actions;
     }
+
     public void reset() {}
 }
