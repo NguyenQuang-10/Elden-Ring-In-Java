@@ -1,6 +1,6 @@
 package game.actions.traderactions;
 
-import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /** Implemented by Player (maybe other Actor?) so that Buy and Sell action could be executed on it
  *
@@ -23,20 +23,22 @@ public interface BuySellCapable {
 
     /**
      * Remove an item from the inventory of the Actor
-     * @param item - the item to be removed
+     *
+     * @param weapon
      */
-    void removeFromInventory(Item item);
+    void removeFromInventory(WeaponItem weapon);
 
     /**
      * Add an item to the inventory of the Actor
-     * @param item - the item to be added
+     *
+     * @param weapon
      */
-    void addToInventory(Item item);
+    void addToInventory(WeaponItem weapon);
 
     /**
      * Check whether the Actor posses and item
-     * @param item - the item to be checked
-     * @return boolean - true if the Actor do have it in their inventory, false otherwise
+     *
+     * @param weapon@return boolean - true if the Actor do have it in their inventory, false otherwise
      */
-    boolean isItemInInventory(Item item);
+    boolean isInInventory(WeaponItem weapon);
 }
