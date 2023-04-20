@@ -10,11 +10,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import edu.monash.fit2099.engine.weapons.Weapon;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuyAction;
 import game.actions.traderactions.BuySellCapable;
+import game.actions.traderactions.SellAction;
 import game.items.Purchaseable;
 import game.items.Rune;
+import game.items.Sellable;
 import game.items.TradeableList;
 import game.weapons.Club;
 import game.reset.Resettable;
@@ -65,12 +67,27 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 				for (Purchaseable item: purchaseables) {
 					if (runeBalance() <= item.getPurchasePrice()) {
 						actions.add(new BuyAction(item.purchaseItem(), item.getPurchasePrice(), this));
-						break;
+					}
+				}
+
+				ArrayList<Sellable> sellables = TradeableList.getInstance().getSellables();
+				for (WeaponItem weapon: getWeaponInventory()) {
+					for (Sellable item: sellables) {
+						if (item.toString().equals(weapon.toString())) {
+							actions.add(new SellAction(item.sellItem(), item.getSellPrice(), this));
+						}
 					}
 				}
 			}
 		}
-
+		ArrayList<Sellable> sellables = TradeableList.getInstance().getSellables();
+		for (WeaponItem weapon: getWeaponInventory()) {
+			for (Sellable item: sellables) {
+				if (item.toString().equals(weapon.toString())) {
+					actions.add(new BuyAction(weapon, item.getSellPrice(), this));
+				}
+			}
+		}
 
 		display.print(this + " has " + runeBalance() + " runes\n");
 		display.print(this + " has [" + this.hitPoints + "/" + this.maxHitPoints + "] hp\n");
@@ -81,6 +98,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(11, "punches", 100);
 	}
+
 
 	@Override
 	public void reset() {}
@@ -108,19 +126,19 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	}
 
 	@Override
-	public void removeFromInventory(Item item) {
-		super.removeItemFromInventory(item);
+	public void removeFromInventory(WeaponItem weapon) {
+		super.removeWeaponFromInventory(weapon);
 	}
 
 	@Override
-	public void addToInventory(Item item) {
-		super.addItemToInventory(item);
+	public void addToInventory(WeaponItem weapon) {
+		super.addWeaponToInventory(weapon);
 	}
 
 	@Override
-	public boolean isItemInInventory(Item item) {
-		for (Item item1: this.getItemInventory()) {
-			if (item == item1) {
+	public boolean isInInventory(WeaponItem weapon) {
+		for (WeaponItem item1: this.getWeaponInventory()) {
+			if (weapon == item1) {
 				return true;
 			}
 		}

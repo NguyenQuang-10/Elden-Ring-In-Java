@@ -1,7 +1,6 @@
 package game.weapons;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.items.Purchaseable;
@@ -42,12 +41,12 @@ public class Uchigatana extends WeaponItem implements Purchaseable, Sellable {
     public int getSellPrice() { return 500; }
 
     @Override
-    public Item purchaseItem() {
+    public WeaponItem purchaseItem() {
         return new Uchigatana();
     }
 
     @Override
-    public Item sellItem() {
+    public WeaponItem sellItem() {
         return new Uchigatana();
     }
 }

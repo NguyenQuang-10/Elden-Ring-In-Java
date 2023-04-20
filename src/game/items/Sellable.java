@@ -1,8 +1,8 @@
 package game.items;
 
-import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 public interface Sellable {
     public int getSellPrice();
-    public Item sellItem();
+    public WeaponItem sellItem();
 }

@@ -10,5 +10,6 @@ public enum Status {
     RESTING,
     ENEMY,
     RUNE,
-    TRADER
+    TRADER,
+    SELLABLE
 }

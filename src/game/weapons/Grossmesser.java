@@ -2,7 +2,6 @@ package game.weapons;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import edu.monash.fit2099.engine.weapons.Weapon;
@@ -20,7 +19,9 @@ public class Grossmesser extends WeaponItem implements Weapon, Sellable {
     /**
      * Constructor
      */
-    public Grossmesser() { super("Grossmesser", '?', 115, "", 85); } // Need to update for the sound of Grossmesser.
+    public Grossmesser() {
+        super("Grossmesser", '?', 115, "", 85);
+    } // Need to update for the sound of Grossmesser.
 
     @Override
     public void tick(Location currentLocation, Actor actor) {}
@@ -41,7 +42,7 @@ public class Grossmesser extends WeaponItem implements Weapon, Sellable {
     }
 
     @Override
-    public Item sellItem() {
+    public WeaponItem sellItem() {
         return new Grossmesser();
     }
 }
