@@ -37,12 +37,6 @@ public class SkeletalBandit extends Enemy {
 
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        ActionList allowedAction = super.allowableActions(otherActor, direction, map);
-        if (Calculation.distance(map.locationOf(otherActor), map.locationOf(this)) <= 1) {
-            Action attackThisActor = new AttackAction(this, direction, otherActor.getWeaponInventory().get(0)); // TODO: implementing player choosing weapon
-            allowedAction.add(attackThisActor);
-        }
-        return allowedAction;
-
+        return super.allowableActions(otherActor, direction, map);
     }
 }

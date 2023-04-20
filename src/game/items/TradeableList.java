@@ -1,8 +1,6 @@
 package game.items;
 
-import game.weapons.Club;
-import game.weapons.GreatKnife;
-import game.weapons.Uchigatana;
+import game.weapons.*;
 
 import java.util.ArrayList;
 
@@ -15,10 +13,13 @@ public class TradeableList {
         this.addPurchaseableItem(new Club());
         this.addPurchaseableItem(new GreatKnife());
         this.addPurchaseableItem(new Uchigatana());
+        this.addPurchaseableItem(new Scimitar());
 
         this.addSellableItem(new Club());
         this.addSellableItem(new GreatKnife());
         this.addSellableItem(new Uchigatana());
+        this.addSellableItem(new Scimitar());
+        this.addSellableItem(new Grossmesser());
     };
 
     public static TradeableList getInstance() {

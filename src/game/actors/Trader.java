@@ -20,43 +20,31 @@ import java.util.HashMap;
 
 public class Trader extends Actor {
 
-    /**
-     * The price to pay for items when buying from trader
-     */
-
-    /**
-     * The price that you get for items when selling to trader
-     */
-
-    /**
-     * Initializes the trader
-     */
     public Trader() {
         super("Merchant Kale", 'K', Integer.MAX_VALUE);
-        // TODO: add items to buy and sell here, or add another constructor to take it from and object or hashMap
+        super.addCapability(Status.TRADER);
     }
 
-    /** Add a BuyAction for all item in BuyingPrices to ActionList
-     * For each item in the actor inventory, if it's available in SellingPrices, add it the ActionList
+    /**
      *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
-     * @return the ActionList of possible BuyAction and SellAction
+     * @return the empty ActionList
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-//        ActionList allowedActions = new ActionList();
-//        ArrayList<Purchaseable> purchaseables = TradeableList.getInstance().getPurchaseables();
-//        ArrayList<Sellable> sellables = TradeableList.getInstance().getSellables();
-//
-//        for (Purchaseable item: purchaseables) {
-//            allowedActions.add(new BuyAction(item.purchaseItem(), item.getPurchasePrice(), otherActor))
-//        }
-        return null;
-
+        return super.allowableActions(otherActor, direction, map);
     }
 
+    /**
+     * Do nothing
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return do nothing
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         return null;
