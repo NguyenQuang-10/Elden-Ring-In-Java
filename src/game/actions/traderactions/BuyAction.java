@@ -45,7 +45,7 @@ public class BuyAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (this.buyer.runeBalance() >= this.price) {
-            this.buyer.modifyRuneBalance(-1 * this.price);
+            this.buyer.minusRuneBalance(this.price);
             this.buyer.addToInventory(this.item);
             return "Successfully bought " + this.item.toString() + " for " + this.price;
         } else {

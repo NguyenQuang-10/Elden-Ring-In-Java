@@ -45,7 +45,7 @@ public class SellAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (this.seller.isInInventory(this.item)) {
-            this.seller.modifyRuneBalance(this.price);
+            this.seller.addRuneBalance(this.price);
             this.seller.removeFromInventory(this.item);
             return "Successfully sold " + this.item.toString() + " for " + this.price;
         } else {

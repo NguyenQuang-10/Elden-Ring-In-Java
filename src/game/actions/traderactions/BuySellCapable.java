@@ -20,7 +20,9 @@ public interface BuySellCapable {
      * Modify the rune balance of the Actor
      * @param amount - the amount to modify balance, negative int means deduct from balance
      */
-    void modifyRuneBalance(int amount);
+    void addRuneBalance(int amount);
+
+    void minusRuneBalance(int amount);
 
     /**
      * Remove an item from the inventory of the Actor

@@ -103,9 +103,14 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		}
 		return balance;
 	}
-	// need modification
+
 	@Override
-	public void modifyRuneBalance(int amount) {
+	public void addRuneBalance(int amount) {
+		this.runes.add(new Rune(amount));
+	}
+
+	@Override
+	public void minusRuneBalance(int amount) {
 		int balance = 0;
 		if (amount <= this.runeBalance()) {
 			balance = this.runeBalance() - amount;
@@ -115,6 +120,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 				runes.add(new Rune(balance));
 			}
 		}
+
 	}
 
 	@Override
