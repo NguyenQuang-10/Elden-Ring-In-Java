@@ -1,5 +1,8 @@
 package game.reset;
 
+import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.GameMap;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +25,18 @@ public class ResetManager {
         this.resettables = new ArrayList<>();
     }
 
-    public void run() {}
+    public static ResetManager getInstance() {
+        if (instance == null) {
+            instance = new ResetManager();
+        }
+        return instance;
+    }
+
+    public void run(Actor actor, GameMap map) {
+        for (Resettable resettable: this.resettables) {
+            resettable.reset(actor, map);
+        }
+    }
 
     public void registerResettable(Resettable resettable) {}
 
