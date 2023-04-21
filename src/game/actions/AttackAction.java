@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.traderactions.BuySellCapable;
 import game.actors.enemies.Enemy;
+import game.utils.Status;
 
 /**
  * An Action to attack another Actor.
@@ -84,7 +85,9 @@ public class AttackAction extends Action {
 			int damage = weapon.damage();
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 			target.hurt(damage);
-			if (!target.isConscious()) {
+			if (!target.isConscious() && target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+				result += new ResetAction().execute(target, map);
+			} else if (!target.isConscious()) {
 				result += new DeathAction(actor).execute(target, map);
 			}
 		} else {
