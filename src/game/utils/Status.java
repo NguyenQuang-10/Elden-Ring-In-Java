@@ -11,5 +11,6 @@ public enum Status {
     ENEMY,
     RUNE,
     TRADER,
+    SPAWNABLE,
     SELLABLE
 }

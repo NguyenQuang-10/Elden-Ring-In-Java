@@ -2,12 +2,10 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
-import game.behaviours.WanderBehaviour;
 import game.items.Rune;
 import game.reset.Resettable;
 import game.utils.Status;
@@ -27,6 +25,7 @@ public abstract class Enemy extends Actor implements Resettable {
         super(name, displayChar, hitPoints);
         this.maxHitPoints = hitPoints;
         this.addCapability(Status.ENEMY);
+        this.addCapability(Status.SPAWNABLE);
         this.addCapability(enemyType);
     }
 
@@ -66,5 +65,11 @@ public abstract class Enemy extends Actor implements Resettable {
         return actions;
     }
 
-    public void reset() {}
+    public String reset(GameMap map) {
+        if (this.hasCapability(Status.SPAWNABLE)) {
+            map.removeActor(this);
+            return this + " has been despawned from game ";
+        }
+        return null;
+    }
 }

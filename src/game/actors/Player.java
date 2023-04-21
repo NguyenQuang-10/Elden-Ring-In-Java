@@ -4,15 +4,12 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actions.AttackAction;
-import game.actions.DeathAction;
 import game.actions.traderactions.BuyAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellAction;
@@ -93,7 +90,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 
 
 	@Override
-	public void reset() {}
+	public String reset(GameMap map) {}
 
 	@Override
 	public int runeBalance() {
