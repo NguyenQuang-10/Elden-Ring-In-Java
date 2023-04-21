@@ -8,8 +8,7 @@ import game.reset.ResetManager;
 public class ResetAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
-        ResetManager.getInstance().run(actor, map);
-        return "The game has been reset";
+        return ResetManager.getInstance().run(actor, map);
     }
 
     @Override
