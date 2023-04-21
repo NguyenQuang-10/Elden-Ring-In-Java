@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
@@ -92,6 +93,9 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	@Override
 	public String reset(GameMap map) {
 		this.resetMaxHp(this.maxHitPoints);
+		for (Rune rune: this.runes) {
+			(new DropItemAction(rune)).execute(this, map);
+		}
 		return this + " has hp reset to max " + this.maxHitPoints;
 	}
 
