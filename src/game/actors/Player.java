@@ -4,15 +4,13 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actions.AttackAction;
-import game.actions.DeathAction;
 import game.actions.traderactions.BuyAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellAction;
@@ -20,6 +18,7 @@ import game.items.Purchaseable;
 import game.items.Rune;
 import game.items.Sellable;
 import game.items.TradeableList;
+import game.reset.ResetManager;
 import game.weapons.Club;
 import game.reset.Resettable;
 import game.utils.Status;
@@ -50,6 +49,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addWeaponToInventory(new Club());
+		ResetManager.getInstance().registerResettable(this);
 	}
 
 	@Override
@@ -93,7 +93,16 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 
 
 	@Override
-	public void reset() {}
+	public String reset(Actor actor, GameMap map) {
+		this.resetMaxHp(this.maxHitPoints);
+		Location location = map.locationOf(actor);
+		for (Rune rune: this.runes) {
+			rune.setLocation(location);
+			ResetManager.getInstance().registerResettable(rune);
+			(new DropItemAction(rune)).execute(this, map);
+		}
+		return this + " has hp reset to max " + this.maxHitPoints;
+	}
 
 	@Override
 	public int runeBalance() {
