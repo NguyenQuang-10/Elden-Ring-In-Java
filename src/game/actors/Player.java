@@ -90,7 +90,10 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 
 
 	@Override
-	public String reset(GameMap map) {}
+	public String reset(GameMap map) {
+		this.resetMaxHp(this.maxHitPoints);
+		return this + " has hp reset to max " + this.maxHitPoints;
+	}
 
 	@Override
 	public int runeBalance() {
