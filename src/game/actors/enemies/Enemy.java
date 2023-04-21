@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.items.Rune;
+import game.reset.ResetManager;
 import game.reset.Resettable;
 import game.utils.Status;
 
@@ -27,6 +28,7 @@ public abstract class Enemy extends Actor implements Resettable {
         this.addCapability(Status.ENEMY);
         this.addCapability(Status.SPAWNABLE);
         this.addCapability(enemyType);
+        ResetManager.getInstance().registerResettable(this);
     }
 
     public void addBehaviour(int key, Behaviour behaviour) {
@@ -68,6 +70,7 @@ public abstract class Enemy extends Actor implements Resettable {
     public String reset(Actor actor, GameMap map) {
         if (this.hasCapability(Status.SPAWNABLE)) {
             map.removeActor(this);
+            ResetManager.getInstance().removeResettable(this);
             return this + " has been despawned from game ";
         }
         return null;
