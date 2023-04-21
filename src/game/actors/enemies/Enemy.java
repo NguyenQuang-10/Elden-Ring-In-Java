@@ -65,7 +65,7 @@ public abstract class Enemy extends Actor implements Resettable {
         return actions;
     }
 
-    public String reset(GameMap map) {
+    public String reset(Actor actor, GameMap map) {
         if (this.hasCapability(Status.SPAWNABLE)) {
             map.removeActor(this);
             return this + " has been despawned from game ";
