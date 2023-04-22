@@ -86,7 +86,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 				for (WeaponItem weapon: getWeaponInventory()) {
 					for (Sellable item: sellables) {
 						if (item.toString().equals(weapon.toString())) {
-							actions.add(new SellAction(item.sellItem(), item.getSellPrice(), this));
+							actions.add(new SellAction(weapon, item.getSellPrice(), this));
 						}
 					}
 				}
