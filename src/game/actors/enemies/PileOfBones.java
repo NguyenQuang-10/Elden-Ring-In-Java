@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actions.ReviveAction;
+import game.actions.SpawnAction;
 import game.behaviours.Behaviour;
 import game.behaviours.ReviveBehaviour;
 

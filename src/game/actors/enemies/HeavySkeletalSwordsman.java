@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actions.SpawnAction;
 import game.behaviours.*;
 import game.items.Rune;
 
@@ -32,6 +33,9 @@ public class HeavySkeletalSwordsman extends Enemy {
 
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        if (!this.isConscious()) {
+            return new ActionList(new SpawnAction(new PileOfBones(this)));
+        }
         return super.allowableActions(otherActor, direction, map);
     }
 }
