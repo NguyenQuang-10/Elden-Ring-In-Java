@@ -34,8 +34,14 @@ import java.util.ArrayList;
  *
  */
 public class Player extends Actor implements Resettable, BuySellCapable {
-
+	/**
+	 * A menu used to display to user to choose the action to be performed
+	 */
 	private final Menu menu = new Menu();
+
+	/**
+	 * An arrayList to store the Runes held by Player
+	 */
 	private ArrayList<Rune> runes = new ArrayList<>();
 
 	/**
@@ -52,6 +58,15 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		ResetManager.getInstance().registerResettable(this);
 	}
 
+	/**
+	 * At each turn, select a valid action to perform.
+	 *
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return the valid action that can be performed in that iteration or null if no valid action is found
+	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
@@ -86,12 +101,21 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		return menu.showMenu(this, actions, display);
 	}
 
+	/**
+	 * Returns the default attack capability of Player without a weapon
+	 * @return an IntrinsicWeapon
+	 */
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(11, "punches", 100);
 	}
 
-
+	/**
+	 * Reset Player hp to maximum and drops all the Runes
+	 * @param actor the Actor that triggered an entire game reset
+	 * @param map current GameMap
+	 * @return A description of the reset process
+	 */
 	@Override
 	public String reset(Actor actor, GameMap map) {
 		this.resetMaxHp(this.maxHitPoints);
@@ -104,6 +128,10 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		return this + " has hp reset to max " + this.maxHitPoints;
 	}
 
+	/**
+	 * gets the total value of Runes held by Player
+	 * @return total value of Runes
+	 */
 	@Override
 	public int runeBalance() {
 		int balance = 0;
@@ -113,11 +141,19 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		return balance;
 	}
 
+	/**
+	 * Add Rune to the Player when the Player sells a weapon
+	 * @param amount - the value of Rune to be added
+	 */
 	@Override
 	public void addRuneBalance(int amount) {
 		this.runes.add(new Rune(amount));
 	}
 
+	/**
+	 * Remove the amount of Rune when Player buys a weapon
+	 * @param amount the value of Rune to be subtracted
+	 */
 	@Override
 	public void minusRuneBalance(int amount) {
 		int balance = 0;
@@ -132,16 +168,29 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 
 	}
 
+	/**
+	 * Used to remove tradeable weapons (sold weapon) from Player
+	 * @param weapon the weapon that is sold
+	 */
 	@Override
 	public void removeFromInventory(WeaponItem weapon) {
 		super.removeWeaponFromInventory(weapon);
 	}
 
+	/**
+	 * Used to add tradeable weapons (bought weapon) to Player
+	 * @param weapon the weapon that is sold
+	 */
 	@Override
 	public void addToInventory(WeaponItem weapon) {
 		super.addWeaponToInventory(weapon);
 	}
 
+	/**
+	 * Checks if Player has the weapon or not
+	 * @param weapon a weapon
+	 * @return true if the Actor do have weapon in their inventory, false otherwise
+	 */
 	@Override
 	public boolean isInInventory(WeaponItem weapon) {
 		for (WeaponItem item1: this.getWeaponInventory()) {
@@ -152,6 +201,10 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		return false;
 	}
 
+	/**
+	 * Add Rune item to the Player
+	 * @param rune Rune is the currency used in the game
+	 */
 	@Override
 	public void addRune(Rune rune) {
 		this.runes.add(rune);
