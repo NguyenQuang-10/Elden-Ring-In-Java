@@ -58,10 +58,12 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
-            actions.add(new AttackAction(this, direction));
-            for (Weapon weapon: otherActor.getWeaponInventory()) {
-                actions.add(new AttackAction(this, direction, weapon));
+        if (this.isConscious()) {
+            if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
+                actions.add(new AttackAction(this, direction));
+                for (Weapon weapon: otherActor.getWeaponInventory()) {
+                    actions.add(new AttackAction(this, direction, weapon));
+                }
             }
         }
         return actions;
