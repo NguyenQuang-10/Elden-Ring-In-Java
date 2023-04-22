@@ -13,7 +13,6 @@ public class SpawnAction extends Action {
      */
     private Enemy toSpawn;
 
-
     /**
      * A public constructor
      * @param toSpawn the Enemy to be spawned
