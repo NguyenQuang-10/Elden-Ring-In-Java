@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.traderactions.BuySellCapable;
 import game.actors.enemies.Enemy;
+import game.actors.enemies.EnemyType;
 import game.utils.Status;
 
 /**
@@ -87,7 +88,7 @@ public class AttackAction extends Action {
 			target.hurt(damage);
 			if (!target.isConscious() && target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 				result += new ResetAction().execute(target, map);
-			} else if (!target.isConscious()) {
+			} else if (!target.isConscious() && !target.hasCapability(EnemyType.SKELETON)) {
 				result += new DeathAction(actor).execute(target, map);
 			}
 		} else {
