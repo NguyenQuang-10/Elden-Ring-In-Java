@@ -52,9 +52,6 @@ public class HeavySkeletalSwordsman extends Enemy {
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        if (!this.isConscious()) {
-            return new ActionList(new SpawnAction(new PileOfBones(this)));
-        }
         return super.allowableActions(otherActor, direction, map);
     }
 }

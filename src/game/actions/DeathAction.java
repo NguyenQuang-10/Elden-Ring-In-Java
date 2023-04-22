@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuySellCapable;
 import game.actors.BuyerSellerList;
+import game.actors.enemies.EnemyType;
 import game.items.Rune;
 import game.utils.Status;
 
@@ -60,7 +61,8 @@ public class DeathAction extends Action {
         for (Action drop : dropActions)
             drop.execute(target, map);
         // remove actor
-        map.removeActor(target);
+        if (!target.hasCapability(EnemyType.SKELETON))
+            map.removeActor(target);
         result += System.lineSeparator() + menuDescription(target);
         return result;
     }
