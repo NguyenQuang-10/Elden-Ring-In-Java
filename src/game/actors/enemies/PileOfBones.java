@@ -15,13 +15,35 @@ import static game.actors.enemies.EnemyType.PILEOFBONES;
 
 public class PileOfBones extends Enemy implements Reviver {
 
+    /**
+     * The number of turns
+     */
     private int turn;
+
+    /**
+     * The actor that spawned Pile of Bones
+     */
     private Actor spawner;
+
+    /**
+     * A public constructor
+     * @param spawner the Actor that spawned Pile of Bones
+     */
     public PileOfBones(Actor spawner){
         super("Pile of Bones", 'X', 10, PILEOFBONES);
         this.spawner = spawner;
         this.addBehaviour(1, new ReviveBehaviour(this));
     }
+
+    /**
+     * At each turn, select a valid action to perform.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the valid action that can be performed in that iteration or null if no valid action is found
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         this.turn += 1;
@@ -33,21 +55,28 @@ public class PileOfBones extends Enemy implements Reviver {
         return new DoNothingAction();
     }
 
-    @Override
-    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        return super.allowableActions(otherActor, direction, map);
-    }
-
+    /**
+     * Kills the PileOfBones no matter how much the damage from other Actor
+     * @param points number of hitpoints to deduct.
+     */
     @Override
     public void hurt(int points) {
         this.hitPoints = 0;
     }
 
+    /**
+     * Getter for spawner
+     * @return the Actor that spawned Pile of Bones
+     */
     @Override
     public Actor getSpawner() {
         return this.spawner;
     }
 
+    /**
+     * Checks if spawner needs to be revived
+     * @return true if Pile of Bones not killed in 3 turns else false
+     */
     @Override
     public boolean toRevive() {
         return this.turn % 3 == 0;

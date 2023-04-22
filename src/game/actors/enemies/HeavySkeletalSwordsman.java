@@ -12,6 +12,9 @@ import game.items.Rune;
 
 public class HeavySkeletalSwordsman extends Enemy {
 
+    /**
+     * A public constructor
+     */
     public HeavySkeletalSwordsman() {
         super("Heavy Skeletal Swordsman", 'q', 153, EnemyType.SKELETON);
         this.addRune(35, 892);
@@ -21,6 +24,15 @@ public class HeavySkeletalSwordsman extends Enemy {
         this.addBehaviour(1, new SpawnBehaviour(new PileOfBones(this)));
     }
 
+    /**
+     * At each turn, select a valid action to perform.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the valid action that can be performed in that iteration or null if no valid action is found
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         for (Behaviour behaviour : getBehaviours().values()) {
@@ -31,6 +43,10 @@ public class HeavySkeletalSwordsman extends Enemy {
         return new DoNothingAction();
     }
 
+    /**
+     * Returns the default attack capability of HeavySkeletalSwordsman without a weapon
+     * @return an IntrinsicWeapon
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         if (!this.isConscious()) {
