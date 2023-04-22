@@ -21,8 +21,15 @@ import java.util.ArrayList;
  *
  */
 public class DeathAction extends Action {
+    /**
+     * the Actor who performed the attack
+     */
     private Actor attacker;
 
+    /**
+     * A public constructor
+     * @param actor the Actor who performed the attack
+     */
     public DeathAction(Actor actor) {
         this.attacker = actor;
     }
@@ -58,6 +65,11 @@ public class DeathAction extends Action {
         return result;
     }
 
+    /**
+     * Describes which Actor is killed
+     * @param actor The actor performing the action.
+     * @return A description for menu UI
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " is killed.";

@@ -8,11 +8,26 @@ import game.actors.enemies.Enemy;
 import game.actors.enemies.Reviver;
 
 public class ReviveAction extends Action {
+
+    /**
+     * The Actor to be revived
+     */
     private Actor toRevive;
 
+    /**
+     * A public constructor
+     * @param reviver The actor who is going to revive toRevive
+     */
     public ReviveAction(Reviver reviver) {
         this.toRevive = reviver.getSpawner();
     }
+
+    /**
+     * Revives toRevive and removes the Actor performing teh action from the game
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return result of the action to be displayed on the UI
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
@@ -22,6 +37,11 @@ public class ReviveAction extends Action {
         return this.toRevive + " has been revived from " + actor;
     }
 
+    /**
+     * Describes the Actor being revived
+     * @param actor The actor performing the action.
+     * @return A description for menu UI
+     */
     @Override
     public String menuDescription(Actor actor) {
         return this.toRevive + " has been revived ";
