@@ -31,6 +31,6 @@ public class ResetAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Game has been reset";
+        return "Perform a reset";
     }
 }

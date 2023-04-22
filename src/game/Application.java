@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
+import game.actors.Trader;
 import game.actors.enemies.LoneWolf;
 import game.environments.*;
 import game.utils.ArchetypeManager;
@@ -26,7 +27,7 @@ public class Application {
 
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Graveyard(), new PuddleOfWater(), new GustOfWind());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new SiteOfLostGrace() ,new Dirt(), new Wall(), new Floor(), new Graveyard(), new PuddleOfWater(), new GustOfWind());
 
 		List<String> map = Arrays.asList(
 				"...........................................................................",
@@ -39,7 +40,7 @@ public class Application {
 				".......&...................................................................",
 				"...........................................................................",
 				"..................................###___###.......................~........",
-				".....~............................________#................................",
+				".....~............................__U_____#................................",
 				"..................................#________................................",
 				".....~............................#_______#.......................~........",
 				"..................................###___###................................",
@@ -66,6 +67,10 @@ public class Application {
 			}
 		}
 
+		int middleX = gameMap.getXRange().max() / 2;
+		int middleY = gameMap.getYRange().max() / 2;
+
+		gameMap.at(middleX, middleY).addActor(new Trader());
 		gameMap.at(23, 17).addActor(new LoneWolf());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();							// Added by Ryan.

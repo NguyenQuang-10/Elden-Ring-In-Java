@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.SpawnAction;
 import game.behaviours.*;
 import game.items.Rune;
+import game.weapons.Grossmesser;
 
 public class HeavySkeletalSwordsman extends Enemy {
 
@@ -18,7 +19,9 @@ public class HeavySkeletalSwordsman extends Enemy {
     public HeavySkeletalSwordsman() {
         super("Heavy Skeletal Swordsman", 'q', 153, EnemyType.SKELETON);
         this.addRune(35, 892);
+        this.addWeaponToInventory(new Grossmesser());
         this.addBehaviour(97, new AttackBehaviour());
+//        this.addBehaviour(98, new FollowBehaviour());
         this.addBehaviour(99, new WanderBehaviour());
         this.addBehaviour(100, new DespawnBehaviour(10));
         this.addBehaviour(1, new SpawnBehaviour(new PileOfBones(this)));

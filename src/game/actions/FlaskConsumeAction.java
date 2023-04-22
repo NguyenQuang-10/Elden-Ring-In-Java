@@ -24,6 +24,6 @@ public class FlaskConsumeAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Consume Flask of Crimson Tear (" + flaskOfCrimsonTear.getUsesLeft() + "/2 uses left)";
     }
 }
