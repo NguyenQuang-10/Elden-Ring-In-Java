@@ -36,7 +36,7 @@ public class ResetManager {
     public String run(Actor actor, GameMap map) {
         String result = "";
         for (Resettable resettable: this.resettables) {
-            result += resettable.reset(actor, map) + "\n";
+            result += (resettable.reset(actor, map) + "\n");
         }
         result += "The game has been reset";
         return result;
