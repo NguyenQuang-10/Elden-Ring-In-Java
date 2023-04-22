@@ -5,12 +5,12 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ResetAction;
+import game.actions.RestAction;
 
 public class SiteOfLostGrace extends Ground {
     /**
      * Constructor.
      *
-     * @param displayChar character to display for this type of terrain
      */
 
 
@@ -27,10 +27,10 @@ public class SiteOfLostGrace extends Ground {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction){
-        ActionList allowedActions = super.allowableActions(actor, location, direction);
-        ResetAction resetAction = new ResetAction(); // To be added
-        allowedActions.add(resetAction);
-
+        ActionList allowedActions = new ActionList();
+        RestAction restAction = new RestAction("Site of Lost Grace", location, direction); // To be added
+        if (location.getActor() == actor)
+            allowedActions.add(restAction);
         return allowedActions;
     }
 
