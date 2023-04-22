@@ -13,6 +13,6 @@ public class ResetAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Reset the map";
     }
 }
