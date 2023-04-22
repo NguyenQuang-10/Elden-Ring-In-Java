@@ -18,10 +18,19 @@ import java.util.Map;
 import static game.actors.enemies.EnemyType.*;
 
 public abstract class Enemy extends Actor implements Resettable {
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
-    private ArrayList<Rune> runes = new ArrayList<>();
-    private Actor spawner = null;
 
+    /**
+     * A hashmap to store Behaviour according to priority
+     */
+    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+
+    /**
+     * A public constructor
+     * @param name the name of the Enemy
+     * @param displayChar the character that will represent the Enemy in the display
+     * @param hitPoints the Enemy's starting hit points
+     * @param enemyType the type of the Enemy
+     */
     public Enemy(String name, char displayChar, int hitPoints, EnemyType enemyType) {
         super(name, displayChar, hitPoints);
         this.maxHitPoints = hitPoints;
@@ -31,18 +40,38 @@ public abstract class Enemy extends Actor implements Resettable {
         ResetManager.getInstance().registerResettable(this);
     }
 
+    /**
+     * Add a Behaviour to the Enemy
+     * @param key the priority of the Behaviour
+     * @param behaviour the Behaviour (Action to be performed based on criteria of the Behaviour)
+     */
     public void addBehaviour(int key, Behaviour behaviour) {
         this.behaviours.put(key, behaviour);
     }
 
+    /**
+     * A getter for behaviours
+     * @return the list of Behaviour for the Enemy
+     */
     public Map<Integer, Behaviour> getBehaviours() {
         return this.behaviours;
     }
 
+    /**
+     * Add Rune to the Enemy which will be dropped when Enemy is killed
+     * @param min The min value of the Rune
+     * @param max The max value of the Rune
+     */
     public void addRune(int min, int max) {
         this.addItemToInventory(new Rune(min, max));
     }
 
+    /**
+     * Checks if the 2 Actor are the same type of Enemy
+     * @param actor1 An actor
+     * @param actor2 An actor
+     * @return true if the actors are same Enemy type else false
+     */
     public static boolean isSameEnemy(Actor actor1, Actor actor2) {
         if (actor1.hasCapability(SKELETON) && actor2.hasCapability(SKELETON)) {
             return true;
@@ -55,6 +84,15 @@ public abstract class Enemy extends Actor implements Resettable {
         }
     }
 
+    /**
+     * The Enemy can be attacked by any actor that has the HOSTILE_TO_ENEMY capability and
+     * if the Enemy is conscious
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return A list of actions that are allowed to be performed by otherActor
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
@@ -69,6 +107,12 @@ public abstract class Enemy extends Actor implements Resettable {
         return actions;
     }
 
+    /**
+     * Removes spawnable Enemy from the game when reset
+     * @param actor the Actor that triggered an entire game reset
+     * @param map current GameMap
+     * @return A description of the reset process
+     */
     public String reset(Actor actor, GameMap map) {
         if (this.hasCapability(Status.SPAWNABLE)) {
             map.removeActor(this);

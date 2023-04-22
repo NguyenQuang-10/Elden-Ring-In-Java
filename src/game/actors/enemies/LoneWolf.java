@@ -28,6 +28,9 @@ import java.util.Map;
  */
 public class LoneWolf extends Enemy {
 
+    /**
+     * A public constructor
+     */
     public LoneWolf() {
         super("Lone Wolf", 'h', 102, EnemyType.FOURLEGANIMAL);
         this.addRune(55, 1470);
@@ -56,19 +59,9 @@ public class LoneWolf extends Enemy {
     }
 
     /**
-     * The lone wolf can be attacked by any actor that has the HOSTILE_TO_ENEMY capability
-     *
-     * @param otherActor the Actor that might be performing attack
-     * @param direction  String representing the direction of the other Actor
-     * @param map        current GameMap
-     * @return
+     * Returns the default attack capability of LoneWolf without a weapon
+     * @return an IntrinsicWeapon
      */
-    @Override
-    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        return super.allowableActions(otherActor, direction, map);
-    }
-
-
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(97, "bites", 95);
