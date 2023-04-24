@@ -111,6 +111,7 @@ public abstract class Enemy extends Actor implements Resettable {
                 for (Weapon weapon: otherActor.getWeaponInventory()) {
                     actions.add(new AttackAction(this, direction, weapon));
                     actions.add(weapon.getSkill(otherActor));
+                    actions.add(weapon.getSkill(this, direction));
                 }
             }
         }
