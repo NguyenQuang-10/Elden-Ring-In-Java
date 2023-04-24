@@ -29,7 +29,12 @@ public class AttackBehaviour implements Behaviour {
         if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
                 && isSurroundedByActor(here)
                 && this.canAttackAll) {
-            return new AttackAllAction();
+            int numOfWeapons = actor.getWeaponInventory().size();
+            if (RandomNumberGenerator.getRandomInt(1, 100) <= 50 && numOfWeapons >= 1)
+                return new AttackAllAction(actor.getWeaponInventory().get(0));
+            else
+                return new AttackAllAction();
+
         }
 
         for (Exit exit: here.getExits()) {
@@ -40,7 +45,13 @@ public class AttackBehaviour implements Behaviour {
                 if (target.isConscious()
                         && target.hasCapability(Status.ENEMY)
                         && !Enemy.isSameEnemy(actor, target)) {
-                    return new AttackAction(target, exit.getName());
+
+                    int numOfWeapons = actor.getWeaponInventory().size();
+
+                    if (RandomNumberGenerator.getRandomInt(1, 100) <= 50 && numOfWeapons >= 1)
+                        return new AttackAction(target, exit.getName(), actor.getWeaponInventory().get(0));
+                    else
+                        return new AttackAction(target, exit.getName());
                 }
             }
         }

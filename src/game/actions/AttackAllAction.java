@@ -51,7 +51,7 @@ public class AttackAllAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        String result = actor + " attacks surrounding \n";
+        String result = actor + " attacks surrounding with" + (weapon != null ? weapon : "Intrinsic Weapon") + "\n";
 
         Location here = map.locationOf(actor);
 
