@@ -5,9 +5,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.actions.AttackAllAction;
-import game.actions.DeathAction;
 import game.actors.enemies.Enemy;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
@@ -30,11 +30,16 @@ public class AttackBehaviour implements Behaviour {
                 && isSurroundedByActor(here)
                 && this.canAttackAll) {
             int numOfWeapons = actor.getWeaponInventory().size();
-            if (RandomNumberGenerator.getRandomInt(1, 100) <= 50 && numOfWeapons >= 1)
+            if (numOfWeapons >= 1) {
+                Weapon weapon = actor.getWeaponInventory().get(0);
+                if (RandomNumberGenerator.getRandomInt(1, 100) <= 50) {
+                    return weapon.getSkill(actor);
+                }
                 return new AttackAllAction(actor.getWeaponInventory().get(0));
-            else
+            }
+            else {
                 return new AttackAllAction();
-
+            }
         }
 
         for (Exit exit: here.getExits()) {
@@ -48,10 +53,19 @@ public class AttackBehaviour implements Behaviour {
 
                     int numOfWeapons = actor.getWeaponInventory().size();
 
-                    if (RandomNumberGenerator.getRandomInt(1, 100) <= 50 && numOfWeapons >= 1)
-                        return new AttackAction(target, exit.getName(), actor.getWeaponInventory().get(0));
-                    else
+                    if (numOfWeapons >= 1) {
+
+                        Weapon weapon = actor.getWeaponInventory().get(0);
+                        if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
+                                && weapon.getSkill(target, exit.getName()) != null) {
+                            return weapon.getSkill(target, exit.getName());
+                        }
+
+                        return new AttackAction(target, exit.getName(), weapon);
+                    }
+                    else {
                         return new AttackAction(target, exit.getName());
+                    }
                 }
             }
         }
