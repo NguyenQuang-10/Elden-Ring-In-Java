@@ -26,10 +26,13 @@ public class GustOfWind extends Ground {
 	public void tick(Location location) {
 		int rand = RandomNumberGenerator.getRandomInt(0, 100);
 		int spawnRatePercent = 33;
-		if (rand < spawnRatePercent && !location.containsAnActor() && Calculation.isLocationWest(location)) {
-			location.addActor(new LoneWolf());
-		} else if (Calculation.isLocationEast(location)){
-			location.addActor(new GiantDog());
+		if (!location.containsAnActor()) {
+			if (rand < spawnRatePercent && !location.containsAnActor() && Calculation.isLocationWest(location)) {
+				location.addActor(new LoneWolf());
+			} else if (Calculation.isLocationEast(location)){
+				location.addActor(new GiantDog());
+			}
 		}
+
 	}
 }

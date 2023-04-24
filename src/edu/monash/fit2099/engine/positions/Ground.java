@@ -42,6 +42,9 @@ public abstract class Ground implements Capable, Printable {
 	 * @param direction the direction of the Ground from the Actor
 	 * @return a new, empty collection of Actions
 	 */
+	public ActionList allowableActions(Actor actor, Location location, String direction){
+		return new ActionList();
+	}
 
 
 	/**

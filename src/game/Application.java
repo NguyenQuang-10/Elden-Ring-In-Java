@@ -9,7 +9,9 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
 import game.actors.Trader;
+import game.actors.enemies.EnemyList;
 import game.actors.enemies.LoneWolf;
+import game.behaviours.FollowBehaviour;
 import game.environments.*;
 import game.utils.ArchetypeManager;
 import game.utils.FancyMessage;
@@ -73,7 +75,9 @@ public class Application {
 		gameMap.at(middleX, middleY).addActor(new Trader());
 		gameMap.at(23, 17).addActor(new LoneWolf());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
-		Player player = archetypeManager.createPlayer();							// Added by Ryan.
+		Player player = archetypeManager.createPlayer();
+		EnemyList.getInstance().addBehaviourToEnemies(1, new FollowBehaviour(player));
+		// Added by Ryan.
 		// HINT: what does it mean to prefer composition to inheritance?
 		// Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, gameMap.at(36, 10));
