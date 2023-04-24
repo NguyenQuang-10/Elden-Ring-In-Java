@@ -26,10 +26,13 @@ public class PuddleOfWater extends Ground {
 	public void tick(Location location) {
 		int rand = RandomNumberGenerator.getRandomInt(0, 100);
 		int spawnRatePercent = 2;
-		if (rand < spawnRatePercent && !location.containsAnActor() && Calculation.isLocationWest(location)) {
-			location.addActor(new GiantCrab());
-		} else if (Calculation.isLocationEast(location)){
-			location.addActor(new GiantCrayfish());
+		if (!location.containsAnActor()) {
+			if (rand < spawnRatePercent && !location.containsAnActor() && Calculation.isLocationWest(location)) {
+				location.addActor(new GiantCrab());
+			} else if (Calculation.isLocationEast(location)){
+				location.addActor(new GiantCrayfish());
+			}
 		}
+
 	}
 }

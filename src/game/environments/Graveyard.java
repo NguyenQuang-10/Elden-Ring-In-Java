@@ -24,10 +24,12 @@ public class Graveyard extends Ground {
 	public void tick(Location location) {
 		int rand = RandomNumberGenerator.getRandomInt(0, 100);
 		int spawnRatePercent = 27;
-		if (rand < spawnRatePercent && !location.containsAnActor() && Calculation.isLocationWest(location)) {
-			location.addActor(new HeavySkeletalSwordsman());
-		} else if (Calculation.isLocationEast(location)){
-			location.addActor(new SkeletalBandit());
+		if (!location.containsAnActor()) {
+			if (rand < spawnRatePercent && !location.containsAnActor() && Calculation.isLocationWest(location)) {
+				location.addActor(new HeavySkeletalSwordsman());
+			} else if (Calculation.isLocationEast(location)) {
+				location.addActor(new SkeletalBandit());
+			}
 		}
 	}
 
