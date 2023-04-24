@@ -1,11 +1,10 @@
 package game.items;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.DropAction;
-import edu.monash.fit2099.engine.items.DropItemAction;
-import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.items.*;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actions.PickUpRuneAction;
 import game.actors.BuyerSellerList;
 import game.reset.ResetManager;
 import game.reset.Resettable;
@@ -39,6 +38,15 @@ public class Rune extends Item implements Resettable {
             return null;
         } else if (portable) {
             return new DropItemAction(this);
+        }
+        return null;
+    }
+
+    @Override
+    public PickUpAction getPickUpAction(Actor actor) {
+        BuyerSellerList buyerSellerList = BuyerSellerList.getInstance();
+        if (buyerSellerList.isBuyerSeller(actor)) {
+            return new PickUpRuneAction(this, buyerSellerList.getBuyerSeller(actor));
         }
         return null;
     }
