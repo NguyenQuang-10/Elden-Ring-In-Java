@@ -14,6 +14,8 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuyAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellAction;
+import game.actors.enemies.EnemyList;
+import game.behaviours.FollowBehaviour;
 import game.items.*;
 import game.reset.ResetManager;
 import game.weapons.Club;
@@ -54,6 +56,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		this.addItemToInventory(new FlaskOfCrimsonTears());
 		ResetManager.getInstance().registerResettable(this);
 		BuyerSellerList.getInstance().addBuyerSeller(this);
+		EnemyList.getInstance().addBehaviour(1, new FollowBehaviour(this));
 	}
 
 	/**
