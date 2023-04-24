@@ -37,8 +37,7 @@ public class AttackBehaviour implements Behaviour {
             if (destination.containsAnActor()) {
                 Actor target = destination.getActor();
 
-                if (!(rand.nextInt(100) <= 50)
-                        && target.isConscious()
+                if (target.isConscious()
                         && target.hasCapability(Status.ENEMY)
                         && !Enemy.isSameEnemy(actor, target)) {
                     return new AttackAction(target, exit.getName());

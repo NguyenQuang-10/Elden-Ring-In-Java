@@ -58,7 +58,7 @@ public class AttackAllAction extends Action {
         for(Exit exit: here.getExits()) {
             Location destination = exit.getDestination();
 
-            if (destination.containsAnActor() && RandomNumberGenerator.getRandomInt(1, 100) <= 50) {
+            if (destination.containsAnActor()) {
                 Actor target = destination.getActor();
                 if (target.isConscious())
                     result += (new AttackAction(target, exit.getName())).execute(actor, map) + "\n";
