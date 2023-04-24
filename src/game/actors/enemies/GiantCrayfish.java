@@ -17,8 +17,7 @@ public class GiantCrayfish extends Enemy {
     public GiantCrayfish() {
         super("Giant Crayfish", 'R', 4803, EnemyType.SEAANIMAL);
         this.addRune(500, 2374);
-        this.addBehaviour(2, new AttackBehaviour());
-        this.addBehaviour(98, new AttackAllBehaviour());
+        this.addBehaviour(2, new AttackBehaviour(true));
         this.addBehaviour(99, new WanderBehaviour());
         this.addBehaviour(100, new DespawnBehaviour(10));
     }

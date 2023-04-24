@@ -20,7 +20,7 @@ public class HeavySkeletalSwordsman extends Enemy {
         super("Heavy Skeletal Swordsman", 'q', 153, EnemyType.SKELETON);
         this.addRune(35, 892);
         this.addWeaponToInventory(new Grossmesser());
-        this.addBehaviour(2, new AttackBehaviour());
+        this.addBehaviour(2, new AttackBehaviour(false));
         this.addBehaviour(99, new WanderBehaviour());
         this.addBehaviour(100, new DespawnBehaviour(10));
         this.addBehaviour(1, new SpawnBehaviour(new PileOfBones(this)));

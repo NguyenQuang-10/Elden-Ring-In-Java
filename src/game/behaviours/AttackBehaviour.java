@@ -6,8 +6,10 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.AttackAction;
+import game.actions.AttackAllAction;
 import game.actions.DeathAction;
 import game.actors.enemies.Enemy;
+import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
 import java.util.Random;
@@ -15,11 +17,20 @@ import java.util.Random;
 public class AttackBehaviour implements Behaviour {
 
     private Random rand = new Random();
-    public AttackBehaviour() {}
+    private boolean canAttackAll;
+    public AttackBehaviour(boolean canAttackAll) {
+        this.canAttackAll = canAttackAll;
+    }
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
+
+        if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
+                && isSurroundedByActor(here)
+                && this.canAttackAll) {
+            return new AttackAllAction();
+        }
 
         for (Exit exit: here.getExits()) {
             Location destination = exit.getDestination();
@@ -36,5 +47,15 @@ public class AttackBehaviour implements Behaviour {
         }
 
         return null;
+    }
+
+    private boolean isSurroundedByActor(Location location) {
+        Boolean flag = false;
+        for (Exit exit: location.getExits()) {
+            if (exit.getDestination().containsAnActor()) {
+                flag = true;
+            }
+        }
+        return flag;
     }
 }

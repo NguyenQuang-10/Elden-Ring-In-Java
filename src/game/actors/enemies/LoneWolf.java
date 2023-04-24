@@ -34,7 +34,7 @@ public class LoneWolf extends Enemy {
     public LoneWolf() {
         super("Lone Wolf", 'h', 102, EnemyType.FOURLEGANIMAL);
         this.addRune(55, 1470);
-        this.addBehaviour(2, new AttackBehaviour());
+        this.addBehaviour(2, new AttackBehaviour(false));
         this.addBehaviour(99, new WanderBehaviour());
         this.addBehaviour(100, new DespawnBehaviour(10));
     }

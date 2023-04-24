@@ -24,7 +24,7 @@ public class SkeletalBandit extends Enemy {
         super("Skeletal Bandit", 'b', 184, EnemyType.SKELETON);
         this.addWeaponToInventory(new Scimitar());
         this.addRune(35, 892);
-        this.addBehaviour(2, new AttackBehaviour());
+        this.addBehaviour(2, new AttackBehaviour(false));
         this.addBehaviour(99, new WanderBehaviour());
         this.addBehaviour(100, new DespawnBehaviour(10));
     }
