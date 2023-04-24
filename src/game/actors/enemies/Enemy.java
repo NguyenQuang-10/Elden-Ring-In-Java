@@ -1,11 +1,17 @@
 package game.actors.enemies;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
+import game.actions.traderactions.BuySellCapable;
+import game.actors.BuyerSellerList;
 import game.behaviours.Behaviour;
+import game.behaviours.DespawnBehaviour;
 import game.behaviours.FollowBehaviour;
 import game.items.Rune;
 import game.reset.ResetManager;
@@ -50,6 +56,7 @@ public abstract class Enemy extends Actor implements Resettable {
     public void addBehaviour(int key, Behaviour behaviour) {
         this.behaviours.put(key, behaviour);
     }
+
 
     /**
      * A getter for behaviours

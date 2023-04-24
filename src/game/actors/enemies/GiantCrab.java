@@ -17,9 +17,9 @@ public class GiantCrab extends Enemy {
     public GiantCrab() {
         super("Giant Crab", 'C', 407, EnemyType.SEAANIMAL);
         this.addRune(318, 4961);
-        this.addBehaviour(2, new AttackBehaviour(true));
+        this.addBehaviour(2, new DespawnBehaviour(10));
+        this.addBehaviour(3, new AttackBehaviour(true));
         this.addBehaviour(99, new WanderBehaviour());
-        this.addBehaviour(100, new DespawnBehaviour(10));
     }
 
     /**

@@ -1,6 +1,7 @@
 package game.actors.enemies;
 
 import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class EnemyList {
         this.enemies.add(enemy);
     }
 
-    public void addBehaviourToEnemies(int key, Behaviour behaviour) {
+    public void addBehaviour(int key, Behaviour behaviour) {
         for(Enemy enemy: this.enemies) {
             enemy.addBehaviour(key, behaviour);
         }

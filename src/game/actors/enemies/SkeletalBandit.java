@@ -7,10 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.AttackAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.DespawnBehaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.*;
 import game.utils.Calculation;
 import game.utils.Status;
 import game.weapons.Scimitar;
@@ -24,9 +21,10 @@ public class SkeletalBandit extends Enemy {
         super("Skeletal Bandit", 'b', 184, EnemyType.SKELETON);
         this.addWeaponToInventory(new Scimitar());
         this.addRune(35, 892);
-        this.addBehaviour(2, new AttackBehaviour(false));
+        this.addBehaviour(2, new SpawnBehaviour(new PileOfBones(this)));
+        this.addBehaviour(3, new DespawnBehaviour(10));
+        this.addBehaviour(4, new AttackBehaviour(false));
         this.addBehaviour(99, new WanderBehaviour());
-        this.addBehaviour(100, new DespawnBehaviour(10));
     }
 
 

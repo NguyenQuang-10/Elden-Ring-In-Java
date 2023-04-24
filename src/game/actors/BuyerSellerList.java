@@ -12,6 +12,10 @@ public class BuyerSellerList {
      */
     private static BuyerSellerList instance = null;
 
+    public ArrayList<BuySellCapable> getBuyerSellers() {
+        return buyerSellers;
+    }
+
     /**
      * Stores a list of Actors that can buy and sell items
      */
