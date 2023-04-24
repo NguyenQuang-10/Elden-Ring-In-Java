@@ -32,18 +32,26 @@ public class AttackBehaviour implements Behaviour {
             return new AttackAllAction();
         }
 
-        for (Exit exit: here.getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.containsAnActor()) {
-                Actor target = destination.getActor();
+        if (RandomNumberGenerator.getRandomInt(1, 100) <= 50 ) {
 
-                if (target.isConscious()
-                        && target.hasCapability(Status.ENEMY)
-                        && !Enemy.isSameEnemy(actor, target)) {
-                    return new AttackAction(target, exit.getName());
+        } else {
+            for (Exit exit: here.getExits()) {
+                Location destination = exit.getDestination();
+                if (destination.containsAnActor()) {
+                    Actor target = destination.getActor();
+
+                    if (target.isConscious()
+                            && target.hasCapability(Status.ENEMY)
+                            && !Enemy.isSameEnemy(actor, target)) {
+                        return new AttackAction(target, exit.getName());
+                    }
                 }
             }
         }
+
+
+
+
 
         return null;
     }

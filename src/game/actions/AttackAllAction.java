@@ -23,7 +23,7 @@ public class AttackAllAction extends Action {
     /**
      * Weapon used for the attack
      */
-    private Weapon weapon;
+    private Weapon weapon = null;
 
     /**
      * A public constructor
@@ -61,7 +61,11 @@ public class AttackAllAction extends Action {
             if (destination.containsAnActor()) {
                 Actor target = destination.getActor();
                 if (target.isConscious())
-                    result += (new AttackAction(target, exit.getName())).execute(actor, map) + "\n";
+                    if (weapon == null) {
+                        result += (new AttackAction(target, exit.getName())).execute(actor, map) + "\n";
+                    } else {
+                        result += (new AttackAction(target, exit.getName(), weapon)).execute(actor, map) + "\n";
+                    }
             }
         }
 
@@ -70,6 +74,6 @@ public class AttackAllAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return actor + " attacks surrounding with " + (weapon != null ? weapon : "Intrinsic Weapon");
     }
 }
