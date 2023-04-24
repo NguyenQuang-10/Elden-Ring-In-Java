@@ -53,6 +53,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addItemToInventory(new FlaskOfCrimsonTears());
 		ResetManager.getInstance().registerResettable(this);
+		BuyerSellerList.getInstance().addBuyerSeller(this);
 	}
 
 	/**
