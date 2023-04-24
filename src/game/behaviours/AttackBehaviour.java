@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.AttackAction;
 import game.actions.DeathAction;
+import game.actors.enemies.Enemy;
 import game.utils.Status;
 
 import java.util.Random;
@@ -25,7 +26,10 @@ public class AttackBehaviour implements Behaviour {
             if (destination.containsAnActor()) {
                 Actor target = destination.getActor();
 
-                if (!(rand.nextInt(100) <= 50) && target.isConscious() && !target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                if (!(rand.nextInt(100) <= 50)
+                        && target.isConscious()
+                        && target.hasCapability(Status.ENEMY)
+                        && !Enemy.isSameEnemy(actor, target)) {
                     return new AttackAction(target, exit.getName());
                 }
             }
