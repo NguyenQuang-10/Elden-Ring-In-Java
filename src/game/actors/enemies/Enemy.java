@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
 import game.items.Rune;
 import game.reset.ResetManager;
 import game.reset.Resettable;
@@ -37,6 +38,7 @@ public abstract class Enemy extends Actor implements Resettable {
         this.addCapability(Status.ENEMY);
         this.addCapability(Status.SPAWNABLE);
         this.addCapability(enemyType);
+        EnemyList.getInstance().addEnemy(this);
         ResetManager.getInstance().registerResettable(this);
     }
 
