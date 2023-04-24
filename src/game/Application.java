@@ -76,7 +76,7 @@ public class Application {
 		gameMap.at(23, 17).addActor(new LoneWolf());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
-		EnemyList.getInstance().addBehaviourToEnemies(1, new FollowBehaviour(player));
+		EnemyList.getInstance().addBehaviourToEnemies(5, new FollowBehaviour(player));
 		// Added by Ryan.
 		// HINT: what does it mean to prefer composition to inheritance?
 		// Player player = new Player("Tarnished", '@', 300);
