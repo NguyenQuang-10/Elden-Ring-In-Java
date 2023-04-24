@@ -82,7 +82,7 @@ public class AttackAction extends Action {
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			return actor + " misses " + target + ".";
-		} else if (!Enemy.isSameEnemy(actor, target)) {
+		} else {
 			int damage = weapon.damage();
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 			target.hurt(damage);
@@ -91,8 +91,6 @@ public class AttackAction extends Action {
 			} else if (!target.isConscious() && !target.hasCapability(EnemyType.SKELETON)) {
 				result += new DeathAction(actor).execute(target, map);
 			}
-		} else {
-			return actor + " can't attack " + target;
 		}
 
 		return result;
