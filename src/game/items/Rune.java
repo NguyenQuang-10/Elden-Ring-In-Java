@@ -57,8 +57,12 @@ public class Rune extends Item implements Resettable {
 
     @Override
     public String reset(Actor actor, GameMap map) {
-        this.location.removeItem(this);
-        ResetManager.getInstance().removeResettable(this);
-        return this + " value: " + this.getValue() + " is dropped";
+        if (!actor.isConscious()) {
+            this.location.removeItem(this);
+            ResetManager.getInstance().removeResettable(this);
+            return this + " value: " + this.getValue() + " is dropped";
+        } else {
+            return "";
+        }
     }
 }

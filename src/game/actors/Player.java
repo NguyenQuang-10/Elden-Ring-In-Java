@@ -44,6 +44,12 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	 */
 	private ArrayList<Rune> runes = new ArrayList<>();
 
+	public void setLastSiteOfLostGrace(Location lastSiteOfLostGrace) {
+		this.lastSiteOfLostGrace = lastSiteOfLostGrace;
+	}
+
+	private Location lastSiteOfLostGrace;
+
 	/**
 	 * Constructor.
 	 *
@@ -72,6 +78,12 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
+
+		if (map.locationOf(this).getGround() != null
+				&& map.locationOf(this).getGround().hasCapability(Status.SITEOFLOSTGRACE)) {
+			this.setLastSiteOfLostGrace(map.locationOf(this));
+		}
+
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
@@ -121,11 +133,15 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	@Override
 	public String reset(Actor actor, GameMap map) {
 		this.resetMaxHp(this.maxHitPoints);
-		Location location = map.locationOf(actor);
+		Location location = map.locationOf(this);
 		for (Rune rune: this.runes) {
 			rune.setLocation(location);
 			ResetManager.getInstance().registerResettable(rune);
 			(new DropItemAction(rune)).execute(this, map);
+		}
+		if (!this.isConscious()) {
+			map.removeActor(this);
+			map.addActor(this, this.lastSiteOfLostGrace);
 		}
 		return this + " has hp reset to max " + this.maxHitPoints;
 	}
