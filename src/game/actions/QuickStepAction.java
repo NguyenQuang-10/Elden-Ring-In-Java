@@ -2,6 +2,7 @@ package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.ActorLocationsIterator;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
@@ -33,7 +34,8 @@ public class QuickStepAction extends Action {
             Location destination = exit.getDestination();
             if (destination.canActorEnter(actor)) {
                 // Move the actor to that location and return.
-
+                ActorLocationsIterator actorIterator = new ActorLocationsIterator();
+                actorIterator.move(actor, destination);
                 return result + attack.execute(actor, gameMap);
             }
         }
