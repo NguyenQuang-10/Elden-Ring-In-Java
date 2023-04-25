@@ -38,6 +38,7 @@ public class LoneWolf extends Enemy {
         ArrayList<Player> players = PlayersList.getInstance().getPlayers();
         while (s < players.size()) {
             this.addBehaviour(s, new FollowBehaviour(players.get(s)));
+            s++;
         }
 
         ArrayList<Behaviour> behaviours = new ArrayList<>();
