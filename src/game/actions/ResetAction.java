@@ -8,14 +8,10 @@ import game.utils.FancyMessage;
 
 public class ResetAction extends Action {
 
-    private boolean isDead;
-
     /**
      * A public constructor
      */
-    public ResetAction(boolean isDead) {
-        this.isDead = isDead;
-    }
+    public ResetAction() {}
 
     /**
      * Resets the entire game by resetting all the actors and other game elements that need to be
@@ -36,6 +32,6 @@ public class ResetAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return this.isDead ? FancyMessage.YOU_DIED : "Game is reset";
+        return !actor.isConscious() ? FancyMessage.YOU_DIED : "Game is reset";
     }
 }
