@@ -50,6 +50,7 @@ public class DeathAction extends Action {
         ActionList dropActions = new ActionList();
         // drop all items
         for (Item item : target.getItemInventory()) {
+            System.out.println(item);
             if (item.hasCapability(Status.RUNE)) {
                 dropActions.add(item.getDropAction(this.attacker));
             } else {

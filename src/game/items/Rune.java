@@ -24,6 +24,7 @@ public class Rune extends Item implements Resettable {
     public Rune(int min, int max) {
         super("Runes", '$', true);
         this.value = RandomNumberGenerator.getRandomInt(min, max);
+        this.addCapability(Status.RUNE);
     }
 
     public int getValue() {
