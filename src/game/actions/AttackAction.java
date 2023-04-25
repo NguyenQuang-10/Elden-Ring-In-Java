@@ -88,7 +88,7 @@ public class AttackAction extends Action {
 			target.hurt(damage);
 			if (!target.isConscious() && target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 				result += new ResetAction().execute(target, map);
-			} else if (!target.isConscious() && !target.hasCapability(EnemyType.SKELETON)) {
+			} else if (!target.isConscious()) {
 				result += new DeathAction(actor).execute(target, map);
 			}
 		}

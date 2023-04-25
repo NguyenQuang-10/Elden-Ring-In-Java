@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.reset.ResetManager;
+import game.utils.FancyMessage;
 
 public class ResetAction extends Action {
 
@@ -31,6 +32,6 @@ public class ResetAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Perform a reset";
+        return !actor.isConscious() ? FancyMessage.YOU_DIED : "Game is reset";
     }
 }

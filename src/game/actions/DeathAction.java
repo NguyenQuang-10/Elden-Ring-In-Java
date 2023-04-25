@@ -63,6 +63,10 @@ public class DeathAction extends Action {
         // remove actor
         if (!target.hasCapability(EnemyType.SKELETON))
             map.removeActor(target);
+
+        if(target.hasCapability(EnemyType.PILEOFBONES))
+            map.removeActor(target);
+
         result += System.lineSeparator() + menuDescription(target);
         return result;
     }

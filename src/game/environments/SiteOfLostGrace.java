@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ResetAction;
 import game.actions.RestAction;
+import game.utils.Status;
 
 public class SiteOfLostGrace extends Ground {
     /**
@@ -13,9 +14,9 @@ public class SiteOfLostGrace extends Ground {
      *
      */
 
-
     public SiteOfLostGrace() {
         super('U');
+        this.addCapability(Status.SITEOFLOSTGRACE);
     }
 
     /** The player is allowed to rest and reset the game the site of lost grace
