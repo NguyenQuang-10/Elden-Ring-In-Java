@@ -63,7 +63,6 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		this.addItemToInventory(new FlaskOfCrimsonTears());
 		ResetManager.getInstance().registerResettable(this);
 		BuyerSellerList.getInstance().addBuyerSeller(this);
-		EnemyList.getInstance().addBehaviour(1, new FollowBehaviour(this));
 	}
 
 	/**
@@ -78,7 +77,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
-
+		EnemyList.getInstance().addBehaviour(1, new FollowBehaviour(this));
 		if (map.locationOf(this).getGround() != null
 				&& map.locationOf(this).getGround().hasCapability(Status.SITEOFLOSTGRACE)) {
 			this.setLastSiteOfLostGrace(map.locationOf(this));
