@@ -9,12 +9,11 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.DespawnBehaviour;
+import game.actors.Player;
+import game.behaviours.*;
 import game.utils.Status;
-import game.behaviours.WanderBehaviour;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,9 +33,22 @@ public class LoneWolf extends Enemy {
     public LoneWolf() {
         super("Lone Wolf", 'h', 102, EnemyType.FOURLEGANIMAL);
         this.addRune(55, 1470);
-        this.addBehaviour(2, new DespawnBehaviour(10));
-        this.addBehaviour(3, new AttackBehaviour(false));
-        this.addBehaviour(99, new WanderBehaviour());
+
+        int s = 0;
+        ArrayList<Player> players = PlayersList.getInstance().getPlayers();
+        while (s < players.size()) {
+            this.addBehaviour(s, new FollowBehaviour(players.get(s)));
+            s++;
+        }
+
+        ArrayList<Behaviour> behaviours = new ArrayList<>();
+        behaviours.add(new DespawnBehaviour(10));
+        behaviours.add(new AttackBehaviour(false));
+        behaviours.add(new WanderBehaviour());
+
+        for (int i = 0; i < behaviours.size(); i++) {
+            this.addBehaviour(i+s, behaviours.get(i));
+        }
     }
 
 
