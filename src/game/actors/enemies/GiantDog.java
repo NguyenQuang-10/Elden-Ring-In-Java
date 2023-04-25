@@ -22,16 +22,17 @@ public class GiantDog extends Enemy {
         super("Giant Dog", 'G', 693, EnemyType.FOURLEGANIMAL);
         this.addRune(313, 1808);
 
+        this.addBehaviour(0, new AttackBehaviour(true));
+
         int s = 0;
         ArrayList<Player> players = PlayersList.getInstance().getPlayers();
         while (s < players.size()) {
-            this.addBehaviour(s, new FollowBehaviour(players.get(s)));
+            this.addBehaviour(s+1, new FollowBehaviour(players.get(s)));
             s++;
         }
-
+        s++;
         ArrayList<Behaviour> behaviours = new ArrayList<>();
         behaviours.add(new DespawnBehaviour(10));
-        behaviours.add(new AttackBehaviour(true));
         behaviours.add(new WanderBehaviour());
 
         for (int i = 0; i < behaviours.size(); i++) {
