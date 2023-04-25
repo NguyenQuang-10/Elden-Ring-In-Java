@@ -21,7 +21,7 @@ public class RestAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        return (new ResetAction()).execute(actor, map);
+        return (new ResetAction(false)).execute(actor, map);
     }
 
     @Override

@@ -4,13 +4,18 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.reset.ResetManager;
+import game.utils.FancyMessage;
 
 public class ResetAction extends Action {
+
+    private boolean isDead;
 
     /**
      * A public constructor
      */
-    public ResetAction() {}
+    public ResetAction(boolean isDead) {
+        this.isDead = isDead;
+    }
 
     /**
      * Resets the entire game by resetting all the actors and other game elements that need to be
@@ -31,6 +36,6 @@ public class ResetAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Perform a reset";
+        return this.isDead ? FancyMessage.YOU_DIED : "Game is reset";
     }
 }
