@@ -9,7 +9,6 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
 import game.actors.Trader;
-import game.actors.enemies.EnemyList;
 import game.actors.enemies.LoneWolf;
 import game.behaviours.FollowBehaviour;
 import game.environments.*;
@@ -81,7 +80,6 @@ public class Application {
 		// HINT: what does it mean to prefer composition to inheritance?
 		// Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, gameMap.at(36, 10));
-		EnemyList.getInstance().addBehaviour(1, new FollowBehaviour(player));
 		player.setLastSiteOfLostGrace(gameMap.at(36, 10));
 
 		world.run();

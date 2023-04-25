@@ -44,7 +44,6 @@ public abstract class Enemy extends Actor implements Resettable {
         this.addCapability(Status.ENEMY);
         this.addCapability(Status.SPAWNABLE);
         this.addCapability(enemyType);
-        EnemyList.getInstance().addEnemy(this);
         ResetManager.getInstance().registerResettable(this);
     }
 
