@@ -20,7 +20,7 @@ public class DespawnBehaviour implements Behaviour{
     @Override
     public Action getAction(Actor actor, GameMap map) {
         if (rand.nextInt(100) <= 10) {
-            return new DespawnAction(this.despawnProb);
+            return new DespawnAction();
         }
         return null;
     }
