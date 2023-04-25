@@ -26,11 +26,6 @@ public class ArchetypeManager {
     // Create class the ask for the user input.
     public String selectArchetype(){
         Display display = new Display();
-        // Print the menu with the archetype selection board.
-        display.println("Archetypes Available:");
-        for (Enumeration<String> aEnum = this.archetypes.keys(); aEnum.hasMoreElements();){
-            display.println(aEnum.nextElement());
-        }
 
         // Ask for the user input and verify the input.
         String chosenArchetype;
@@ -39,7 +34,11 @@ public class ArchetypeManager {
         String keyOfChosenArchetype = "";
         while(statusOfInput){
             try{
-                display.println("Enter your chosen archetype [e.g. Write 'Bandit' and click enter]: ");
+                // Print the menu with the archetype selection board.
+                display.println("Select your role: ");
+                display.println("b: Bandit");
+                display.println("s: Samurai");
+                display.println("w: Wretch");
                 chosenArchetype = scanner.nextLine();
                 for (Enumeration<String> aEnum = this.archetypes.keys(); aEnum.hasMoreElements();){
                     String nextElement = aEnum.nextElement();
@@ -68,15 +67,15 @@ public class ArchetypeManager {
         ArrayList<Object> myList = new ArrayList<Object>();
         myList.add(455);
         myList.add(new Uchigatana());
-        myArchetypes.put("Samurai", (ArrayList<Object>) myList.clone());
+        myArchetypes.put("s", (ArrayList<Object>) myList.clone());
         myList.clear();
         myList.add(414);
         myList.add(new GreatKnife());
-        myArchetypes.put("Bandit", (ArrayList<Object>) myList.clone());
+        myArchetypes.put("b", (ArrayList<Object>) myList.clone());
         myList.clear();
         myList.add(414);
         myList.add(new Club());
-        myArchetypes.put("Wretch", (ArrayList<Object>) myList.clone());
+        myArchetypes.put("w", (ArrayList<Object>) myList.clone());
         return myArchetypes;
     }
 }

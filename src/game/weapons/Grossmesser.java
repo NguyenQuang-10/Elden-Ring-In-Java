@@ -20,8 +20,8 @@ public class Grossmesser extends WeaponItem implements Weapon, Sellable {
      * Constructor
      */
     public Grossmesser() {
-        super("Grossmesser", '?', 115, "", 85);
-    } // Need to update for the sound of Grossmesser.
+        super("Grossmesser", '?', 115, "slash", 85);
+    }
 
     @Override
     public void tick(Location currentLocation, Actor actor) {}
