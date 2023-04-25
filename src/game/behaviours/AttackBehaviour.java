@@ -48,7 +48,7 @@ public class AttackBehaviour implements Behaviour {
                 Actor target = destination.getActor();
 
                 if (target.isConscious()
-                        && target.hasCapability(Status.ENEMY)
+                        && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.HOSTILE_TO_ENEMY))
                         && !Enemy.isSameEnemy(actor, target)) {
 
                     int numOfWeapons = actor.getWeaponInventory().size();

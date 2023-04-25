@@ -29,7 +29,7 @@ public abstract class Enemy extends Actor implements Resettable {
     /**
      * A hashmap to store Behaviour according to priority
      */
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    protected Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     /**
      * A public constructor
@@ -131,5 +131,28 @@ public abstract class Enemy extends Actor implements Resettable {
             return this + " has been despawned from game ";
         }
         return null;
+    }
+
+    /**
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the action to execute
+     */
+    @Override
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        for (int i = 0; i < getBehaviours().size(); i++) {
+            Behaviour behaviour = getBehaviours().get(i);
+            if (behaviour != null){
+                Action action = behaviour.getAction(this, map);
+                if(action != null) {
+                    return action;
+                }
+            }
+
+        }
+        return new DoNothingAction();
     }
 }
