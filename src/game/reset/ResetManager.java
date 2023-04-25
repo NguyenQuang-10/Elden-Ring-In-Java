@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class ResetManager {
     private List<Resettable> resettables;
+    private List<Resettable> resettablesToRemove;
     private static ResetManager instance;
 
     /**
@@ -24,6 +25,7 @@ public class ResetManager {
      */
     private ResetManager() {
         this.resettables = new ArrayList<>();
+        this.resettablesToRemove = new ArrayList<>();
     }
 
     public static ResetManager getInstance() {
@@ -39,6 +41,10 @@ public class ResetManager {
             result += (resettable.reset(actor, map) + "\n");
         }
         result += "The game has been reset";
+
+        for (Resettable resettable: this.resettablesToRemove) {
+            this.resettables.remove(resettable);
+        }
         return result;
     }
 
@@ -47,6 +53,6 @@ public class ResetManager {
     }
 
     public void removeResettable(Resettable resettable) {
-        this.resettables.remove(resettable);
+        this.resettablesToRemove.add(resettable);
     }
 }

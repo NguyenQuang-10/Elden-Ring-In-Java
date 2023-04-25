@@ -131,12 +131,13 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	@Override
 	public String reset(Actor actor, GameMap map) {
 		this.resetMaxHp(this.maxHitPoints);
-		Location location = map.locationOf(this);
+		Location location = map.locationOf(actor);
 		for (Rune rune: this.runes) {
 			rune.setLocation(location);
 			ResetManager.getInstance().registerResettable(rune);
-			(new DropItemAction(rune)).execute(this, map);
+			location.addItem(rune);
 		}
+		this.runes = new ArrayList<>();
 		if (!this.isConscious()) {
 			map.removeActor(this);
 			map.addActor(this, this.lastSiteOfLostGrace);
