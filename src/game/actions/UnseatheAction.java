@@ -25,7 +25,7 @@ public class UnseatheAction extends Action {
     /**
      * This method executes the unique skill to the Uchigatana, it deals 2x damage from weapon with a 60% hit rate.
      * @param actor The actor performing the action.
-     * @param gameMap The map the actor is on.
+     * @param map The map the actor is on.
      * @return The string result of the attack.
      */
     @Override
