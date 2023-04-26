@@ -23,16 +23,9 @@ public class Uchigatana extends WeaponItem implements Purchaseable, Sellable {
         super("Uchigatana", ')', 115, "bash", 80);
     }
 
-    public Uchigatana(int damage, int hitRate){
-        super("Uchigatana", ')', damage, "bash", hitRate);
-    }
-
     @Override
-    public void tick(Location currentLocation, Actor actor) {}
-
-    // @Override
-    public Action getSkill(Actor holder, Actor target, String direction){
-        return new UnseatheAction(target, direction);
+    public Action getSkill(Actor target, String direction){
+        return new UnseatheAction(target, direction, this);
     }
 
 
