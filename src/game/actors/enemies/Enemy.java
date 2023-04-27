@@ -3,7 +3,6 @@ package game.actors.enemies;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
-import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Exit;
@@ -11,15 +10,12 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
-import game.actions.traderactions.BuySellCapable;
-import game.actors.BuyerSellerList;
 import game.behaviours.*;
 import game.items.Rune;
 import game.reset.ResetManager;
 import game.reset.Resettable;
 import game.utils.Status;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,24 +43,12 @@ public abstract class Enemy extends Actor implements Resettable {
         this.addCapability(enemyType);
         ResetManager.getInstance().registerResettable(this);
 
-        this.addBehaviour(0, new AttackBehaviour(false));
-
-        ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new DespawnBehaviour(10));
-        behaviours.add(new WanderBehaviour());
-
-        for (int i = 0; i < behaviours.size(); i++) {
-            this.addBehaviour(i + 2, behaviours.get(i));
-        }
     }
 
-    protected void addBehaviours(ArrayList<Behaviour> behaviours) {
-        if (this.behaviours.isEmpty()) {
-            for (int i = 0; i < behaviours.size(); i++) {
-                this.behaviours.put(i, behaviours.get(i));
-            }
-        }
+    protected void setBehaviour(int key, Behaviour behaviour) {
+        this.behaviours.put(key, behaviour);
     }
+
 
 
     /**
@@ -157,7 +141,7 @@ public abstract class Enemy extends Actor implements Resettable {
             for (Exit exit : here.getExits()) {
                 Location destination = exit.getDestination();
                 if (map.isAnActorAt(destination) && map.getActorAt(destination).hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.addBehaviour(1, new FollowBehaviour(map.getActorAt(destination)));
+                    this.setBehaviour(1, new FollowBehaviour(map.getActorAt(destination)));
                     break;
                 }
             }
