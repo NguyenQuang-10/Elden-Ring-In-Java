@@ -47,13 +47,12 @@ public abstract class Enemy extends Actor implements Resettable {
         ResetManager.getInstance().registerResettable(this);
     }
 
-    /**
-     * Add a Behaviour to the Enemy
-     * @param key the priority of the Behaviour
-     * @param behaviour the Behaviour (Action to be performed based on criteria of the Behaviour)
-     */
-    public void addBehaviour(int key, Behaviour behaviour) {
-        this.behaviours.put(key, behaviour);
+    protected void addBehaviours(ArrayList<Behaviour> behaviours) {
+        if (!this.behaviours.isEmpty()) {
+            for (int i = 0; i < behaviours.size(); i++) {
+                this.behaviours.put(i, behaviours.get(i));
+            }
+        }
     }
 
 
