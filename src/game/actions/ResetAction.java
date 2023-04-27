@@ -22,7 +22,9 @@ public class ResetAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        return ResetManager.getInstance().run(actor, map);
+        String result = !actor.isConscious() ? FancyMessage.YOU_DIED + "\n" : "";
+        result += ResetManager.getInstance().run(actor, map);
+        return result;
     }
 
     /**
@@ -32,6 +34,6 @@ public class ResetAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return !actor.isConscious() ? FancyMessage.YOU_DIED : "Game is reset";
+        return "Game is reset";
     }
 }

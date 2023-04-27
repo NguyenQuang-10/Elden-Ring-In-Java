@@ -84,7 +84,7 @@ public class AttackAction extends Action {
 			return actor + " misses " + target + ".";
 		} else {
 			int damage = weapon.damage();
-			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.\n";
 			target.hurt(damage);
 			if (!target.isConscious() && target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 				result += new ResetAction().execute(target, map);
