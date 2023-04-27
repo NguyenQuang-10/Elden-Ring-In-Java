@@ -24,24 +24,17 @@ public class SkeletalBandit extends Enemy {
         super("Skeletal Bandit", 'b', 184, EnemyType.SKELETON);
         this.addWeaponToInventory(new Scimitar());
         this.addRune(35, 892);
+        this.addCapability(EnemyType.FOLLOWER);
 
-        this.addBehaviour(0, new AttackBehaviour(false));
 
-        int s = 0;
-        ArrayList<Player> players = PlayersList.getInstance().getPlayers();
-        while (s < players.size()) {
-            this.addBehaviour(s+1, new FollowBehaviour(players.get(s)));
-            s++;
-        }
-        s++;
+        this.addBehaviour(0, new AttackBehaviour(true));
 
         ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new SpawnBehaviour(new PileOfBones(this)));
         behaviours.add(new DespawnBehaviour(10));
         behaviours.add(new WanderBehaviour());
 
         for (int i = 0; i < behaviours.size(); i++) {
-            this.addBehaviour(i+s, behaviours.get(i));
+            this.addBehaviour(i+2, behaviours.get(i));
         }
     }
 

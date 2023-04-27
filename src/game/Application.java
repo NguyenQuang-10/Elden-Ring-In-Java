@@ -72,7 +72,8 @@ public class Application {
 		int middleY = gameMap.getYRange().max() / 2;
 
 		gameMap.at(middleX, middleY).addActor(new Trader());
-//		gameMap.at(31, 10).addActor(new LoneWolf());
+		gameMap.at(31, 10).addActor(new LoneWolf());
+		gameMap.at(29, 10).addActor(new LoneWolf());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
 

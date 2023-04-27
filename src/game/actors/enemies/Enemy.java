@@ -3,16 +3,17 @@ package game.actors.enemies;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actors.BuyerSellerList;
-import game.behaviours.Behaviour;
-import game.behaviours.DespawnBehaviour;
-import game.behaviours.FollowBehaviour;
+import game.behaviours.*;
 import game.items.Rune;
 import game.reset.ResetManager;
 import game.reset.Resettable;
@@ -45,6 +46,16 @@ public abstract class Enemy extends Actor implements Resettable {
         this.addCapability(Status.SPAWNABLE);
         this.addCapability(enemyType);
         ResetManager.getInstance().registerResettable(this);
+
+        this.addBehaviour(0, new AttackBehaviour(false));
+
+        ArrayList<Behaviour> behaviours = new ArrayList<>();
+        behaviours.add(new DespawnBehaviour(10));
+        behaviours.add(new WanderBehaviour());
+
+        for (int i = 0; i < behaviours.size(); i++) {
+            this.addBehaviour(i + 2, behaviours.get(i));
+        }
     }
 
     /**
@@ -142,16 +153,23 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        for (int i = 0; i < getBehaviours().size(); i++) {
-            Behaviour behaviour = getBehaviours().get(i);
-            if (behaviour != null){
-                Action action = behaviour.getAction(this, map);
-                if(action != null) {
-                    return action;
+        if (this.hasCapability(FOLLOWER)) {
+            Location here = map.locationOf(this);
+            for (Exit exit : here.getExits()) {
+                Location destination = exit.getDestination();
+                if (map.isAnActorAt(destination) && map.getActorAt(destination).hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                    this.addBehaviour(1, new FollowBehaviour(map.getActorAt(destination)));
+                    break;
                 }
             }
+        }
 
+        for (Behaviour behaviour : getBehaviours().values()) {
+            Action action = behaviour.getAction(this, map);
+            if(action != null)
+                return action;
         }
         return new DoNothingAction();
+
     }
 }
