@@ -46,7 +46,7 @@ public class FollowBehaviour implements Behaviour {
 				if (newDistance < currentDistance) {
 					return new MoveActorAction(destination, exit.getName());
 				}
-			}
+			 }
 		}
 
 		return null;

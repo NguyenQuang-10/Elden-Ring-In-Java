@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
@@ -14,8 +13,6 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuyAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellAction;
-import game.actors.enemies.PlayersList;
-import game.behaviours.FollowBehaviour;
 import game.items.*;
 import game.reset.ResetManager;
 import game.reset.Resettable;
@@ -61,7 +58,6 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		this.addItemToInventory(new FlaskOfCrimsonTears());
 		ResetManager.getInstance().registerResettable(this);
 		BuyerSellerList.getInstance().addBuyerSeller(this);
-		PlayersList.getInstance().addPlayer(this);
 	}
 
 	/**
