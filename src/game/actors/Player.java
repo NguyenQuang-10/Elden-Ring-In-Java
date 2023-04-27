@@ -130,7 +130,6 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	 */
 	@Override
 	public String reset(Actor actor, GameMap map) {
-		this.resetMaxHp(this.maxHitPoints);
 		Location location = map.locationOf(actor);
 		for (Rune rune: this.runes) {
 			rune.setLocation(location);
@@ -142,6 +141,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 			map.removeActor(this);
 			map.addActor(this, this.lastSiteOfLostGrace);
 		}
+		this.resetMaxHp(this.maxHitPoints);
 		return this + " has hp reset to max " + this.maxHitPoints;
 	}
 
