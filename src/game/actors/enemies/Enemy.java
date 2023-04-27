@@ -48,7 +48,7 @@ public abstract class Enemy extends Actor implements Resettable {
     }
 
     protected void addBehaviours(ArrayList<Behaviour> behaviours) {
-        if (!this.behaviours.isEmpty()) {
+        if (this.behaviours.isEmpty()) {
             for (int i = 0; i < behaviours.size(); i++) {
                 this.behaviours.put(i, behaviours.get(i));
             }
