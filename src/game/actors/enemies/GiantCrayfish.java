@@ -20,18 +20,18 @@ public class GiantCrayfish extends Enemy {
     public GiantCrayfish() {
         super("Giant Crayfish", 'R', 4803, EnemyType.SEAANIMAL);
         this.addRune(500, 2374);
+        this.addCapability(EnemyType.FOLLOWER);
+
+
+        this.addBehaviour(0, new AttackBehaviour(true));
 
         ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new AttackBehaviour(true));
-
-        for (Player player: PlayersList.getInstance().getPlayers()) {
-            behaviours.add(new FollowBehaviour(player));
-        }
-
         behaviours.add(new DespawnBehaviour(10));
         behaviours.add(new WanderBehaviour());
 
-        this.addBehaviours(behaviours);
+        for (int i = 0; i < behaviours.size(); i++) {
+            this.addBehaviour(i+2, behaviours.get(i));
+        }
     }
 
 

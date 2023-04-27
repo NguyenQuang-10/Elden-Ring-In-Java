@@ -23,20 +23,18 @@ public class HeavySkeletalSwordsman extends Enemy {
         super("Heavy Skeletal Swordsman", 'q', 153, EnemyType.SKELETON);
         this.addRune(35, 892);
         this.addWeaponToInventory(new Grossmesser());
+        this.addCapability(EnemyType.FOLLOWER);
+
+
+        this.addBehaviour(0, new AttackBehaviour(true));
 
         ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new AttackBehaviour(false));
-
-        for (Player player: PlayersList.getInstance().getPlayers()) {
-            behaviours.add(new FollowBehaviour(player));
-        }
-
-
-        behaviours.add(new SpawnBehaviour(new PileOfBones(this)));
         behaviours.add(new DespawnBehaviour(10));
         behaviours.add(new WanderBehaviour());
 
-        this.addBehaviours(behaviours);
+        for (int i = 0; i < behaviours.size(); i++) {
+            this.addBehaviour(i+2, behaviours.get(i));
+        }
     }
 
 

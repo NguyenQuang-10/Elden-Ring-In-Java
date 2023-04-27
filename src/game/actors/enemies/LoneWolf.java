@@ -33,18 +33,18 @@ public class LoneWolf extends Enemy {
     public LoneWolf() {
         super("Lone Wolf", 'h', 102, EnemyType.FOURLEGANIMAL);
         this.addRune(55, 1470);
+        this.addCapability(EnemyType.FOLLOWER);
+
+
+        this.addBehaviour(0, new AttackBehaviour(false));
 
         ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new AttackBehaviour(false));
-
-        for (Player player: PlayersList.getInstance().getPlayers()) {
-            behaviours.add(new FollowBehaviour(player));
-        }
-
         behaviours.add(new DespawnBehaviour(10));
         behaviours.add(new WanderBehaviour());
 
-        this.addBehaviours(behaviours);
+        for (int i = 0; i < behaviours.size(); i++) {
+            this.addBehaviour(i+2, behaviours.get(i));
+        }
     }
 
 
