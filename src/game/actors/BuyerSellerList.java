@@ -5,6 +5,10 @@ import game.actions.traderactions.BuySellCapable;
 
 import java.util.ArrayList;
 
+/**
+ * Stores a list of actors that can buy and sell
+ * @author AppliedSession03Gropu03
+ */
 public class BuyerSellerList {
 
     /**
@@ -12,6 +16,10 @@ public class BuyerSellerList {
      */
     private static BuyerSellerList instance = null;
 
+    /**
+     * Getter for buyerSellers
+     * @return buyerSellers ArrayList
+     */
     public ArrayList<BuySellCapable> getBuyerSellers() {
         return buyerSellers;
     }

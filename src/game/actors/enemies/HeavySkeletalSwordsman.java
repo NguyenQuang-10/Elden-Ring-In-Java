@@ -8,6 +8,11 @@ import game.weapons.Grossmesser;
 
 import java.util.ArrayList;
 
+/**
+ *  Heavy Skeletal Swordsman enemy, hostile creature,
+ *  represented by q (lowercase Q), that has 153 hit points and carries around a weapon called Grossmesser
+ *  @author AppliedSession03Gropu03
+ */
 public class HeavySkeletalSwordsman extends Enemy {
 
     /**
@@ -30,9 +35,6 @@ public class HeavySkeletalSwordsman extends Enemy {
             this.setBehaviour(i+2, behaviours.get(i));
         }
     }
-
-
-
 
     /**
      * Returns the default attack capability of HeavySkeletalSwordsman without a weapon

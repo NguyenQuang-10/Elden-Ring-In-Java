@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 /**
  * BEHOLD, DOG!
- *
+ * Lone Wolf enemy
  * Created by:
  * @author Adrian Kristanto
- * Modified by:
+ * Modified by: AppliedSession03Gropu03
  *
  */
 public class LoneWolf extends Enemy {
@@ -34,8 +34,6 @@ public class LoneWolf extends Enemy {
             this.setBehaviour(i+2, behaviours.get(i));
         }
     }
-
-
 
     /**
      * Returns the default attack capability of LoneWolf without a weapon

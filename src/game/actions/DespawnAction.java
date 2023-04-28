@@ -8,6 +8,11 @@ import game.utils.RandomNumberGenerator;
 
 import java.util.Random;
 
+/**
+ * Despwans an actor from the map by removing it
+ *
+ * @author AppliedSession03Gropu03
+ */
 public class DespawnAction extends Action {
 
 

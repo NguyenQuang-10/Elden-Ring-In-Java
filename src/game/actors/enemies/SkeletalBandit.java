@@ -8,6 +8,11 @@ import game.weapons.Scimitar;
 
 import java.util.ArrayList;
 
+/**
+ * Skeletal Bandit,  hostile creature,
+ * represented by b (lowercase B), that has 184 hit points and carries around a weapon called Scimitar.
+ * @author AppliedSession03Gropu03
+ */
 public class SkeletalBandit extends Enemy {
 
     /**
@@ -30,10 +35,6 @@ public class SkeletalBandit extends Enemy {
             this.setBehaviour(i+2, behaviours.get(i));
         }
     }
-
-
-
-
 
     /**
      * Returns the default attack capability of SkeletalBandit without a weapon

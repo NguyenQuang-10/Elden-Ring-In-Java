@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * It carries around a club to attack a hostile creature in the Lands Between.
  * Created by:
  * @author Adrian Kristanto
- * Modified by:
+ * Modified by: AppliedSession03Gropu03
  *
  */
 public class Player extends Actor implements Resettable, BuySellCapable {
@@ -39,11 +39,18 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	 */
 	private ArrayList<Rune> runes = new ArrayList<>();
 
+	/**
+	 * Last visited site of lost grace
+	 */
+	private Location lastSiteOfLostGrace;
+
+	/**
+	 * Setter for last visited site of lost grace
+	 * @param lastSiteOfLostGrace last visited site of lost grace
+	 */
 	public void setLastSiteOfLostGrace(Location lastSiteOfLostGrace) {
 		this.lastSiteOfLostGrace = lastSiteOfLostGrace;
 	}
-
-	private Location lastSiteOfLostGrace;
 
 	/**
 	 * Constructor.

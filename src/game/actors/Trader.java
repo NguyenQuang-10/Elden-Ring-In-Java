@@ -19,8 +19,17 @@ import game.utils.Status;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Trader that could be found on the first map is Merchant Kale,
+ * represented by K (uppercase K). Merchant Kale sits around the building in the middle of the map
+ * Merchant Kale allows the player to purchase weapons
+ * @author AppliedSession03Gropu03
+ */
 public class Trader extends Actor {
 
+    /**
+     * A public constructor
+     */
     public Trader() {
         super("Merchant Kale", 'K', Integer.MAX_VALUE);
         super.addCapability(Status.TRADER);
@@ -39,7 +48,7 @@ public class Trader extends Actor {
     }
 
     /**
-     * Do nothing
+     * Do nothing because Trader cannot move
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor

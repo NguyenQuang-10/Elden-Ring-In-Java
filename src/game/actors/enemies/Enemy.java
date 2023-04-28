@@ -21,6 +21,10 @@ import java.util.Map;
 
 import static game.actors.enemies.EnemyType.*;
 
+/**
+ * An abstract that represents enemies in the game
+ * @author AppliedSession03Gropu03
+ */
 public abstract class Enemy extends Actor implements Resettable {
 
     /**
@@ -45,6 +49,11 @@ public abstract class Enemy extends Actor implements Resettable {
 
     }
 
+    /**
+     * Set behaviours for enemy and its priority
+     * @param key the priority of the behaviour
+     * @param behaviour the behaviour that determines what action to be performed
+     */
     protected void setBehaviour(int key, Behaviour behaviour) {
         this.behaviours.put(key, behaviour);
     }
@@ -61,6 +70,7 @@ public abstract class Enemy extends Actor implements Resettable {
 
     /**
      * Add Rune to the Enemy which will be dropped when Enemy is killed
+     *
      * @param min The min value of the Rune
      * @param max The max value of the Rune
      */
@@ -70,6 +80,7 @@ public abstract class Enemy extends Actor implements Resettable {
 
     /**
      * Checks if the 2 Actor are the same type of Enemy
+     *
      * @param actor1 An actor
      * @param actor2 An actor
      * @return true if the actors are same Enemy type else false
@@ -113,6 +124,7 @@ public abstract class Enemy extends Actor implements Resettable {
 
     /**
      * Removes spawnable Enemy from the game when reset
+     *
      * @param actor the Actor that triggered an entire game reset
      * @param map current GameMap
      * @return A description of the reset process
@@ -127,6 +139,7 @@ public abstract class Enemy extends Actor implements Resettable {
     }
 
     /**
+     * Determines the action to execute at current turn
      *
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
