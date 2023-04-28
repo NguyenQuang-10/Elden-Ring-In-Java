@@ -14,14 +14,37 @@ import game.utils.Status;
 
 import java.util.Random;
 
+/**
+ * A behaviour that determines whether an Actor performs AttackAction to attack a single target
+ * or attack all actors in its surrounding using AttackAllAction
+ */
 public class AttackBehaviour implements Behaviour {
 
-    private Random rand = new Random();
+    /**
+     * Determines whether the Actor could perform surrounding attack
+     * true if attack surrounding is allowed else false
+     */
     private boolean canAttackAll;
+
+    /**
+     * A public constructor
+     * @param canAttackAll Determines whether the Actor could perform surrounding attack
+     */
     public AttackBehaviour(boolean canAttackAll) {
         this.canAttackAll = canAttackAll;
     }
 
+    /**
+     * Decides whether the Actor should perform a single targeted attack or a surrounding
+     * attack or not attack at all
+     *
+     * 50% chance to attack surrounding of the actor is allowed to and surrounded by actors
+     * 50% chance for targeted attack to attack single actor
+     *
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
@@ -70,13 +93,14 @@ public class AttackBehaviour implements Behaviour {
             }
         }
 
-
-
-
-
         return null;
     }
 
+    /**
+     * Checks if there are Actors in surrounding
+     * @param location current location of the Actor
+     * @return true if surrounded by Actors else false
+     */
     private boolean isSurroundedByActor(Location location) {
         Boolean flag = false;
         for (Exit exit: location.getExits()) {
