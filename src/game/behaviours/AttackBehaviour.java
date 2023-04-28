@@ -17,6 +17,7 @@ import java.util.Random;
 /**
  * A behaviour that determines whether an Actor performs AttackAction to attack a single target
  * or attack all actors in its surrounding using AttackAllAction
+ * @author AppliedSession03Gropu03
  */
 public class AttackBehaviour implements Behaviour {
 
@@ -43,7 +44,7 @@ public class AttackBehaviour implements Behaviour {
      *
      * @param actor the Actor acting
      * @param map the GameMap containing the Actor
-     * @return
+     * @return AttackAction or AttackAllAction or null
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
