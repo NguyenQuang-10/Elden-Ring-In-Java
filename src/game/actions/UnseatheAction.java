@@ -11,11 +11,35 @@ import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 import game.weapons.Uchigatana;
 
+/**
+ * Performs unsheate action on target (an attack where the weapon hitrate is 60 and the damage
+ * of the weapon is doubled)
+ * @author AppliedSession03Gropu03
+ */
 public class UnseatheAction extends Action {
+
+    /**
+     * The Actor that is to be attacked
+     */
     private Actor target;
+
+    /**
+     * The direction of incoming attack.
+     */
     private String direction;
+
+    /**
+     * Weapon used for the attack
+     */
     private Weapon weapon;
 
+    /**
+     * A public constructor
+     *
+     * @param target The Actor that is to be attacked
+     * @param direction The direction of incoming attack.
+     * @param weapon Weapon used for the attack
+     */
     public UnseatheAction(Actor target, String direction, Weapon weapon){
         this.target = target;
         this.direction = direction;
@@ -47,6 +71,12 @@ public class UnseatheAction extends Action {
         return result;
     }
 
+    /**
+     * Describe which actor performs unsheate on which target
+     *
+     * @param actor The actor performing the action.
+     * @return a description used for the menu UI
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " unsheates " + target + " at " + direction + " with " + weapon;

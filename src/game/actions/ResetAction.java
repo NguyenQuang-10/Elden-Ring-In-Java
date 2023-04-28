@@ -6,6 +6,12 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.reset.ResetManager;
 import game.utils.FancyMessage;
 
+/**
+ * Resets the entire game by executing reset methods of actors and game elements that
+ * need to be reset when the game is reset
+ *
+ * @author AppliedSession03Gropu03
+ */
 public class ResetAction extends Action {
 
     /**

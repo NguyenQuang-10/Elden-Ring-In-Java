@@ -72,6 +72,12 @@ public class AttackAllAction extends Action {
         return result;
     }
 
+    /**
+     * Describes the actor attacking surrounding with weapon or intrinsic weapon
+     *
+     * @param actor The actor performing the action.
+     * @return a description used for the menu UI
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " attacks surrounding with " + (weapon != null ? weapon : "Intrinsic Weapon");

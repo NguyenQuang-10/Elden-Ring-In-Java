@@ -12,10 +12,34 @@ import game.weapons.Uchigatana;
 
 import java.util.ArrayList;
 
+/**
+ * Deals normal damage to the weapon to the target and moves the target away from the attacker
+ * @author AppliedSession03Gropu03
+ */
+
 public class QuickStepAction extends Action {
+
+    /**
+     * The weapon used in the QuickStepAction
+     */
     private WeaponItem weapon;
+
+    /**
+     * The target Actor to be quickstepped
+     */
     private Actor target;
+
+    /**
+     * The direction of the attack
+     */
     private String direction;
+
+    /**
+     *
+     * @param weapon
+     * @param target
+     * @param direction
+     */
     public QuickStepAction(WeaponItem weapon, Actor target, String direction){
         this.weapon = weapon;
         this.target = target;
@@ -34,14 +58,22 @@ public class QuickStepAction extends Action {
         String result = actor + " quicksteps " + target + " at " + direction + " with " + weapon + "\n";
         result += (new AttackAction(this.target, this.direction, this.weapon)).execute(actor, map);
 
-        Action moveActor = (new WanderBehaviour()).getAction(actor, map);
+        if (target.isConscious()) {
+            Action moveActor = (new WanderBehaviour()).getAction(target, map);
 
-        if (moveActor != null)
-            result += moveActor.execute(actor, map);
+            if (moveActor != null)
+                result += moveActor.execute(target, map);
+        }
 
         return result;
     }
 
+    /**
+     * Describe which actor performs quickstep on which target
+     *
+     * @param actor The actor performing the action.
+     * @return a description used for the menu UI
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " quicksteps " + target + " at " + direction + " with " + weapon;
