@@ -33,7 +33,7 @@ public class SkeletalBandit extends Enemy {
         this.addCapability(EnemyType.FOLLOWER);
 
         this.setBehaviour(1, new SpawnBehaviour(new PileOfBones(this)));
-        this.setBehaviour(1, new AttackBehaviour(true));
+        this.setBehaviour(1, new AttackBehaviour(false));
 
         // behaviour at key 2 is reserved for follow behaviour
 
