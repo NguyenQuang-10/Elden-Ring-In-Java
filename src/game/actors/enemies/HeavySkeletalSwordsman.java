@@ -1,12 +1,20 @@
 package game.actors.enemies;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import game.behaviours.*;
+import game.utils.Status;
 import game.weapons.Grossmesser;
 
 import java.util.ArrayList;
+
+import static game.actors.enemies.EnemyType.FOLLOWER;
 
 /**
  *  Heavy Skeletal Swordsman enemy, hostile creature,
@@ -24,17 +32,42 @@ public class HeavySkeletalSwordsman extends Enemy {
         this.addWeaponToInventory(new Grossmesser());
         this.addCapability(EnemyType.FOLLOWER);
 
+        this.setBehaviour(0, new SpawnBehaviour(new PileOfBones(this)));
+        this.setBehaviour(1, new AttackBehaviour(true));
 
-        this.setBehaviour(0, new AttackBehaviour(true));
+        // behaviour at key 2 is reserved for follow behaviour
 
         ArrayList<Behaviour> behaviours = new ArrayList<>();
         behaviours.add(new DespawnBehaviour(10));
         behaviours.add(new WanderBehaviour());
 
         for (int i = 0; i < behaviours.size(); i++) {
-            this.setBehaviour(i+2, behaviours.get(i));
+            this.setBehaviour(i+3, behaviours.get(i));
         }
     }
+
+    @Override
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        if (this.hasCapability(FOLLOWER)) {
+            Location here = map.locationOf(this);
+            for (Exit exit : here.getExits()) {
+                Location destination = exit.getDestination();
+                if (map.isAnActorAt(destination) && map.getActorAt(destination).hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                    this.setBehaviour(2, new FollowBehaviour(map.getActorAt(destination)));
+                    break;
+                }
+            }
+        }
+
+        for (Behaviour behaviour : getBehaviours().values()) {
+            Action action = behaviour.getAction(this, map);
+            if(action != null)
+                return action;
+        }
+        return new DoNothingAction();
+
+    }
+
 
     /**
      * Returns the default attack capability of HeavySkeletalSwordsman without a weapon

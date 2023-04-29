@@ -24,6 +24,8 @@ public class GiantDog extends Enemy {
 
         this.setBehaviour(0, new AttackBehaviour(true));
 
+        // behaviour at key 1 is reserved for follow behaviour
+
         ArrayList<Behaviour> behaviours = new ArrayList<>();
         behaviours.add(new DespawnBehaviour(10));
         behaviours.add(new WanderBehaviour());
