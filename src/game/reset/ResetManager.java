@@ -75,8 +75,9 @@ public class ResetManager {
         this.resettablesToRemove.clear();
 
         for (Resettable resettable: this.resettablesToAdd) {
-            this.resettables.add(resettable);
+            this.resettables.add(0, resettable);
         }
+
         this.resettablesToAdd.clear();
 
         return result;
