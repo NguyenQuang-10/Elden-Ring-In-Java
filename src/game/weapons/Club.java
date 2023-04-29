@@ -23,6 +23,7 @@ public class Club extends WeaponItem implements Purchaseable, Sellable {
         super("Club", '!', 103, "bonks", 80);
     }
 
+
     @Override
     public void tick(Location currentLocation, Actor actor) {}
 

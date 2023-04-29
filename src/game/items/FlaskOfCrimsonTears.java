@@ -9,7 +9,14 @@ import game.actions.ConsumeAction;
 
 import java.util.List;
 
+/**
+ *  The Flask of Crimson Tears. This item can be consumed twice (maximum uses for now), and each time the player uses
+ *  it, their health will be restored by 250 points. Additionally, the player cannot drop Flask of Crimson Tears.
+ */
 public class FlaskOfCrimsonTears extends Item implements Consumable {
+    /**
+     * The uses the play have left
+     */
     private int usesLeft;
 
 
@@ -21,11 +28,18 @@ public class FlaskOfCrimsonTears extends Item implements Consumable {
         usesLeft = 2;
     }
 
-
+    /**
+     * @return return the number of uses left
+     * @see Consumable
+     */
     public int getUsesLeft() {
         return this.usesLeft;
     }
 
+    /**
+     * @return return the consume action for this item
+     * @see Consumable
+     */
     @Override
     public ConsumeAction getConsumeAction() {
         if (this.getUsesLeft() > 0) {
@@ -35,22 +49,38 @@ public class FlaskOfCrimsonTears extends Item implements Consumable {
 
     }
 
+    /**
+     * use this item on an actor
+     * @see Consumable
+     */
     @Override
     public void consumedBy(Actor actor) {
         this.usesLeft -= 1;
         actor.heal(250);
     }
 
+    /**
+     * @return get the name of an item
+     * @see Consumable
+     */
     @Override
     public String getName() {
         return this.toString();
     }
 
+    /**
+     * @return get the effect of the item
+     * @see Consumable
+     */
     @Override
     public String getEffect() {
         return "Flask of Crimson Tear restored 250HP";
     }
 
+    /**
+     * @return the action list that could be act upon this item
+     * @see Item
+     */
     @Override
     public List<Action> getAllowableActions() {
         ActionList allowableActions = new ActionList();
