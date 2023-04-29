@@ -29,7 +29,7 @@ public class LoneWolf extends Enemy {
         // behaviour at key 1 is reserved for follow behaviour
 
         ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new DespawnBehaviour(10));
+        behaviours.add(new DespawnBehaviour(0));
         behaviours.add(new WanderBehaviour());
 
         for (int i = 0; i < behaviours.size(); i++) {

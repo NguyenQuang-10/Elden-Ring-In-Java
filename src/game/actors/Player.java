@@ -45,6 +45,11 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	private Location lastSiteOfLostGrace;
 
 	/**
+	 * The player's flask of crimson tear item
+	 */
+	private FlaskOfCrimsonTears flaskOfCrimsonTears;
+
+	/**
 	 * Setter for last visited site of lost grace
 	 * @param lastSiteOfLostGrace last visited site of lost grace
 	 */
@@ -62,7 +67,8 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
-		this.addItemToInventory(new FlaskOfCrimsonTears());
+		this.flaskOfCrimsonTears = new FlaskOfCrimsonTears();
+		this.addItemToInventory(this.flaskOfCrimsonTears);
 		ResetManager.getInstance().registerResettable(this);
 		BuyerSellerList.getInstance().addBuyerSeller(this);
 	}
@@ -144,6 +150,8 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 			map.removeActor(this);
 			map.addActor(this, this.lastSiteOfLostGrace);
 		}
+		this.removeItemFromInventory(this.flaskOfCrimsonTears);
+		this.addItemToInventory(new FlaskOfCrimsonTears());
 		this.resetMaxHp(this.maxHitPoints);
 		return this + " has hp reset to max " + this.maxHitPoints;
 	}
