@@ -136,7 +136,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		Location location = map.locationOf(actor);
 		for (Rune rune: this.runes) {
 			rune.setLocation(location);
-			ResetManager.getInstance().registerResettable(rune);
+			ResetManager.getInstance().registerResettableAfterReset(rune);
 			location.addItem(rune);
 		}
 		this.runes = new ArrayList<>();

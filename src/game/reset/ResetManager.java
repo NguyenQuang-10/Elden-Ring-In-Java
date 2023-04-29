@@ -20,10 +20,17 @@ public class ResetManager {
      */
     final private List<Resettable> resettables;
     /**
-     * List of Resettable to remove from the map
+     * List of Resettable to remove from the list after reset
      * @see Resettable
      */
     final private List<Resettable> resettablesToRemove;
+
+    /**
+     * List of Resettable to add to the list after reset
+     * @see Resettable
+     */
+    final private List<Resettable> resettablesToAdd;
+
     /**
      * Singleton instance of the class
      */
@@ -35,6 +42,7 @@ public class ResetManager {
     private ResetManager() {
         this.resettables = new ArrayList<>();
         this.resettablesToRemove = new ArrayList<>();
+        this.resettablesToAdd = new ArrayList<>();
     }
 
     /**
@@ -61,10 +69,16 @@ public class ResetManager {
         }
         result += "The game has been reset";
 
-//        for (Resettable resettable: this.resettablesToRemove) {
-//            this.resettables.remove(resettable);
-//        }
+        for (Resettable resettable: this.resettablesToRemove) {
+            this.resettables.remove(resettable);
+        }
         this.resettablesToRemove.clear();
+
+        for (Resettable resettable: this.resettablesToAdd) {
+            this.resettables.add(resettable);
+        }
+        this.resettablesToAdd.clear();
+
         return result;
     }
 
@@ -77,7 +91,15 @@ public class ResetManager {
     }
 
     /**
-     * Add resettable to be removed from the map upon game reset
+     * Add resettable to be add to the resettable list after reset
+     * @param resettable - the resettable to add
+     */
+    public void registerResettableAfterReset(Resettable resettable) {
+        this.resettablesToAdd.add(resettable);
+    }
+
+    /**
+     * Add resettable to be removed from the resettable list
      * @param resettable - the resettable to add
      */
     public void removeResettable(Resettable resettable) {

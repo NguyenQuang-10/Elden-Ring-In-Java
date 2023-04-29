@@ -32,7 +32,7 @@ public class SkeletalBandit extends Enemy {
         this.addRune(35, 892);
         this.addCapability(EnemyType.FOLLOWER);
 
-        this.setBehaviour(1, new SpawnBehaviour(new PileOfBones(this)));
+        this.setBehaviour(0, new SpawnBehaviour(new PileOfBones(this)));
         this.setBehaviour(1, new AttackBehaviour(false));
 
         // behaviour at key 2 is reserved for follow behaviour
@@ -42,7 +42,7 @@ public class SkeletalBandit extends Enemy {
         behaviours.add(new WanderBehaviour());
 
         for (int i = 0; i < behaviours.size(); i++) {
-            this.setBehaviour(i+2, behaviours.get(i));
+            this.setBehaviour(i+3, behaviours.get(i));
         }
     }
 
