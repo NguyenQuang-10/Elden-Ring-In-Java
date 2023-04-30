@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
  * An interface to be implemented by Weapons that can be sold
- * @author AppliedSession03Gropu03
+ * 4
  */
 public interface Sellable {
 

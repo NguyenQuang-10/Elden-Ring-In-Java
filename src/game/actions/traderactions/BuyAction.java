@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.items.Purchaseable;
 
 /**
 *   A class that represent the action of an BuySellCapable buying from a trader
@@ -26,12 +27,11 @@ public class BuyAction extends Action {
      * Initialize the BuyAction
      *
      * @param item - the item to be bought
-     * @param price - the price of the item
      * @param buyer - the buyer
      */
-    public BuyAction(WeaponItem item, int price, BuySellCapable buyer){
-        this.item = item;
-        this.price = price;
+    public BuyAction(Purchaseable item, BuySellCapable buyer){
+        this.item = item.purchaseItem();
+        this.price = item.getPurchasePrice();
         this.buyer = buyer;
     }
 

@@ -57,7 +57,7 @@ public class Trader extends Actor {
 
                 ArrayList<Purchaseable> purchaseables = TradeableManager.getInstance().getPurchaseables();
                 for (Purchaseable item: purchaseables) {
-                    actions.add(new BuyAction(item.purchaseItem(), item.getPurchasePrice(), buyerSeller));
+                    actions.add(new BuyAction(item, buyerSeller));
                 }
 
                 ArrayList<Sellable> sellables = TradeableManager.getInstance().getSellables();
