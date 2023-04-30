@@ -94,29 +94,6 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
-		// return/print the console menu
-		Location here = map.locationOf(this);
-
-		for(Exit exit: here.getExits()) {
-			Location destination = exit.getDestination();
-
-			if (destination.containsAnActor() && destination.getActor().hasCapability(Status.TRADER)) {
-				ArrayList<Purchaseable> purchaseables = TradeableManager.getInstance().getPurchaseables();
-				for (Purchaseable item: purchaseables) {
-					actions.add(new BuyAction(item.purchaseItem(), item.getPurchasePrice(), this));
-				}
-
-				ArrayList<Sellable> sellables = TradeableManager.getInstance().getSellables();
-				for (WeaponItem weapon: getWeaponInventory()) {
-					for (Sellable item: sellables) {
-						if (item.toString().equals(weapon.toString())) {
-							actions.add(new SellAction(weapon, item.getSellPrice(), this));
-						}
-					}
-				}
-			}
-		}
-
 		display.print(this + " has " + runeBalance() + " runes\n");
 		display.print(this + " has " + this.printHp() + " hp\n");
 		return menu.showMenu(this, actions, display);
