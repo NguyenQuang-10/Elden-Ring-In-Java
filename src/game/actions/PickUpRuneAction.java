@@ -58,6 +58,6 @@ public class PickUpRuneAction extends PickUpAction {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " picks up the " + this.rune;
+        return actor + " picks up the " + this.rune + " (value: " + this.rune.getValue() + ")";
     }
 }
