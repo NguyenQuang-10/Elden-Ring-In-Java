@@ -1,6 +1,7 @@
 package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.ActorLocationsIterator;
 import edu.monash.fit2099.engine.positions.Exit;
@@ -58,13 +59,12 @@ public class QuickStepAction extends Action {
         String result = actor + " quicksteps " + target + " at " + direction + " with " + weapon + "\n";
         result += (new AttackAction(this.target, this.direction, this.weapon)).execute(actor, map);
 
-        if (target.isConscious()) {
-            Action moveActor = (new WanderBehaviour()).getAction(target, map);
-
-            if (moveActor != null)
-                result += moveActor.execute(target, map);
+        for (Exit exit: map.locationOf(this.target).getExits()) {
+            Location here = exit.getDestination();
+            if (!here.containsAnActor()) {
+                return result + (new MoveActorAction(here, exit.getName(), "moved")).execute(this.target, map);
+            }
         }
-
         return result;
     }
 
