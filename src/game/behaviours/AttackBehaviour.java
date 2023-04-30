@@ -12,7 +12,6 @@ import game.actors.enemies.Enemy;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
-import java.util.Random;
 
 /**
  * A behaviour that determines whether an Actor performs AttackAction to attack a single target
@@ -25,7 +24,7 @@ public class AttackBehaviour implements Behaviour {
      * Determines whether the Actor could perform surrounding attack
      * true if attack surrounding is allowed else false
      */
-    private boolean canAttackAll;
+    final private boolean canAttackAll;
 
     /**
      * A public constructor
@@ -38,7 +37,6 @@ public class AttackBehaviour implements Behaviour {
     /**
      * Decides whether the Actor should perform a single targeted attack or a surrounding
      * attack or not attack at all
-     *
      * 50% chance to attack surrounding of the actor is allowed to and surrounded by actors
      * 50% chance for targeted attack to attack single actor
      *
@@ -51,7 +49,7 @@ public class AttackBehaviour implements Behaviour {
         Location here = map.locationOf(actor);
 
         if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
-                && isSurroundedByActor(here)
+                && hasEnemyAdjacent(actor,here, map)
                 && this.canAttackAll) {
             int numOfWeapons = actor.getWeaponInventory().size();
             if (numOfWeapons >= 1) {
@@ -102,11 +100,14 @@ public class AttackBehaviour implements Behaviour {
      * @param location current location of the Actor
      * @return true if surrounded by Actors else false
      */
-    private boolean isSurroundedByActor(Location location) {
-        Boolean flag = false;
+    private boolean hasEnemyAdjacent(Actor actor, Location location, GameMap map) {
+        boolean flag = false;
         for (Exit exit: location.getExits()) {
             if (exit.getDestination().containsAnActor()) {
-                flag = true;
+                Actor adjacentActor = map.getActorAt(exit.getDestination());
+                if (!Enemy.isSameEnemy(actor, adjacentActor) || adjacentActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                    flag = true;
+                }
             }
         }
         return flag;
