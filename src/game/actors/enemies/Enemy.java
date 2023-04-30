@@ -19,7 +19,6 @@ import game.utils.Status;
 import java.util.HashMap;
 import java.util.Map;
 
-import static game.actors.enemies.EnemyType.*;
 
 /**
  * An abstract that represents enemies in the game
@@ -49,6 +48,8 @@ public abstract class Enemy extends Actor implements Resettable {
 
     }
 
+
+
     /**
      * Set behaviours for enemy and its priority
      * @param key the priority of the behaviour
@@ -62,7 +63,7 @@ public abstract class Enemy extends Actor implements Resettable {
 
     /**
      * A getter for behaviours
-     * @return the list of Behaviour for the Enemy
+     * @return the map of Behaviour for the Enemy
      */
     public Map<Integer, Behaviour> getBehaviours() {
         return this.behaviours;
@@ -86,15 +87,22 @@ public abstract class Enemy extends Actor implements Resettable {
      * @return true if the actors are same Enemy type else false
      */
     public static boolean isSameEnemy(Actor actor1, Actor actor2) {
-        if (actor1.hasCapability(SKELETON) && actor2.hasCapability(SKELETON)) {
-            return true;
-        } else if (actor1.hasCapability(FOURLEGANIMAL) && actor2.hasCapability(FOURLEGANIMAL)) {
-            return true;
-        } else if (actor1.hasCapability(SEAANIMAL) && actor2.hasCapability(SEAANIMAL)) {
-            return true;
-        } else {
-            return false;
+//        if (actor1.hasCapability(SKELETON) && actor2.hasCapability(SKELETON)) {
+//            return true;
+//        } else if (actor1.hasCapability(FOURLEGANIMAL) && actor2.hasCapability(FOURLEGANIMAL)) {
+//            return true;
+//        } else if (actor1.hasCapability(SEAANIMAL) && actor2.hasCapability(SEAANIMAL)) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+
+        for(EnemyType type: EnemyType.values()){
+            if (actor1.hasCapability(type) && actor2.hasCapability(type)) {
+                return true;
+            }
         }
+        return false;
     }
 
     /**
@@ -149,7 +157,7 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (this.hasCapability(FOLLOWER)) {
+        if (this.hasCapability(Status.FOLLOWER)) {
             Location here = map.locationOf(this);
             for (Exit exit : here.getExits()) {
                 Location destination = exit.getDestination();

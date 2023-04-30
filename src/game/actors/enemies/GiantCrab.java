@@ -2,6 +2,7 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.*;
+import game.utils.Status;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class GiantCrab extends Enemy {
     public GiantCrab() {
         super("Giant Crab", 'C', 407, EnemyType.SEAANIMAL);
         this.addRune(318, 4961);
-        this.addCapability(EnemyType.FOLLOWER);
+        this.addCapability(Status.FOLLOWER);
 
         this.setBehaviour(0, new AttackBehaviour(true));
 

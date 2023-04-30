@@ -2,6 +2,7 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.*;
+import game.utils.Status;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class GiantDog extends Enemy {
     public GiantDog() {
         super("Giant Dog", 'G', 693, EnemyType.FOURLEGANIMAL);
         this.addRune(313, 1808);
-        this.addCapability(EnemyType.FOLLOWER);
+        this.addCapability(Status.FOLLOWER);
 
 
         this.setBehaviour(0, new AttackBehaviour(true));

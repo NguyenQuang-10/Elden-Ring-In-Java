@@ -14,7 +14,6 @@ import game.weapons.Grossmesser;
 
 import java.util.ArrayList;
 
-import static game.actors.enemies.EnemyType.FOLLOWER;
 
 /**
  *  Heavy Skeletal Swordsman enemy, hostile creature,
@@ -30,7 +29,7 @@ public class HeavySkeletalSwordsman extends Enemy {
         super("Heavy Skeletal Swordsman", 'q', 153, EnemyType.SKELETON);
         this.addRune(35, 892);
         this.addWeaponToInventory(new Grossmesser());
-        this.addCapability(EnemyType.FOLLOWER);
+        this.addCapability(Status.FOLLOWER);
 
         this.setBehaviour(0, new SpawnBehaviour(new PileOfBones(this)));
         this.setBehaviour(1, new AttackBehaviour(false));
@@ -48,7 +47,7 @@ public class HeavySkeletalSwordsman extends Enemy {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (this.hasCapability(FOLLOWER)) {
+        if (this.hasCapability(Status.FOLLOWER)) {
             Location here = map.locationOf(this);
             for (Exit exit : here.getExits()) {
                 Location destination = exit.getDestination();

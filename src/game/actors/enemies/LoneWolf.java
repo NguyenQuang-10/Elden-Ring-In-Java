@@ -2,6 +2,7 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.*;
+import game.utils.Status;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class LoneWolf extends Enemy {
     public LoneWolf() {
         super("Lone Wolf", 'h', 102, EnemyType.FOURLEGANIMAL);
         this.addRune(55, 1470);
-        this.addCapability(EnemyType.FOLLOWER);
+        this.addCapability(Status.FOLLOWER);
 
 
         this.setBehaviour(0, new AttackBehaviour(false));
