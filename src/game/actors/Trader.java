@@ -65,24 +65,18 @@ public class Trader extends Actor {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = super.allowableActions(otherActor, direction, map);
 
-        Location here = map.locationOf(this);
+        if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 
-        for(Exit exit: here.getExits()) {
-            Location destination = exit.getDestination();
+            BuySellCapable buyerSeller = BuyerSellerList.getInstance().getBuyerSeller(otherActor);
 
-            if (destination.containsAnActor() && destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
+            for (Purchaseable item: this.purchaseables) {
+                actions.add(new BuyAction(item, buyerSeller));
+            }
 
-                BuySellCapable buyerSeller = BuyerSellerList.getInstance().getBuyerSeller(otherActor);
-
-                for (Purchaseable item: this.purchaseables) {
-                    actions.add(new BuyAction(item, buyerSeller));
-                }
-
-                for (WeaponItem weapon: otherActor.getWeaponInventory()) {
-                    for (Sellable item: this.sellables) {
-                        if (item.toString().equals(weapon.toString())) {
-                            actions.add(new SellAction(weapon, item.getSellPrice(), buyerSeller));
-                        }
+            for (WeaponItem weapon: otherActor.getWeaponInventory()) {
+                for (Sellable item: this.sellables) {
+                    if (item.toString().equals(weapon.toString())) {
+                        actions.add(new SellAction(weapon, item.getSellPrice(), buyerSeller));
                     }
                 }
             }
