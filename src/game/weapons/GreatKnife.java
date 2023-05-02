@@ -1,81 +1,82 @@
 package game.weapons;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.QuickStepAction;
-import game.actions.UnseatheAction;
 import game.items.Purchaseable;
 import game.items.Sellable;
 
 /**
- * A dagger type, represented by / (the forward slash), that deals 75 damage with a 70% hit rate.
- * This is the starting weapon of the Bandit class.
- * This weapon allows the user to perform "Quickstep", a unique skill that deals normal damage to the weapon to the enemy
+ * A dagger type, represented by / (the forward slash), that deals 75 damage with a 70% hit rate. This is the starting
+ * weapon of the Bandit class. This weapon allows the user to perform "Quickstep", a unique skill that deals normal
+ * damage to the weapon to the enemy.
  * Created by:
  * @author Ryan Nguyen
+ * @version JDK 20
+ * @see WeaponItem
  */
 public class GreatKnife extends WeaponItem implements Purchaseable, Sellable {
-
     /**
-     * Constructor
+     * Basic constructor for the weapon.
      */
     public GreatKnife() {
         super("Great Knife", '/', 75, "slash", 70);
     }
 
-    /** @see WeaponItem
-     *
+    /**
+     * This method implements the tick functionality of the game.
      * @param currentLocation The location of the actor carrying this Item.
      * @param actor The actor carrying this Item.
+     * @see WeaponItem
      */
     @Override
     public void tick(Location currentLocation, Actor actor) {}
 
-    /** @see edu.monash.fit2099.engine.weapons.Weapon
-     * Get the special skill that this weapon has
-     * @param target target actor
-     * @param direction the direction relative to the holder
-     * @return the action representing the skill
+    /**
+     * Getter to get the special skill that this weapon has.
+     * @param target Target actor.
+     * @param direction The direction relative to the holder.
+     * @return The action representing the skill.
+     * @see WeaponItem
      */
     public Action getSkill(Actor target, String direction){
         return new QuickStepAction(this, target, direction);
     }
 
-    /** @see Purchaseable
-     *
-     * @return the purchase price of the item
+    /**
+     * Getter to get the purchase price of the item.
+     * @return The purchase price of the item.
+     * @see Purchaseable
      */
     @Override
     public int getPurchasePrice() {
         return 3500;
     }
 
-    /** Instatiate a new instance of the weapon and return it
+    /** Instantiate a new instance of the weapon and return it.
+     * @return New instance of the club.
      * @see Purchaseable
-     * @return new instance of the club
      */
     @Override
     public WeaponItem purchaseItem() {
         return new GreatKnife();
     }
 
-    /** @see Sellable
-     *
-     * @return the sell price of the item
+    /**
+     * Getter to get the sell price of the item.
+     * @return The sell price of the item.
+     * @see Sellable
      */
     @Override
     public int getSellPrice() { return 350; }
 
-    /** Instatiate a new instance of the weapon and return it
+    /** Instantiate a new instance of the weapon and return it.
+     * @return New instance of the club.
      * @see Sellable
-     * @return new instance of the club
      */
     @Override
     public WeaponItem sellItem() {
         return new GreatKnife();
     }
-
-
 }
