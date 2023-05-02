@@ -3,6 +3,7 @@ import game.weapons.Club;
 
 /**
  * This class is associated with Wretch, and initialises the attributes of Wretches.
+ * @author AppliedSession03Group03
  */
 public class Wretch extends Archetypes{
     /**

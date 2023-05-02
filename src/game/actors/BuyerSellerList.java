@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Stores a list of actors that can buy and sell
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class BuyerSellerList {
 

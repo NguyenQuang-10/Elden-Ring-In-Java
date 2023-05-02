@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.items.Rune;
 
 /** Implemented by Player (maybe other Actor?) so that Buy and Sell action could be executed on it
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  * @see game.actors.Player
  * @see BuyAction
  * @see SellAction

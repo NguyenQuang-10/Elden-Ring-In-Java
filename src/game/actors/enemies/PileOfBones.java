@@ -19,7 +19,7 @@ import static game.actors.enemies.EnemyType.PILEOFBONES;
  * Pile Of Bones
  * Heavy Skeletal Swordsman & Skeletal Bandit can turn to Pile Of Bones if killed
  * Heavy Skeletal Swordsman & Skeletal Bandit is respawned if Pile Of Bones not hit in 3 turns
- * AppliedSession03Gropu03
+ * AppliedSession03Group03
  */
 public class PileOfBones extends Enemy implements Reviver {
 

@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * It carries around a club to attack a hostile creature in the Lands Between.
  * Created by:
  * @author Adrian Kristanto
- * Modified by: AppliedSession03Gropu03
+ * Modified by: AppliedSession03Group03
  *
  */
 public class Player extends Actor implements Resettable, BuySellCapable {

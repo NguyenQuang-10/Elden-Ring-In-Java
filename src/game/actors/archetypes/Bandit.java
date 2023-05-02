@@ -3,8 +3,7 @@ import game.weapons.GreatKnife;
 
 /**
  * This class is associated with Bandit, and initialises the attributes of Bandit.
- * @author Ryan Nguyen
- * @version JDK 20
+ * @author AppliedSession03Group03
  * @see Archetypes
  */
 public class Bandit extends Archetypes{

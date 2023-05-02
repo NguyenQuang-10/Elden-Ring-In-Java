@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 
 /**
  * An interface used by Actors that can revive Actors that spawned them
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public interface Reviver {
 

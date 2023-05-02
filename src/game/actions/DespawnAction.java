@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * Despawns an actor from the map by removing it
  *
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class DespawnAction extends Action {
 

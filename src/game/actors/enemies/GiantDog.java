@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Giant Dog, inhabitant of the Lands Between,
  * represented by G (uppercase G), that has 693 hit points and slams other creatures (single target attack),
  * including the player, with their head, dealing 314 damage with 90% accuracy.
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class GiantDog extends Enemy {
 

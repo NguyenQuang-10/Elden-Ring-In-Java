@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
  * Represent the the action of a BuySellCapable selling to the trader
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  * @see BuySellCapable
  */
 public class SellAction extends Action {

@@ -16,7 +16,7 @@ import java.util.Random;
 
 /**
  * An action to attack all surrounding actors
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class AttackAllAction extends Action {
 

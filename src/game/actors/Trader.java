@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Trader that could be found on the first map is Merchant Kale,
  * represented by K (uppercase K). Merchant Kale sits around the building in the middle of the map
  * Merchant Kale allows the player to purchase weapons
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class Trader extends Actor {
 

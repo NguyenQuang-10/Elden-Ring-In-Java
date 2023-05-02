@@ -4,8 +4,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 /**
  * This class is an abstract class acting as template for which we can extend from and create archetypes (this will be
  * particularly useful for future assignments).
- * @author Ryan Nguyen
- * @version JDK 20
+ * @author AppliedSession03Group03
  */
 public abstract class Archetypes {
     /**

@@ -10,7 +10,7 @@ import game.items.Rune;
 
 /**
  * An action to directly add Runes to the Actor (used by enemies)
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 
 public class PickUpRuneAction extends PickUpAction {

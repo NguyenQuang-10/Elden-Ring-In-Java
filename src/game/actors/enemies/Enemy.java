@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * An abstract that represents enemies in the game
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public abstract class Enemy extends Actor implements Resettable {
 
@@ -87,16 +87,6 @@ public abstract class Enemy extends Actor implements Resettable {
      * @return true if the actors are same Enemy type else false
      */
     public static boolean isSameEnemy(Actor actor1, Actor actor2) {
-//        if (actor1.hasCapability(SKELETON) && actor2.hasCapability(SKELETON)) {
-//            return true;
-//        } else if (actor1.hasCapability(FOURLEGANIMAL) && actor2.hasCapability(FOURLEGANIMAL)) {
-//            return true;
-//        } else if (actor1.hasCapability(SEAANIMAL) && actor2.hasCapability(SEAANIMAL)) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-
         for(EnemyType type: EnemyType.values()){
             if (actor1.hasCapability(type) && actor2.hasCapability(type)) {
                 return true;

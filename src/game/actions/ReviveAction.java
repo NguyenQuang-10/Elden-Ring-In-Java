@@ -9,7 +9,7 @@ import game.actors.enemies.Reviver;
 
 /**
  * An action that revives the enemy that spawned the actor performing this action
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class ReviveAction extends Action {
 

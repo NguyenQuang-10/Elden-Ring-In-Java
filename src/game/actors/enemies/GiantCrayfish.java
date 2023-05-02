@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Giant Crayfish, hostile creature, represented by R (uppercase R),
  * that has 4803 hit points and slams other creatures (single target attack),
  * including the player, with their giant pincer, dealing 527 damage with 100% accuracy
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class GiantCrayfish extends Enemy {
 

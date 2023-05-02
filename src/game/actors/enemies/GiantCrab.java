@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Giant Crab enemy, hostile creature, represented by C (uppercase C),
  * that has 407 hit points and slams other creatures, including the player,
  * dealing 208 damage with 90% attack accuracy
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class GiantCrab extends Enemy {
 

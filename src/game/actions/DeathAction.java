@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * An action executed if an actor is killed.
  * Created by:
  * @author Adrian Kristanto
- * Modified by: AppliedSession03Gropu03
+ * Modified by: AppliedSession03Group03
  *
  */
 public class DeathAction extends Action {

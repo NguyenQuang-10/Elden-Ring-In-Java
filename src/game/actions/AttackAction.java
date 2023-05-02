@@ -16,7 +16,7 @@ import game.utils.Status;
  * An Action to attack another Actor.
  * Created by:
  * @author Adrian Kristanto
- * Modified by: AppliedSession03Gropu03
+ * Modified by: AppliedSession03Group03
  *
  */
 public class AttackAction extends Action {

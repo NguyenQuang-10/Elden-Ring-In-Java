@@ -8,7 +8,7 @@ import game.items.Purchaseable;
 
 /**
 *   A class that represent the action of an BuySellCapable buying from a trader
- *  @author AppliedSession03Gropu03
+ *  @author AppliedSession03Group03
 */
 public class BuyAction extends Action {
     /**

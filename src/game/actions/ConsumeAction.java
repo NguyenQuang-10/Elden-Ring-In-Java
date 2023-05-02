@@ -7,7 +7,7 @@ import game.items.Consumable;
 
 /**
  * An action that allows Actor to consume consumable items
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class ConsumeAction extends Action {
 

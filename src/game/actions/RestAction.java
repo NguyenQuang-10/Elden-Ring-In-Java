@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.positions.Location;
 /**
  * Allows the actor to rest at the SiteOfLostGRace
  *
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class RestAction extends Action {
 
