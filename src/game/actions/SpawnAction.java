@@ -6,6 +6,10 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Enemy;
 
+/**
+ * An action that allows an Enemy to spawn another Enemy and it gets removed from the map
+ * @author AppliedSession03Gropu03
+ */
 public class SpawnAction extends Action {
 
     /**
