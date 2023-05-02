@@ -9,8 +9,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
  * Deals normal damage to the weapon to the target and moves the target away from the attacker.
- * @author Ryan Nguyen
- * @version JDK 20
+ * @author AppliedSession03Gropu03
  * @see Action
  */
 

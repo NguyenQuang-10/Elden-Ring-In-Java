@@ -11,7 +11,7 @@ import game.utils.Status;
 import java.util.Random;
 
 /**
- * Despwans an actor from the map by removing it
+ * Despawns an actor from the map by removing it
  *
  * @author AppliedSession03Gropu03
  */

@@ -8,8 +8,7 @@ import game.utils.Status;
 
 /**
  * Performs the Unseathe action on target (an attack where the weapon hit rate is 60 and the weapon's damage is doubled).
- * @author Ryan Nguyen
- * @version JDK 20
+ * @author AppliedSession03Gropu03
  * @see Action
  */
 public class UnseatheAction extends Action {

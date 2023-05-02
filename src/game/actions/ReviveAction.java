@@ -7,6 +7,10 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Enemy;
 import game.actors.enemies.Reviver;
 
+/**
+ * An action that revives the enemy that spawned the actor performing this action
+ * @author AppliedSession03Gropu03
+ */
 public class ReviveAction extends Action {
 
     /**
