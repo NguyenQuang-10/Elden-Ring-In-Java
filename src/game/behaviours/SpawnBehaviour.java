@@ -8,7 +8,7 @@ import game.actors.enemies.Enemy;
 
 /**
  * A behaviour that determines whether an enemy should spawn an enemy or not
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class SpawnBehaviour implements Behaviour {
 

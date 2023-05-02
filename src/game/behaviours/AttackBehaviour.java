@@ -16,7 +16,7 @@ import game.utils.Status;
 /**
  * A behaviour that determines whether an Actor performs AttackAction to attack a single target
  * or attack all actors in its surrounding using AttackAllAction
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class AttackBehaviour implements Behaviour {
 

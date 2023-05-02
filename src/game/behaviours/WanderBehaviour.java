@@ -12,11 +12,14 @@ import edu.monash.fit2099.engine.positions.Location;
 /**
  * Created by:
  * @author Riordan D. Alfredo
- * Modified by:
+ * Modified by: AppliedSession03Group03
  *
  */
 public class WanderBehaviour implements Behaviour {
-	
+
+	/**
+	 * Random used for randomizing the wander locations
+	 */
 	private final Random random = new Random();
 
 	/**

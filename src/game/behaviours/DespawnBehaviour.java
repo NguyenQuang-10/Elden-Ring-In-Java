@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * A behaviour that determines whether an Actor should be despawned from the map
  * or mot based on a given probability
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class DespawnBehaviour implements Behaviour{
 

@@ -9,7 +9,7 @@ import game.actors.enemies.Reviver;
 
 /**
  * A behaviour that determines whether Reviver should revive the Actor that spawned it
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class ReviveBehaviour implements Behaviour{
 

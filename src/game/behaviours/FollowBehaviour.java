@@ -15,11 +15,14 @@ import edu.monash.fit2099.engine.actions.MoveActorAction;
  *
  * Created by:
  * @author Riordan D. Alfredo
- * Modified by:
+ * Modified by: AppliedSession03Group03
  *
  */
 public class FollowBehaviour implements Behaviour {
 
+	/**
+	 * The Actor to be killed
+	 */
 	private final Actor target;
 
 	/**
