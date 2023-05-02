@@ -1,11 +1,10 @@
 package game.utils;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.weapons.Club;
-import game.weapons.GreatKnife;
-import game.weapons.Uchigatana;
+import game.actors.archetypes.Archetypes;
+import game.actors.archetypes.Bandit;
+import game.actors.archetypes.Samurai;
+import game.actors.archetypes.Wretch;
 import game.actors.Player;
 import java.util.*;
-import java.util.ArrayList;
 import edu.monash.fit2099.engine.displays.Display;
 import java.util.Scanner;
 
@@ -19,10 +18,9 @@ import java.util.Scanner;
  */
 public class ArchetypeManager {
     /**
-     * A dictionary with the archetypes, each archetype has the name as the key and an array containing the archetype's
-     * hit points and weapon.
+     * A dictionary with the archetypes, each archetype has the name as the key and an associated archetype.
      */
-    private final Dictionary<String,ArrayList<Object>> archetypes = this.setArchetypes();
+    private final Dictionary<String,Archetypes> archetypes = this.setArchetypes();
 
     /**
      * Method to create a new player, which calls the selectArchetype() method to set an archetype.
@@ -30,10 +28,8 @@ public class ArchetypeManager {
      */
     public Player createPlayer(){
         String keyArchetype = selectArchetype();    // Get the archetype from the user.
-        ArrayList<Object> archetypeAttributes = this.archetypes.get(keyArchetype);  // Get the attributes of the corresponding archetype.
-        Player player = new Player("Tarnished", '@', (Integer) archetypeAttributes.get(0)); // Set the player.
-        player.addWeaponToInventory((WeaponItem) archetypeAttributes.get(1));   // Add the archetype's weapon to the player's inventory.
-        return player;
+        Archetypes selectedArchetype = this.archetypes.get(keyArchetype);  // Get the attributes of the corresponding archetype.
+        return new Player("Tarnished", '@', selectedArchetype);
     }
 
     /**
@@ -83,30 +79,17 @@ public class ArchetypeManager {
 
     /**
      * Method to set the dictionary to the have the archetypes available, modify this function if you want to add more
-     * archetypes to the game.
+     * archetypes to the game that the player can select from.
      * @return The dictionary with the archetypes.
      */
-    public Dictionary<String, ArrayList<Object>> setArchetypes(){
+    public Dictionary<String, Archetypes> setArchetypes(){
         // Initialise a dictionary using Hashtable.
-        Dictionary<String,ArrayList<Object>> myArchetypes = new Hashtable<String, ArrayList<Object>>();
-        ArrayList<Object> myList = new ArrayList<Object>();
+        Dictionary<String, Archetypes> myArchetypes = new Hashtable<String, Archetypes>();
 
-        // Add Samurai archetype.
-        myList.add(455);
-        myList.add(new Uchigatana());
-        myArchetypes.put("s", (ArrayList<Object>) myList.clone());
-
-        // Add Bandit archetype.
-        myList.clear();
-        myList.add(414);
-        myList.add(new GreatKnife());
-        myArchetypes.put("b", (ArrayList<Object>) myList.clone());
-
-        // Add Wretch archetype.
-        myList.clear();
-        myList.add(414);
-        myList.add(new Club());
-        myArchetypes.put("w", (ArrayList<Object>) myList.clone());
+        // Add the archetypes into the dictionary.
+        myArchetypes.put("s", new Samurai());
+        myArchetypes.put("b", new Bandit());
+        myArchetypes.put("w", new Wretch());
 
         // Return the dictionary of archetype, to be initialised as an attribute of this class.
         return myArchetypes;

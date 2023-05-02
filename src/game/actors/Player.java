@@ -13,6 +13,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuyAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellAction;
+import game.actors.archetypes.Archetypes;
 import game.items.*;
 import game.reset.ResetManager;
 import game.reset.Resettable;
@@ -59,13 +60,28 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 
 	/**
 	 * Constructor.
-	 *
 	 * @param name        Name to call the player in the UI
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		this.flaskOfCrimsonTears = new FlaskOfCrimsonTears();
+		this.addItemToInventory(this.flaskOfCrimsonTears);
+		ResetManager.getInstance().registerResettable(this);
+		BuyerSellerList.getInstance().addBuyerSeller(this);
+	}
+
+	/**
+	 * Secondary constructor that can create the player based on an archetype input.
+	 * @param name			Name to call the player in UI
+	 * @param displayChar	Character to represent the player in the UI
+	 * @param archetypes 	An archetype selected through UI
+	 */
+	public Player(String name, char displayChar, Archetypes archetypes){
+		super(name, displayChar, archetypes.getHP());
+		this.addWeaponToInventory(archetypes.getWeapon());
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.flaskOfCrimsonTears = new FlaskOfCrimsonTears();
 		this.addItemToInventory(this.flaskOfCrimsonTears);
