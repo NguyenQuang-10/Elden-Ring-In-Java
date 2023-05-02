@@ -12,6 +12,7 @@ import java.util.List;
 /**
  *  The Flask of Crimson Tears. This item can be consumed twice (maximum uses for now), and each time the player uses
  *  it, their health will be restored by 250 points. Additionally, the player cannot drop Flask of Crimson Tears.
+ *  @author AppliedSession03Group03
  */
 public class FlaskOfCrimsonTears extends Item implements Consumable {
     /**

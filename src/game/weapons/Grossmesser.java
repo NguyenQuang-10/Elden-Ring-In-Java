@@ -18,9 +18,7 @@ import game.items.Sellable;
  * Edit: Grossmesser will be dropped by Heavy Skeletal Swordsman when they are defeated by the player
  * (after the pile of bones is destroyed).
  * Created by:
- * @author Ryan Nguyen
- * @author Arvind Siva
- * @version JDK 20
+ * @author AppliedSession03Group03
  * @see WeaponItem
  */
 public class Grossmesser extends WeaponItem implements Weapon, Sellable {

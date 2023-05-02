@@ -11,9 +11,7 @@ import game.actions.UnseatheAction;
  * 115 damage with 80% attack accuracy. This weapon allows the user to perform "Unsheathe", a unique skill that deals 2x
  * damage from the weapon with a 60% chance to hit the enemy.
  * Created by:
- * @author Ryan Nguyen
- * @version JDK 20
- * @see WeaponItem
+ * @author AppliedSession03Group03
  */
 public class Uchigatana extends WeaponItem implements Purchaseable, Sellable {
     /**

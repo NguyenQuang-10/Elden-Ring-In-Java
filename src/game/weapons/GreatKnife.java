@@ -12,8 +12,7 @@ import game.items.Sellable;
  * weapon of the Bandit class. This weapon allows the user to perform "Quickstep", a unique skill that deals normal
  * damage to the weapon to the enemy.
  * Created by:
- * @author Ryan Nguyen
- * @version JDK 20
+ * @author AppliedSession03Group03
  * @see WeaponItem
  */
 public class GreatKnife extends WeaponItem implements Purchaseable, Sellable {

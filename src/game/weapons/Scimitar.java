@@ -20,8 +20,7 @@ import game.items.Sellable;
  * runes. If this weapon is available in the player's weapon inventory, this weapon can be sold for 100 runes.
  * Edit: Scimitar will be dropped by Skeletal Bandit when they are defeated by the player (after the pile of bones is
  * destroyed).
- * @author Nhat Quang Nguyen
- * @version JDK 20
+ * @author AppliedSession03Group03
  * @see WeaponItem
  */
 public class Scimitar extends WeaponItem implements Weapon, Sellable, Purchaseable {

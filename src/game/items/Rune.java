@@ -13,7 +13,7 @@ import game.utils.Status;
 
 /**
  * Rune is the currency used by Player for purchases
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public class Rune extends Item implements Resettable {
 

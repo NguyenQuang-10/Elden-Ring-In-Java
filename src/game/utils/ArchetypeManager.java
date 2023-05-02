@@ -12,8 +12,7 @@ import java.util.Scanner;
  * A class that asks for the users to select the archetype and creates the player according to the archetype selected. This
  * class is implemented in the Application class to create an instance of a Player for the game.
  * Created By:
- * @author Ryan Nguyen
- * @version JDK 20
+ * @author AppliedSession03Group03
  * @see game.Application
  */
 public class ArchetypeManager {

@@ -5,6 +5,7 @@ import game.actions.ConsumeAction;
 
 /**
  * Interface that represents item that can be consume a finite of time by an Actor
+ * @author AppliedSession03Group03
  */
 public interface Consumable {
     /**

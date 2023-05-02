@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
  * An interface to be implemented by Weapons that can be purchased
- * @author AppliedSession03Gropu03
+ * @author AppliedSession03Group03
  */
 public interface Purchaseable {
     /**

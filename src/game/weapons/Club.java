@@ -11,8 +11,7 @@ import game.items.Sellable;
  * This weapon does not have any special skill.
  * Created by:
  * @author Adrian Kristanto
- * Modified by:
- * @author Arvind Siva
+ * Modified by: AppliedSession03Group03
  */
 public class Club extends WeaponItem implements Purchaseable, Sellable {
     /**
