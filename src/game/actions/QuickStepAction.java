@@ -1,42 +1,38 @@
 package game.actions;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.actors.ActorLocationsIterator;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.behaviours.WanderBehaviour;
-import game.weapons.Uchigatana;
-
-import java.util.ArrayList;
 
 /**
- * Deals normal damage to the weapon to the target and moves the target away from the attacker
- * @author AppliedSession03Gropu03
+ * Deals normal damage to the weapon to the target and moves the target away from the attacker.
+ * @author Ryan Nguyen
+ * @version JDK 20
+ * @see Action
  */
 
 public class QuickStepAction extends Action {
 
     /**
-     * The weapon used in the QuickStepAction
+     * The weapon used in the QuickStepAction.
      */
     private WeaponItem weapon;
 
     /**
-     * The target Actor to be quickstepped
+     * The target actor to be quick-stepped.
      */
     private Actor target;
 
     /**
-     * The direction of the attack
+     * The direction of the attack.
      */
     private String direction;
 
     /**
-     *
+     * A public constructor.
      * @param weapon
      * @param target
      * @param direction
@@ -69,15 +65,12 @@ public class QuickStepAction extends Action {
     }
 
     /**
-     * Describe which actor performs quickstep on which target
-     *
+     * Describe which actor performs quickstep on which target.
      * @param actor The actor performing the action.
-     * @return a description used for the menu UI
+     * @return A description used for the menu UI.
      */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " quicksteps " + target + " at " + direction + " with " + weapon;
     }
-
-
 }
