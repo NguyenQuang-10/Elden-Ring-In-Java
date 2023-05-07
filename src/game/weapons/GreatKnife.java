@@ -70,12 +70,4 @@ public class GreatKnife extends WeaponItem implements PurchaseableWeapon, Sellab
     @Override
     public int getSellPrice() { return 350; }
 
-    /** Instantiate a new instance of the weapon and return it.
-     * @return New instance of the club.
-     * @see SellableWeapon
-     */
-    @Override
-    public WeaponItem sellItem() {
-        return new GreatKnife();
-    }
 }

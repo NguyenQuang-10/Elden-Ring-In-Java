@@ -28,8 +28,4 @@ public class HeavyCrossbow extends WeaponItem implements PurchaseableWeapon, Sel
         return 100;
     }
 
-    @Override
-    public WeaponItem sellItem() {
-        return this;
-    }
 }

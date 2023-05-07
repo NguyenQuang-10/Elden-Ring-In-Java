@@ -77,13 +77,4 @@ public class Scimitar extends WeaponItem implements Weapon, SellableWeapon, Purc
     public int getSellPrice() {
         return 100;
     }
-
-    /** Instantiate a new instance of the weapon and return it.
-     * @see SellableWeapon
-     * @return New instance of the weapon.
-     */
-    @Override
-    public WeaponItem sellItem() {
-        return new Scimitar();
-    }
 }

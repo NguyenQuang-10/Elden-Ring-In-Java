@@ -59,12 +59,4 @@ public class Club extends WeaponItem implements PurchaseableWeapon, SellableWeap
         return new Club();
     }
 
-    /** Instantiate a new instance of the weapon and return it.
-     * @return New instance of the club.
-     * @see SellableWeapon
-     */
-    @Override
-    public WeaponItem sellItem() {
-        return new Club();
-    }
 }

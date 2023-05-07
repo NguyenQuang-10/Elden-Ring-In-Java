@@ -58,13 +58,4 @@ public class Uchigatana extends WeaponItem implements PurchaseableWeapon, Sellab
     public WeaponItem purchaseItem() {
         return new Uchigatana();
     }
-
-    /** Instantiate a new instance of the weapon and return it.
-     * @see SellableWeapon
-     * @return New instance of the club.
-     */
-    @Override
-    public WeaponItem sellItem() {
-        return new Uchigatana();
-    }
 }

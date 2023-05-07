@@ -13,10 +13,4 @@ public interface SellableWeapon {
      * @return price of the weapon for selling
      */
     int getSellPrice();
-
-    /**
-     * Returns WeaponItem instance of the weapon for selling
-     * @return WeaponItem instance of the weapon for selling
-     */
-     WeaponItem sellItem();
 }

@@ -58,13 +58,4 @@ public class Grossmesser extends WeaponItem implements Weapon, SellableWeapon {
     public int getSellPrice() {
         return 100;
     }
-
-    /** Instantiate a new instance of the weapon and return it.
-     * @return New instance of the club.
-     * @see SellableWeapon
-     */
-    @Override
-    public WeaponItem sellItem() {
-        return new Grossmesser();
-    }
 }
