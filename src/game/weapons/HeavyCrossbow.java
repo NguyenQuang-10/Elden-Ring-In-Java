@@ -1,10 +1,10 @@
 package game.weapons;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.items.Purchaseable;
-import game.items.Sellable;
+import game.items.PurchaseableWeapon;
+import game.items.SellableWeapon;
 
-public class HeavyCrossbow extends WeaponItem implements Purchaseable, Sellable {
+public class HeavyCrossbow extends WeaponItem implements PurchaseableWeapon, SellableWeapon {
     /**
      * Constructor.
      *

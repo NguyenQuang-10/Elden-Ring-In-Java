@@ -2,8 +2,8 @@ package game.weapons;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.items.Purchaseable;
-import game.items.Sellable;
+import game.items.PurchaseableWeapon;
+import game.items.SellableWeapon;
 
 /**
  * A hammer type, represented by ! (the exclamation mark), that deals 103 damage with an 80% hit rate.
@@ -13,7 +13,7 @@ import game.items.Sellable;
  * @author Adrian Kristanto
  * Modified by: AppliedSession03Group03
  */
-public class Club extends WeaponItem implements Purchaseable, Sellable {
+public class Club extends WeaponItem implements PurchaseableWeapon, SellableWeapon {
     /**
      * Basic constructor for the weapon.
      */
@@ -33,7 +33,7 @@ public class Club extends WeaponItem implements Purchaseable, Sellable {
     /**
      * Getter to get the purchase price of the item.
      * @return The purchase price of the item
-     * @see Purchaseable
+     * @see PurchaseableWeapon
      */
     @Override
     public int getPurchasePrice() {
@@ -43,7 +43,7 @@ public class Club extends WeaponItem implements Purchaseable, Sellable {
      /**
       * Getter to get the sell price of the item.
       * @return The sell price of the item.
-      * @see Sellable
+      * @see SellableWeapon
      */
     @Override
     public int getSellPrice() {
@@ -52,7 +52,7 @@ public class Club extends WeaponItem implements Purchaseable, Sellable {
 
     /** Instantiate a new instance of the weapon and return it.
      * @return New instance of the club.
-     * @see Purchaseable
+     * @see PurchaseableWeapon
      */
     @Override
     public WeaponItem purchaseItem() {
@@ -61,7 +61,7 @@ public class Club extends WeaponItem implements Purchaseable, Sellable {
 
     /** Instantiate a new instance of the weapon and return it.
      * @return New instance of the club.
-     * @see Sellable
+     * @see SellableWeapon
      */
     @Override
     public WeaponItem sellItem() {
