@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actions.traderactions.BuyAction;
+import game.actions.traderactions.BuyWeaponAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellAction;
 import game.items.PurchaseableWeapon;
@@ -62,7 +62,7 @@ public abstract class Trader extends Actor {
             BuySellCapable buyerSeller = BuyerSellerList.getInstance().getBuyerSeller(otherActor);
 
             for (PurchaseableWeapon item: this.getPurchaseableWeapons()) {
-                actions.add(new BuyAction(item, buyerSeller));
+                actions.add(new BuyWeaponAction(item, buyerSeller));
             }
 
             for (WeaponItem weapon: otherActor.getWeaponInventory()) {
