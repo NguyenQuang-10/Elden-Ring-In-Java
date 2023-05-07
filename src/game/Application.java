@@ -8,9 +8,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
-import game.actors.Trader;
-import game.actors.enemies.LoneWolf;
-import game.behaviours.FollowBehaviour;
+import game.actors.MerchantKale;
 import game.environments.*;
 import game.utils.ArchetypeManager;
 import game.utils.FancyMessage;
@@ -71,7 +69,7 @@ public class Application {
 		int middleX = gameMap.getXRange().max() / 2;
 		int middleY = gameMap.getYRange().max() / 2;
 
-		gameMap.at(middleX, middleY).addActor(new Trader());
+		gameMap.at(middleX, middleY).addActor(new MerchantKale());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
 
