@@ -65,12 +65,9 @@ public abstract class Trader extends Actor {
                 actions.add(new BuyWeaponAction(item, buyerSeller));
             }
 
-            for (WeaponItem weapon: otherActor.getWeaponInventory()) {
-                for (SellableWeapon item: this.getSellableWeapons()) {
-                    if (item.toString().equals(weapon.toString())) {
-                        actions.add(new SellWeaponAction(weapon, item.getSellPrice(), buyerSeller));
-                    }
-                }
+
+            for (SellableWeapon item: this.getSellableWeapons()) {
+                actions.add(item.getSellWeaponAction(otherActor, buyerSeller));
             }
         }
 
