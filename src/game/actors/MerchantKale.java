@@ -23,30 +23,21 @@ import java.util.ArrayList;
 public class MerchantKale extends Trader {
 
     /**
-     * The list of item that the player are allowed to purchase
-     */
-    private ArrayList<PurchaseableWeapon> purchaseables = new ArrayList<>();
-    /**
-     * The list of item the player are allowed to sell
-     */
-    private ArrayList<SellableWeapon> sellables = new ArrayList<>();
-
-    /**
      * A public constructor
      */
     public MerchantKale() {
         super("Merchant Kale", 'K');
         super.addCapability(Status.TRADER);
-        this.purchaseables.add(new Club());
-        this.purchaseables.add(new GreatKnife());
-        this.purchaseables.add(new Uchigatana());
-        this.purchaseables.add(new Scimitar());
+        this.getPurchaseableWeapons().add(new Club());
+        this.getPurchaseableWeapons().add(new GreatKnife());
+        this.getPurchaseableWeapons().add(new Uchigatana());
+        this.getPurchaseableWeapons().add(new Scimitar());
 
-        this.sellables.add(new Club());
-        this.sellables.add(new GreatKnife());
-        this.sellables.add(new Uchigatana());
-        this.sellables.add(new Scimitar());
-        this.sellables.add(new Grossmesser());
+        this.getSellableWeapons().add(new Club());
+        this.getSellableWeapons().add(new GreatKnife());
+        this.getSellableWeapons().add(new Uchigatana());
+        this.getSellableWeapons().add(new Scimitar());
+        this.getSellableWeapons().add(new Grossmesser());
     }
 
     /**
@@ -64,12 +55,12 @@ public class MerchantKale extends Trader {
 
             BuySellCapable buyerSeller = BuyerSellerList.getInstance().getBuyerSeller(otherActor);
 
-            for (PurchaseableWeapon item: this.purchaseables) {
+            for (PurchaseableWeapon item: this.getPurchaseableWeapons()) {
                 actions.add(new BuyAction(item, buyerSeller));
             }
 
             for (WeaponItem weapon: otherActor.getWeaponInventory()) {
-                for (SellableWeapon item: this.sellables) {
+                for (SellableWeapon item: this.getSellableWeapons()) {
                     if (item.toString().equals(weapon.toString())) {
                         actions.add(new SellAction(weapon, item.getSellPrice(), buyerSeller));
                     }
