@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
 import game.actors.MerchantKale;
 import game.environments.*;
+import game.items.GoldenRune;
 import game.utils.ArchetypeManager;
 import game.utils.FancyMessage;
 
@@ -72,6 +73,7 @@ public class Application {
 		gameMap.at(middleX, middleY).addActor(new MerchantKale());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
+		player.addItemToInventory(new GoldenRune());
 
 		// Added by Ryan.
 		// HINT: what does it mean to prefer composition to inheritance?

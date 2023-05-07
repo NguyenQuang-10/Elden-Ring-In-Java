@@ -25,11 +25,6 @@ public interface Consumable {
     void consumedBy(Actor actor);
 
     /**
-     * @return String representing the name of the item
-     */
-    String getName();
-
-    /**
      * @return String that represent the effect the item has
      */
     String getEffect();
