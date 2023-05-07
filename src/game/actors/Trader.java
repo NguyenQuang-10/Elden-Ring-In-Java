@@ -6,6 +6,10 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.actions.traderactions.BuyAction;
+import game.actions.traderactions.BuySellCapable;
+import game.actions.traderactions.SellAction;
 import game.items.PurchaseableWeapon;
 import game.items.SellableWeapon;
 import game.utils.Status;
@@ -40,6 +44,37 @@ public abstract class Trader extends Actor {
     public Trader(String name, char displayChar) {
         super(name, displayChar, Integer.MAX_VALUE);
         super.addCapability(Status.TRADER);
+    }
+
+    /**
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return the empty ActionList
+     */
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        ActionList actions = super.allowableActions(otherActor, direction, map);
+
+        if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+
+            BuySellCapable buyerSeller = BuyerSellerList.getInstance().getBuyerSeller(otherActor);
+
+            for (PurchaseableWeapon item: this.getPurchaseableWeapons()) {
+                actions.add(new BuyAction(item, buyerSeller));
+            }
+
+            for (WeaponItem weapon: otherActor.getWeaponInventory()) {
+                for (SellableWeapon item: this.getSellableWeapons()) {
+                    if (item.toString().equals(weapon.toString())) {
+                        actions.add(new SellAction(weapon, item.getSellPrice(), buyerSeller));
+                    }
+                }
+            }
+        }
+
+        return actions;
     }
 
     /**

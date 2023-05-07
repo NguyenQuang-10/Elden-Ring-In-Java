@@ -40,34 +40,4 @@ public class MerchantKale extends Trader {
         this.getSellableWeapons().add(new Grossmesser());
     }
 
-    /**
-     *
-     * @param otherActor the Actor that might be performing attack
-     * @param direction  String representing the direction of the other Actor
-     * @param map        current GameMap
-     * @return the empty ActionList
-     */
-    @Override
-    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        ActionList actions = super.allowableActions(otherActor, direction, map);
-
-        if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-
-            BuySellCapable buyerSeller = BuyerSellerList.getInstance().getBuyerSeller(otherActor);
-
-            for (PurchaseableWeapon item: this.getPurchaseableWeapons()) {
-                actions.add(new BuyAction(item, buyerSeller));
-            }
-
-            for (WeaponItem weapon: otherActor.getWeaponInventory()) {
-                for (SellableWeapon item: this.getSellableWeapons()) {
-                    if (item.toString().equals(weapon.toString())) {
-                        actions.add(new SellAction(weapon, item.getSellPrice(), buyerSeller));
-                    }
-                }
-            }
-        }
-
-        return actions;
-    }
 }
