@@ -7,7 +7,7 @@ import game.items.Rune;
  * @author AppliedSession03Group03
  * @see game.actors.Player
  * @see BuyWeaponAction
- * @see SellAction
+ * @see SellWeaponAction
  */
 public interface BuySellCapable {
     /**
