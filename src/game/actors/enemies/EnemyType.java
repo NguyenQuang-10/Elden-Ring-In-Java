@@ -8,6 +8,7 @@ public enum EnemyType {
     SKELETON,
     FOURLEGANIMAL,
     SEAANIMAL,
-    PILEOFBONES
+    PILEOFBONES,
+    STORMVEIL
 
 }

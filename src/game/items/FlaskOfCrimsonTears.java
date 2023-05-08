@@ -60,14 +60,6 @@ public class FlaskOfCrimsonTears extends Item implements Consumable {
         actor.heal(250);
     }
 
-    /**
-     * @return get the name of an item
-     * @see Consumable
-     */
-    @Override
-    public String getName() {
-        return this.toString();
-    }
 
     /**
      * @return get the effect of the item

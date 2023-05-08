@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * An interface to be implemented by Weapons that can be purchased
  * @author AppliedSession03Group03
  */
-public interface Purchaseable {
+public interface PurchaseableWeapon {
     /**
      * Gets the price of the weapon for purchase
      * @return price of the weapon for purchase

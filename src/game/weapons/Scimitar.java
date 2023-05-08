@@ -6,8 +6,8 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAllAction;
-import game.items.Purchaseable;
-import game.items.Sellable;
+import game.items.PurchaseableWeapon;
+import game.items.SellableWeapon;
 
 /**
  * A curved sword, represented by s (lowercase S), carried around by the Skeletal Bandit that deals 118 damage
@@ -23,7 +23,7 @@ import game.items.Sellable;
  * @author AppliedSession03Group03
  * @see WeaponItem
  */
-public class Scimitar extends WeaponItem implements Weapon, Sellable, Purchaseable {
+public class Scimitar extends WeaponItem implements Weapon, SellableWeapon, PurchaseableWeapon {
 
     /**
      * Basic constructor for the weapon.
@@ -52,7 +52,7 @@ public class Scimitar extends WeaponItem implements Weapon, Sellable, Purchaseab
     /**
      * Getter to get the purchasing price of the weapon.
      * @return The purchasing price of the weapon.
-     * @see Purchaseable
+     * @see PurchaseableWeapon
      */
     @Override
     public int getPurchasePrice() {
@@ -61,7 +61,7 @@ public class Scimitar extends WeaponItem implements Weapon, Sellable, Purchaseab
 
     /** Instantiate a new instance of the weapon and return it.
      * @return New instance of the club.
-     * @see Purchaseable
+     * @see PurchaseableWeapon
      */
     @Override
     public WeaponItem purchaseItem() {
@@ -71,19 +71,10 @@ public class Scimitar extends WeaponItem implements Weapon, Sellable, Purchaseab
     /**
      * Getter to get the sell price of the weapon.
      * @return The sell price of the item.
-     * @see Sellable
+     * @see SellableWeapon
      */
     @Override
     public int getSellPrice() {
         return 100;
-    }
-
-    /** Instantiate a new instance of the weapon and return it.
-     * @see Sellable
-     * @return New instance of the weapon.
-     */
-    @Override
-    public WeaponItem sellItem() {
-        return new Scimitar();
     }
 }

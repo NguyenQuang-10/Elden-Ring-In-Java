@@ -34,7 +34,7 @@ public class ConsumeAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         consumable.consumedBy(actor);
-        return actor.toString() + " has consumed " + consumable.getName() + "\n" + consumable.getEffect();
+        return actor.toString() + " has consumed " + consumable.toString() + "\n" + consumable.getEffect();
     }
 
     /**
@@ -45,6 +45,6 @@ public class ConsumeAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Consume " + this.consumable.getName() + " (" + this.consumable.getUsesLeft() + " uses left)";
+        return "Consume " + this.consumable.toString() + " (" + this.consumable.getUsesLeft() + " uses left)";
     }
 }

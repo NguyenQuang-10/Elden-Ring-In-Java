@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAllAction;
-import game.items.Sellable;
+import game.items.SellableWeapon;
 /**
  * A curved sword, represented by ? (question mark), carried around by the Heavy Skeletal Swordsman that deals
  * 115 damage with 85% attack accuracy. This sword allows the user to attack a single enemy within their surroundings
@@ -21,7 +21,7 @@ import game.items.Sellable;
  * @author AppliedSession03Group03
  * @see WeaponItem
  */
-public class Grossmesser extends WeaponItem implements Weapon, Sellable {
+public class Grossmesser extends WeaponItem implements Weapon, SellableWeapon {
     /**
      * Basic constructor for the weapon.
      */
@@ -52,19 +52,10 @@ public class Grossmesser extends WeaponItem implements Weapon, Sellable {
     /**
      * Getter to return the price when selling the Grossmesser.
      * @return The sell price of the item.
-     * @see Sellable
+     * @see SellableWeapon
      */
     @Override
     public int getSellPrice() {
         return 100;
-    }
-
-    /** Instantiate a new instance of the weapon and return it.
-     * @return New instance of the club.
-     * @see Sellable
-     */
-    @Override
-    public WeaponItem sellItem() {
-        return new Grossmesser();
     }
 }

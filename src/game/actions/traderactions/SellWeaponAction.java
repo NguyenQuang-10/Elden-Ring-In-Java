@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * @author AppliedSession03Group03
  * @see BuySellCapable
  */
-public class SellAction extends Action {
+public class SellWeaponAction extends Action {
     /**
      * Item to be sold
      */
@@ -30,7 +30,7 @@ public class SellAction extends Action {
      * @param price - price of item
      * @param seller - the seller
      */
-    public SellAction(WeaponItem item, int price, BuySellCapable seller){
+    public SellWeaponAction(WeaponItem item, int price, BuySellCapable seller){
         this.item = item;
         this.price = price;
         this.seller = seller;

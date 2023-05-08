@@ -2,8 +2,8 @@ package game.weapons;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.items.Purchaseable;
-import game.items.Sellable;
+import game.items.PurchaseableWeapon;
+import game.items.SellableWeapon;
 import game.actions.UnseatheAction;
 
 /**
@@ -13,7 +13,7 @@ import game.actions.UnseatheAction;
  * Created by:
  * @author AppliedSession03Group03
  */
-public class Uchigatana extends WeaponItem implements Purchaseable, Sellable {
+public class Uchigatana extends WeaponItem implements PurchaseableWeapon, SellableWeapon {
     /**
      * Basic constructor for the weapon.
      */
@@ -34,7 +34,7 @@ public class Uchigatana extends WeaponItem implements Purchaseable, Sellable {
 
     /**
      * Getter to return the price to purchase the Uchigatana.
-     * @see Purchaseable
+     * @see PurchaseableWeapon
      * @return the purchase price of the item.
      */
     @Override
@@ -45,26 +45,17 @@ public class Uchigatana extends WeaponItem implements Purchaseable, Sellable {
     /**
      * Getter to return the price when selling the Uchigatana.
      * @return The sell price of the item.
-     * @see Sellable
+     * @see SellableWeapon
      */
     @Override
     public int getSellPrice() { return 500; }
 
     /** Instantiate a new instance of the weapon and return it.
-     * @see Purchaseable
+     * @see PurchaseableWeapon
      * @return New instance of the club.
      */
     @Override
     public WeaponItem purchaseItem() {
-        return new Uchigatana();
-    }
-
-    /** Instantiate a new instance of the weapon and return it.
-     * @see Sellable
-     * @return New instance of the club.
-     */
-    @Override
-    public WeaponItem sellItem() {
         return new Uchigatana();
     }
 }
