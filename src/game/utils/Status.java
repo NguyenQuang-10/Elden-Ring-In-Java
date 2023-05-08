@@ -14,5 +14,6 @@ public enum Status {
     TRADER,
     SPAWNABLE,
     SITEOFLOSTGRACE,
-    FOLLOWER
+    FOLLOWER,
+    EXCHANGEABLE
 }

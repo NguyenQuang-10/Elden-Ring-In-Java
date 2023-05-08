@@ -2,6 +2,7 @@ package game.weapons;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.items.SellableWeapon;
+import game.utils.Status;
 
 public class RemembranceOfTheGrafted extends WeaponItem implements SellableWeapon {
     /**
@@ -10,6 +11,7 @@ public class RemembranceOfTheGrafted extends WeaponItem implements SellableWeapo
      */
     public RemembranceOfTheGrafted() {
         super("Godrick the Grafted", 'O', 10, "slash", 75);
+        this.addCapability(Status.EXCHANGEABLE);
     }
 
     @Override

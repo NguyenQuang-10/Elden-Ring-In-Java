@@ -13,6 +13,7 @@ import game.environments.*;
 import game.items.GoldenRune;
 import game.utils.ArchetypeManager;
 import game.utils.FancyMessage;
+import game.weapons.RemembranceOfTheGrafted;
 
 /**
  * The main class to start the game.
@@ -74,6 +75,7 @@ public class Application {
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
 		player.addItemToInventory(new GoldenRune());
+		player.addWeaponToInventory(new RemembranceOfTheGrafted());
 
 		// Added by Ryan.
 		// HINT: what does it mean to prefer composition to inheritance?
