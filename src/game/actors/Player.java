@@ -47,6 +47,8 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	 */
 	private FlaskOfCrimsonTears flaskOfCrimsonTears;
 
+	private Location locationLastTurn;
+
 	/**
 	 * Setter for last visited site of lost grace
 	 * @param lastSiteOfLostGrace last visited site of lost grace
@@ -97,6 +99,9 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		// update last location
+		this.locationLastTurn = map.locationOf(this);
+
 		// Handle multi-turn Actions
 
 		if (map.locationOf(this).getGround() != null
@@ -131,17 +136,20 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	public String reset(Actor actor, GameMap map) {
 		Location location = map.locationOf(actor);
 		for (Rune rune: this.runes) {
-			rune.setLocation(location);
+			rune.setLocation(locationLastTurn);
 			ResetManager.getInstance().registerResettableAfterReset(rune);
-			location.addItem(rune);
+			locationLastTurn.addItem(rune);
 		}
 		this.runes = new ArrayList<>();
 		if (!this.isConscious()) {
 			map.removeActor(this);
 			map.addActor(this, this.lastSiteOfLostGrace);
 		}
+
 		this.removeItemFromInventory(this.flaskOfCrimsonTears);
-		this.addItemToInventory(new FlaskOfCrimsonTears());
+		FlaskOfCrimsonTears newFlaskOfCrimsonTear = new FlaskOfCrimsonTears();
+		this.flaskOfCrimsonTears = newFlaskOfCrimsonTear;
+		this.addItemToInventory(newFlaskOfCrimsonTear);
 		this.resetMaxHp(this.maxHitPoints);
 		return this + " has hp reset to max " + this.maxHitPoints;
 	}
