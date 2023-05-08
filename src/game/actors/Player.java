@@ -66,6 +66,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		this.addCapability(Status.PLAYER);
 		this.flaskOfCrimsonTears = new FlaskOfCrimsonTears();
 		this.addItemToInventory(this.flaskOfCrimsonTears);
 		ResetManager.getInstance().registerResettable(this);
@@ -82,6 +83,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		super(name, displayChar, archetypes.getHP());
 		this.addWeaponToInventory(archetypes.getWeapon());
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		this.addCapability(Status.PLAYER);
 		this.flaskOfCrimsonTears = new FlaskOfCrimsonTears();
 		this.addItemToInventory(this.flaskOfCrimsonTears);
 		ResetManager.getInstance().registerResettable(this);
