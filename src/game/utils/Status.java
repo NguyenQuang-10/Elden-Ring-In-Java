@@ -17,5 +17,6 @@ public enum Status {
     FOLLOWER,
     EXCHANGEABLE,
     PLAYER,
-    POISONED
+    POISONED,
+    FAINTED
 }
