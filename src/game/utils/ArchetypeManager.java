@@ -1,8 +1,5 @@
 package game.utils;
-import game.actors.archetypes.Archetypes;
-import game.actors.archetypes.Bandit;
-import game.actors.archetypes.Samurai;
-import game.actors.archetypes.Wretch;
+import game.actors.archetypes.*;
 import game.actors.Player;
 import java.util.*;
 import edu.monash.fit2099.engine.displays.Display;
@@ -50,6 +47,7 @@ public class ArchetypeManager {
                 display.println("b: Bandit");
                 display.println("s: Samurai");
                 display.println("w: Wretch");
+                display.println("a: Astrologger");
                 chosenArchetype = scanner.nextLine();   // chosenArchetype is a single letter.
                 // Loop to match the chosenArchetype to the archetype in the dictionary.
                 for (Enumeration<String> aEnum = this.archetypes.keys(); aEnum.hasMoreElements();){
@@ -89,6 +87,7 @@ public class ArchetypeManager {
         myArchetypes.put("s", new Samurai());
         myArchetypes.put("b", new Bandit());
         myArchetypes.put("w", new Wretch());
+        myArchetypes.put("a", new Astrologger());
 
         // Return the dictionary of archetype, to be initialised as an attribute of this class.
         return myArchetypes;
