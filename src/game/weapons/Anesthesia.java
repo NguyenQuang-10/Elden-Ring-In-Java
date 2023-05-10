@@ -3,9 +3,11 @@ package game.weapons;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.actions.AddStatusAction;
+import game.items.PurchaseableWeapon;
 import game.utils.Status;
 
-public class Anesthesia extends WeaponItem {
+public class Anesthesia extends WeaponItem implements PurchaseableWeapon {
 
     /**
      * Constructor.
@@ -15,7 +17,16 @@ public class Anesthesia extends WeaponItem {
     }
 
     public Action getSkill(Actor target, String direction) {
-        target.addCapability(Status.FAINTED);
-        return null;
+        return new AddStatusAction(target, Status.FAINTED, this);
+    }
+
+    @Override
+    public int getPurchasePrice() {
+        return 500;
+    }
+
+    @Override
+    public WeaponItem purchaseItem() {
+        return new Anesthesia();
     }
 }

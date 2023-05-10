@@ -5,8 +5,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAllAction;
+import game.items.PurchaseableWeapon;
 
-public class Bomb extends WeaponItem {
+public class Bomb extends WeaponItem implements PurchaseableWeapon {
 
     /**
      * Constructor.
@@ -27,5 +28,15 @@ public class Bomb extends WeaponItem {
         if (this.usesLeft < 1) {
             actor.removeWeaponFromInventory(this);
         }
+    }
+
+    @Override
+    public int getPurchasePrice() {
+        return 1000;
+    }
+
+    @Override
+    public WeaponItem purchaseItem() {
+        return new Bomb();
     }
 }
