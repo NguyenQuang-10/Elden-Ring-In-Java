@@ -26,6 +26,6 @@ public class AddStatusAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " uses " + this.weapon + " to " + this.status + " " + this.target;
+        return actor + " uses " + this.weapon + " to make " + this.target + " " + this.status;
     }
 }
