@@ -22,6 +22,8 @@ public class GiantCrab extends Enemy {
         this.addRune(318, 4961);
         this.addCapability(Status.FOLLOWER);
 
+        // add weapon effect behaviour
+
         this.setBehaviour(0, new AttackBehaviour(true));
 
         // behaviour at key 1 is reserved for follow behaviour

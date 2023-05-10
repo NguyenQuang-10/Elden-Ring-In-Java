@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AddStatusAction;
 import game.items.PurchaseableWeapon;
 import game.utils.Status;
+import game.utils.WeaponEffect;
 
 public class Venom extends WeaponItem implements PurchaseableWeapon {
 
@@ -18,7 +19,7 @@ public class Venom extends WeaponItem implements PurchaseableWeapon {
     }
 
     public Action getSkill(Actor target, String direction) {
-        return new AddStatusAction(target, Status.POISONED, this);
+        return new AddStatusAction(target, WeaponEffect.POISONED, this);
     }
 
     @Override
