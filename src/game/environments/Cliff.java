@@ -27,7 +27,7 @@ public class Cliff extends Ground {
         if (location.containsAnActor()) {
             Actor actor = location.getActor();
             if (actor.hasCapability(Status.PLAYER)) {
-                actor.hurt(999999);
+                actor.hurt(Integer.MAX_VALUE);
                 new ResetAction().execute(actor, location.map());
             } else {
                 new DeathAction(actor).execute(actor, location.map());
