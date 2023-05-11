@@ -87,7 +87,7 @@ public class ArchetypeManager {
         myArchetypes.put("s", new Samurai());
         myArchetypes.put("b", new Bandit());
         myArchetypes.put("w", new Wretch());
-        myArchetypes.put("a", new Astrologger());
+        myArchetypes.put("a", new Astrologer());
 
         // Return the dictionary of archetype, to be initialised as an attribute of this class.
         return myArchetypes;
