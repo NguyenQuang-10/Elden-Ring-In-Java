@@ -6,6 +6,7 @@ import game.behaviours.Behaviour;
 import game.behaviours.DespawnBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.utils.Status;
+import game.weapons.HeavyCrossbow;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class GodrickSoldier extends Enemy {
         super("Godrick Soldier", 'p', 198, EnemyType.STORMVEIL);
         this.addRune(38, 70);
         this.addCapability(Status.FOLLOWER);
+        this.addWeaponToInventory(new HeavyCrossbow());
 
 
         this.setBehaviour(0, new AttackBehaviour(false));
