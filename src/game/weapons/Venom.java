@@ -2,11 +2,9 @@ package game.weapons;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actions.AddStatusAction;
+import game.actions.AddWeaponEffectAction;
 import game.items.PurchaseableWeapon;
-import game.utils.Status;
 import game.utils.WeaponEffect;
 
 public class Venom extends WeaponItem implements PurchaseableWeapon {
@@ -19,7 +17,7 @@ public class Venom extends WeaponItem implements PurchaseableWeapon {
     }
 
     public Action getSkill(Actor target, String direction) {
-        return new AddStatusAction(target, WeaponEffect.POISONED, this);
+        return new AddWeaponEffectAction(target, WeaponEffect.POISONED, this);
     }
 
     @Override

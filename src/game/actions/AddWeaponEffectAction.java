@@ -4,16 +4,15 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.utils.Status;
 import game.utils.WeaponEffect;
 
-public class AddStatusAction extends Action {
+public class AddWeaponEffectAction extends Action {
 
     private Actor target;
     private WeaponEffect status;
     private WeaponItem weapon;
 
-    public AddStatusAction(Actor target, WeaponEffect status, WeaponItem weapon) {
+    public AddWeaponEffectAction(Actor target, WeaponEffect status, WeaponItem weapon) {
         this.target = target;
         this.status = status;
         this.weapon = weapon;
