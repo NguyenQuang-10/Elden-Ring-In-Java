@@ -18,7 +18,7 @@ public class SummonSign extends Ground {
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         ActionList actions = super.allowableActions(actor, location, direction);
-        if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+        if (actor.hasCapability(Status.HOSTILE_TO_ENEMY) & actor.hasCapability(Status.PLAYER)) {
             actions.add(new SummonAction());
         }
         return actions;

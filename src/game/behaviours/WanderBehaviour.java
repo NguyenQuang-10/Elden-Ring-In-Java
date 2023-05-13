@@ -18,7 +18,7 @@ import edu.monash.fit2099.engine.positions.Location;
 public class WanderBehaviour implements Behaviour {
 
 	/**
-	 * Random used for randomizing the wander locations
+	 * Random used for randomizing to wander locations
 	 */
 	private final Random random = new Random();
 
