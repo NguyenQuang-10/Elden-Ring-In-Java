@@ -1,7 +1,6 @@
 package game;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
@@ -29,39 +28,9 @@ public class Application {
 
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new SiteOfLostGrace() ,new Dirt(),
-				new Wall(), new Floor(), new Graveyard(), new PuddleOfWater(), new GustOfWind(), new Cliff()
-				, new Cage(), new Barrack());
 
-		List<String> map = Arrays.asList(
-				"...........................................................................",
-				"....n....&............#####....######.................................n....",
-				"......................#..___....____#.............................n........",
-				"........n.........................__#..........................&...........",
-				".....n................._____........#......................................",
-				"......................#............_#...........................&..........",
-				"......................#...........###......................................",
-				".......&...................................................................",
-				"...........................................................................",
-				"..................................###___###.......................~........",
-				".....~............................__U_____#................................",
-				"..........................+.......#________................................",
-				".....~............................#_______#.......................~........",
-				"..................................###___###................................",
-				"....................................#___#..................................",
-				"...........................................................................",
-				"...........................................................................",
-				"...........................................................................",
-				"..####__##....................................................######..##...",
-				"..#.....__....................................................#....____....",
-				"..#___..........................................................__.....#...",
-				"..####__###..................................................._.....__.#...",
-				"..............................................................###..__###...",
-				"...........................................................................");
-		GameMap gameMap = new GameMap(groundFactory, map);
-		GameMap roundtableHold = new GameMap(groundFactory, Maps.ROUNDTABLE_HOLD);
-		world.addGameMap(gameMap);
-		world.addGameMap(roundtableHold);
+		HashMap<String, GameMap> mapDict = Application.setUpMaps(world);
+		GameMap limgrave = mapDict.get("Limgrave");
 
 		// BEHOLD, ELDEN RING
 		for (String line : FancyMessage.ELDEN_RING.split("\n")) {
@@ -73,10 +42,10 @@ public class Application {
 			}
 		}
 
-		int middleX = gameMap.getXRange().max() / 2;
-		int middleY = gameMap.getYRange().max() / 2;
+		int middleX = limgrave.getXRange().max() / 2;
+		int middleY = limgrave.getYRange().max() / 2;
 
-		gameMap.at(middleX, middleY).addActor(new MerchantKale());
+		limgrave.at(middleX, middleY).addActor(new MerchantKale());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
 		player.addItemToInventory(new GoldenRune());
@@ -85,12 +54,43 @@ public class Application {
 		// Added by Ryan.
 		// HINT: what does it mean to prefer composition to inheritance?
 		// Player player = new Player("Tarnished", '@', 300);
-		world.addPlayer(player, gameMap.at(36, 10));
-		player.setLastSiteOfLostGrace(gameMap.at(36, 10));
-
-		gameMap.at(30,9).setGround(new GoldenFogDoor(roundtableHold.at(10, 6), "to Roundtable Hold"));
+		world.addPlayer(player, limgrave.at(36, 10));
+		player.setLastSiteOfLostGrace(limgrave.at(36, 10));
 
 		world.run();
 	}
-	// start assignment 3
+
+	private static HashMap<String, GameMap> setUpMaps(World world) {
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new SiteOfLostGrace() ,new Dirt(),
+				new Wall(), new Floor(), new Graveyard(), new PuddleOfWater(), new GustOfWind(), new Cliff()
+				, new Cage(), new Barrack(), new SummonSign());
+
+
+		GameMap roundtableHold = new GameMap(groundFactory, Maps.ROUNDTABLE_HOLD);
+		GameMap limgrave = new GameMap(groundFactory, Maps.LIMGRAVE);
+		GameMap stormveilCastle = new GameMap(groundFactory, Maps.STORMVEIL_CASTLE);
+		GameMap bossRoom = new GameMap(groundFactory, Maps.BOSS_ROOM);
+
+		limgrave.at(53,7).setGround(new GoldenFogDoor(roundtableHold.at(9, 10), "to Roundtable Hold"));
+		limgrave.at(4, 17).setGround(new GoldenFogDoor(stormveilCastle.at(38, 23), "to StormveilCastle"));
+
+		roundtableHold.at(9, 10).setGround(new GoldenFogDoor(limgrave.at(53,7), "to Limgrave"));
+
+		stormveilCastle.at(37, 2).setGround(new GoldenFogDoor(bossRoom.at(12, 3), "to Boss Room"));
+		stormveilCastle.at(38, 23).setGround(new GoldenFogDoor(limgrave.at(4,17), "to Limgrave"));
+
+		world.addGameMap(limgrave);
+		world.addGameMap(stormveilCastle);
+		world.addGameMap(roundtableHold);
+		world.addGameMap(bossRoom);
+
+		HashMap<String, GameMap> mapDict = new HashMap<String, GameMap>();
+		mapDict.put("Limgrave", limgrave);
+		mapDict.put("Stormveil Castle", stormveilCastle);
+		mapDict.put("Roundtable Hold", roundtableHold);
+		mapDict.put("Boss Room", bossRoom);
+
+		return mapDict;
+
+	}
 }
