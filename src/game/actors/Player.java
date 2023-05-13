@@ -106,11 +106,6 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 
 		// Handle multi-turn Actions
 
-		if (map.locationOf(this).getGround() != null
-				&& map.locationOf(this).getGround().hasCapability(Status.SITEOFLOSTGRACE)) {
-			this.setLastSiteOfLostGrace(map.locationOf(this));
-		}
-
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
@@ -146,6 +141,9 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		if (!this.isConscious()) {
 			map.removeActor(this);
 			map.addActor(this, this.lastSiteOfLostGrace);
+		} else if (map.locationOf(this).getGround() != null
+				&& map.locationOf(this).getGround().hasCapability(Status.SITEOFLOSTGRACE)) {
+			this.setLastSiteOfLostGrace(map.locationOf(this));
 		}
 
 		this.removeItemFromInventory(this.flaskOfCrimsonTears);
