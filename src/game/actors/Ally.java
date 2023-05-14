@@ -5,9 +5,12 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.archetypes.Archetypes;
+import game.behaviours.*;
 import game.utils.ArchetypeManager;
 import game.utils.Status;
 
@@ -22,6 +25,11 @@ import java.util.*;
  */
 public class Ally extends Actor {
     /**
+     * A hashmap to store Behaviour according to priority.
+     */
+    protected Map<Integer, Behaviour> behaviours = new HashMap<>();
+
+    /**
      * A public constructor.
      * @param hitPoints The hit points that the ally would have.
      * @param weapon    The initial weapon that would be in the ally's inventory.
@@ -30,11 +38,41 @@ public class Ally extends Actor {
         super("Ally", 'A', hitPoints);
         this.addWeaponToInventory(weapon);
         this.addCapability(Status.HOSTILE_TO_ENEMY);
+        this.addCapability(Status.FOLLOWER);
+
+        // Questionable.
+        this.setBehaviour(0, new AttackBehaviour(false));
+
+        // behaviour at key 1 is reserved for follow behaviour
+
+        ArrayList<Behaviour> behaviours = new ArrayList<>();
+        behaviours.add(new DespawnBehaviour(0));
+        behaviours.add(new WanderBehaviour());
+
+        for (int i = 0; i < behaviours.size(); i++) {
+            this.setBehaviour(i+2, behaviours.get(i));
+        }
+    }
+
+    /**
+     * Set behaviours for enemy and its priority
+     * @param key the priority of the behaviour
+     * @param behaviour the behaviour that determines what action to be performed
+     */
+    protected void setBehaviour(int key, Behaviour behaviour) {
+        this.behaviours.put(key, behaviour);
+    }
+
+    /**
+     * A getter for behaviours
+     * @return the map of Behaviour for the Enemy
+     */
+    public Map<Integer, Behaviour> getBehaviours() {
+        return this.behaviours;
     }
 
     /**
      * At each turn, this method selects a valid action for the ally to perform.
-     *
      * @param actions    Collection of possible Actions for this Actor.
      * @param lastAction The Action this Actor took last turn; this can do interesting things in conjunction with Action.getNextAction().
      * @param map        The map containing the Actor.
@@ -43,7 +81,28 @@ public class Ally extends Actor {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // This play turn returns the action for the next play. Look at the exit if
 
+        // Determines whether to follow an actor, if that actor is an enemy.
+        if (this.hasCapability(Status.FOLLOWER)) {
+            Location here = map.locationOf(this);
+            for (Exit exit : here.getExits()) {
+                Location destination = exit.getDestination();
+                if (map.isAnActorAt(destination) && map.getActorAt(destination).hasCapability(Status.ENEMY)) {
+                    this.setBehaviour(1, new FollowBehaviour(map.getActorAt(destination)));
+                    break;
+                }
+            }
+        }
+
+
+
+        for (Behaviour behaviour : getBehaviours().values()) {
+            Action action = behaviour.getAction(this, map);
+            // Check attack action (ally on perform attack action on an enemy/invader).
+            if(action != null)
+                return action;
+        }
         return new DoNothingAction();
     }
 
