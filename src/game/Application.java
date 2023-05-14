@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.FingerReaderEnia;
 import game.actors.Player;
 import game.actors.MerchantKale;
 import game.environments.*;
@@ -76,6 +77,7 @@ public class Application {
 
 		roundtableHold.at(9, 10).setGround(new GoldenFogDoor(limgrave.at(53,7), "to Limgrave"));
 
+
 		stormveilCastle.at(37, 2).setGround(new GoldenFogDoor(bossRoom.at(12, 3), "to Boss Room"));
 		stormveilCastle.at(38, 23).setGround(new GoldenFogDoor(limgrave.at(4,17), "to Limgrave"));
 		scatterGoldenRunes(stormveilCastle, 7);
@@ -84,6 +86,8 @@ public class Application {
 		world.addGameMap(stormveilCastle);
 		world.addGameMap(roundtableHold);
 		world.addGameMap(bossRoom);
+
+		roundtableHold.at(9, 5).addActor(new FingerReaderEnia());
 
 		HashMap<String, GameMap> mapDict = new HashMap<String, GameMap>();
 		mapDict.put("Limgrave", limgrave);

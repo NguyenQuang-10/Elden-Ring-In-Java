@@ -1,4 +1,3 @@
-Golden runes needs to be scatterd across the map and get picked up, add that
 Test Finger Reader Enia and add her to the map
 Test Summoning
 Add weaponeffectbehaviour to the req 5 weapons
