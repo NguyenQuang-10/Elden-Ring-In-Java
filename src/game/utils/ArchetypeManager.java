@@ -92,4 +92,26 @@ public class ArchetypeManager {
         // Return the dictionary of archetype, to be initialised as an attribute of this class.
         return myArchetypes;
     }
+
+    public Archetypes randomArchetype(){
+        Dictionary<String,Archetypes> dictOfArchetypes = this.archetypes;
+
+        int randomIndex = new Random().nextInt(dictOfArchetypes.size());
+        int currentIndex = 0;
+        Archetypes randomArchetype = null;
+        for (Enumeration<String> aEnum = dictOfArchetypes.keys(); aEnum.hasMoreElements();){
+            String nextElement = aEnum.nextElement();
+            if (currentIndex == randomIndex){
+                randomArchetype = dictOfArchetypes.get(nextElement);
+            }
+            else {
+                currentIndex++;
+            }
+        }
+        return randomArchetype;
+    }
+
+    public Dictionary<String,Archetypes> getArchetypes(){
+        return this.archetypes;
+    }
 }
