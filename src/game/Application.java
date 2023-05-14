@@ -5,14 +5,13 @@ import java.util.*;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
 import game.actors.MerchantKale;
 import game.environments.*;
 import game.items.GoldenRune;
-import game.utils.ArchetypeManager;
-import game.utils.FancyMessage;
-import game.utils.Maps;
+import game.utils.*;
 import game.weapons.RemembranceOfTheGrafted;
 
 /**
@@ -73,11 +72,13 @@ public class Application {
 
 		limgrave.at(53,7).setGround(new GoldenFogDoor(roundtableHold.at(9, 10), "to Roundtable Hold"));
 		limgrave.at(4, 17).setGround(new GoldenFogDoor(stormveilCastle.at(38, 23), "to StormveilCastle"));
+		scatterGoldenRunes(limgrave, 10);
 
 		roundtableHold.at(9, 10).setGround(new GoldenFogDoor(limgrave.at(53,7), "to Limgrave"));
 
 		stormveilCastle.at(37, 2).setGround(new GoldenFogDoor(bossRoom.at(12, 3), "to Boss Room"));
 		stormveilCastle.at(38, 23).setGround(new GoldenFogDoor(limgrave.at(4,17), "to Limgrave"));
+		scatterGoldenRunes(stormveilCastle, 7);
 
 		world.addGameMap(limgrave);
 		world.addGameMap(stormveilCastle);
@@ -92,5 +93,21 @@ public class Application {
 
 		return mapDict;
 
+	}
+
+	private static void scatterGoldenRunes(GameMap map, int goldenRuneCount) {
+		int added = 0;
+		int maxX = map.getXRange().max();
+		int maxY = map.getYRange().max();
+		while (added < goldenRuneCount ) {
+			int randomX = RandomNumberGenerator.getRandomInt(0, maxX);
+			int randomY = RandomNumberGenerator.getRandomInt(0, maxY);
+			Location location = map.at(randomX, randomY);
+			// if this location is not a wall
+			if (!(location.getGround() != null && location.getGround().hasCapability(Status.WALL))) {
+				location.addItem(new GoldenRune());
+				added += 1;
+			}
+		}
 	}
 }

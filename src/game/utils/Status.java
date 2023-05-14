@@ -16,5 +16,6 @@ public enum Status {
     SITEOFLOSTGRACE,
     FOLLOWER,
     EXCHANGEABLE,
-    PLAYER
+    PLAYER,
+    WALL
 }
