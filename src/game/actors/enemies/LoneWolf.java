@@ -25,7 +25,7 @@ public class LoneWolf extends Enemy {
         this.addCapability(Status.FOLLOWER);
 
 
-        this.setBehaviour(0, new AttackBehaviour(false));
+        this.setBehaviour(0, new AttackBehaviour(false, Status.ENEMY));
 
         // behaviour at key 1 is reserved for follow behaviour
 

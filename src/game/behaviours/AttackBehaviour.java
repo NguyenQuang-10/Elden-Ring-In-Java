@@ -25,13 +25,15 @@ public class AttackBehaviour implements Behaviour {
      * true if attack surrounding is allowed else false
      */
     final private boolean canAttackAll;
+    final private Status attackerType;
 
     /**
      * A public constructor
      * @param canAttackAll Determines whether the Actor could perform surrounding attack
      */
-    public AttackBehaviour(boolean canAttackAll) {
+    public AttackBehaviour(boolean canAttackAll, Status attackerType) {
         this.canAttackAll = canAttackAll;
+        this.attackerType = attackerType;
     }
 
     /**
@@ -51,17 +53,7 @@ public class AttackBehaviour implements Behaviour {
         if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
                 && hasEnemyAdjacent(actor,here, map)
                 && this.canAttackAll) {
-            int numOfWeapons = actor.getWeaponInventory().size();
-            if (numOfWeapons >= 1) {
-                Weapon weapon = actor.getWeaponInventory().get(0);
-                if (RandomNumberGenerator.getRandomInt(1, 100) <= 50) {
-                    return weapon.getSkill(actor);
-                }
-                return new AttackAllAction(actor.getWeaponInventory().get(0));
-            }
-            else {
-                return new AttackAllAction();
-            }
+            return retAttackAllAction(actor);
         }
 
         for (Exit exit: here.getExits()) {
@@ -69,30 +61,26 @@ public class AttackBehaviour implements Behaviour {
             if (destination.containsAnActor()) {
                 Actor target = destination.getActor();
 
-                if (target.isConscious()
-                        && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.HOSTILE_TO_ENEMY))
-                        && !Enemy.isSameEnemy(actor, target)) {
-
-                    int numOfWeapons = actor.getWeaponInventory().size();
-
-                    if (numOfWeapons >= 1) {
-
-                        Weapon weapon = actor.getWeaponInventory().get(0);
-                        if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
-                                && weapon.getSkill(target, exit.getName()) != null) {
-                            return weapon.getSkill(target, exit.getName());
-                        }
-
-                        return new AttackAction(target, exit.getName(), weapon);
-                    }
-                    else {
-                        return new AttackAction(target, exit.getName());
-                    }
+                if (determineTargets(actor, target)) {
+                    return retAttackAction(actor, target, exit);
                 }
             }
         }
 
         return null;
+    }
+
+    private boolean determineTargets(Actor attacker, Actor target) {
+        if (this.attackerType == Status.ENEMY) {
+            return target.isConscious()
+                    && !Enemy.isSameEnemy(attacker, target);
+        } else if (this.attackerType == Status.ALLY) {
+            return target.isConscious()
+                    && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.INVADER));
+        } else {
+            return target.isConscious()
+                    && (target.hasCapability(Status.HOSTILE_TO_ENEMY) || target.hasCapability(Status.ENEMY));
+        }
     }
 
     /**
@@ -111,5 +99,37 @@ public class AttackBehaviour implements Behaviour {
             }
         }
         return flag;
+    }
+
+    private Action retAttackAllAction(Actor attacker) {
+        int numOfWeapons = attacker.getWeaponInventory().size();
+        if (numOfWeapons >= 1) {
+            Weapon weapon = attacker.getWeaponInventory().get(0);
+            if (RandomNumberGenerator.getRandomInt(1, 100) <= 50) {
+                return weapon.getSkill(attacker);
+            }
+            return new AttackAllAction(attacker.getWeaponInventory().get(0));
+        }
+        else {
+            return new AttackAllAction();
+        }
+    }
+
+    private Action retAttackAction(Actor attacker, Actor target, Exit exit) {
+        int numOfWeapons = attacker.getWeaponInventory().size();
+
+        if (numOfWeapons >= 1) {
+
+            Weapon weapon = attacker.getWeaponInventory().get(0);
+            if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
+                    && weapon.getSkill(target, exit.getName()) != null) {
+                return weapon.getSkill(target, exit.getName());
+            }
+
+            return new AttackAction(target, exit.getName(), weapon);
+        }
+        else {
+            return new AttackAction(target, exit.getName());
+        }
     }
 }
