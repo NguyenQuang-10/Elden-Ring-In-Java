@@ -54,12 +54,15 @@ public class QuickStepAction extends Action {
         String result = actor + " quicksteps " + target + " at " + direction + " with " + weapon + "\n";
         result += (new AttackAction(this.target, this.direction, this.weapon)).execute(actor, map);
 
-        for (Exit exit: map.locationOf(this.target).getExits()) {
-            Location here = exit.getDestination();
-            if (!here.containsAnActor()) {
-                return result + (new MoveActorAction(here, exit.getName(), "moved")).execute(this.target, map);
+        if (map.locationOf(this.target)!= null) {
+            for (Exit exit: map.locationOf(this.target).getExits()) {
+                Location here = exit.getDestination();
+                if (!here.containsAnActor()) {
+                    return result + (new MoveActorAction(here, exit.getName(), "moved")).execute(this.target, map);
+                }
             }
         }
+
         return result;
     }
 

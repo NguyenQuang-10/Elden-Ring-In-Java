@@ -47,7 +47,7 @@ public class SummonAction extends Action {
             }
         }
         // Need to determine what to say if no spaces available.
-        return null;
+        return actor + " tried to summon, but failed!";
     }
 
     @Override

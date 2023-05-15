@@ -10,6 +10,8 @@ import edu.monash.fit2099.engine.positions.World;
 import game.actors.FingerReaderEnia;
 import game.actors.Player;
 import game.actors.MerchantKale;
+import game.actors.archetypes.Archetypes;
+import game.actors.enemies.LoneWolf;
 import game.environments.*;
 import game.items.GoldenRune;
 import game.utils.*;
@@ -48,6 +50,7 @@ public class Application {
 		limgrave.at(middleX, middleY).addActor(new MerchantKale());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
+
 		player.addItemToInventory(new GoldenRune());
 		player.addWeaponToInventory(new RemembranceOfTheGrafted());
 

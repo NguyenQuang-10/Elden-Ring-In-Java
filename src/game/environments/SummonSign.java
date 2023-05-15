@@ -23,4 +23,6 @@ public class SummonSign extends Ground {
         }
         return actions;
     }
+
+    // Can ally or invader or enemy enter where to summon sign is?
 }
