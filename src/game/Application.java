@@ -81,7 +81,6 @@ public class Application {
 		gameMap.at(middleX, middleY).addActor(new MerchantKale());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
-		Archetypes randArch = archetypeManager.randomArchetype();
 
 		player.addItemToInventory(new GoldenRune());
 		player.addWeaponToInventory(new RemembranceOfTheGrafted());
