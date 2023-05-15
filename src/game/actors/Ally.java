@@ -11,6 +11,8 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.archetypes.Archetypes;
 import game.behaviours.*;
+import game.reset.ResetManager;
+import game.reset.Resettable;
 import game.utils.ArchetypeManager;
 import game.utils.Status;
 
@@ -23,7 +25,7 @@ import java.util.*;
  * Ally can not buy or sell items, and cannot interact with sites of lost grace.
  *
  */
-public class Ally extends Actor {
+public class Ally extends Actor implements Resettable {
     /**
      * A hashmap to store Behaviour according to priority.
      */
@@ -81,5 +83,14 @@ public class Ally extends Actor {
         return new DoNothingAction();
     }
 
+    @Override
+    public String reset(Actor actor, GameMap map) {
+        if (!actor.isConscious()) {
+            map.removeActor(this);
+            ResetManager.getInstance().removeResettable(this);
+            return this + " has been despawned from game ";
+        }
+        return null;
+    }
 
 }
