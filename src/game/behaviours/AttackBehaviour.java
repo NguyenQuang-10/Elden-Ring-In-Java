@@ -73,7 +73,6 @@ public class AttackBehaviour implements Behaviour {
     private boolean determineTargets(Actor attacker, Actor target) {
         if (this.attackerType == Status.ENEMY) {
             return target.isConscious()
-                    && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.HOSTILE_TO_ENEMY))
                     && !Enemy.isSameEnemy(attacker, target);
         } else if (this.attackerType == Status.ALLY) {
             return target.isConscious()
