@@ -79,7 +79,8 @@ public class AttackBehaviour implements Behaviour {
                     && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.INVADER));
         } else {
             return target.isConscious()
-                    && (target.hasCapability(Status.HOSTILE_TO_ENEMY) || target.hasCapability(Status.ENEMY));
+                    && (target.hasCapability(Status.HOSTILE_TO_ENEMY) || target.hasCapability(Status.ENEMY)
+                    || target.hasCapability(Status.ALLY));
         }
     }
 
