@@ -17,6 +17,5 @@ public enum Status {
     FOLLOWER,
     EXCHANGEABLE,
     PLAYER,
-    INVADER,
-    ALLY
+    WALL
 }

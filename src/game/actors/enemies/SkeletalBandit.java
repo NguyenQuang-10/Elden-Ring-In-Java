@@ -33,16 +33,17 @@ public class SkeletalBandit extends Enemy {
         this.addCapability(Status.FOLLOWER);
 
         this.setBehaviour(0, new SpawnBehaviour(new PileOfBones(this)));
-        this.setBehaviour(1, new AttackBehaviour(false, Status.ENEMY));
+        this.setBehaviour(1, new WeaponEffectBehaviour());
+        this.setBehaviour(2, new AttackBehaviour(false));
 
-        // behaviour at key 2 is reserved for follow behaviour
+        // behaviour at key 3 is reserved for follow behaviour
 
         ArrayList<Behaviour> behaviours = new ArrayList<>();
         behaviours.add(new DespawnBehaviour(10));
         behaviours.add(new WanderBehaviour());
 
         for (int i = 0; i < behaviours.size(); i++) {
-            this.setBehaviour(i+3, behaviours.get(i));
+            this.setBehaviour(i+4, behaviours.get(i));
         }
     }
 
@@ -62,7 +63,7 @@ public class SkeletalBandit extends Enemy {
             for (Exit exit : here.getExits()) {
                 Location destination = exit.getDestination();
                 if (map.isAnActorAt(destination) && map.getActorAt(destination).hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.setBehaviour(2, new FollowBehaviour(map.getActorAt(destination)));
+                    this.setBehaviour(3, new FollowBehaviour(map.getActorAt(destination)));
                     break;
                 }
             }
