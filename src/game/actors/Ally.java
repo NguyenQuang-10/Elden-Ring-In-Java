@@ -40,8 +40,8 @@ public class Ally extends Actor {
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         this.addCapability(Status.FOLLOWER);
 
-        // Questionable.
-        this.setBehaviour(0, new AttackBehaviour(false));
+        // Questionable, attack behaviour should only target enemies and invaders.
+        this.setBehaviour(0, new AllyAttackBehaviour());
 
         // behaviour at key 1 is reserved for follow behaviour
 

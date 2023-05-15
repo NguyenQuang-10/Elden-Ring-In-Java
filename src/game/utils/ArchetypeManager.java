@@ -99,10 +99,11 @@ public class ArchetypeManager {
         int randomIndex = new Random().nextInt(dictOfArchetypes.size());
         int currentIndex = 0;
         Archetypes randomArchetype = null;
-        for (Enumeration<String> aEnum = dictOfArchetypes.keys(); aEnum.hasMoreElements();){
+        for (Enumeration<String> aEnum = this.archetypes.keys(); aEnum.hasMoreElements();){
             String nextElement = aEnum.nextElement();
             if (currentIndex == randomIndex){
                 randomArchetype = dictOfArchetypes.get(nextElement);
+                break;
             }
             else {
                 currentIndex++;

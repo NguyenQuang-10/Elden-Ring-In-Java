@@ -9,6 +9,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
 import game.actors.MerchantKale;
+import game.actors.archetypes.Archetypes;
+import game.actors.enemies.LoneWolf;
 import game.environments.*;
 import game.items.GoldenRune;
 import game.utils.ArchetypeManager;
@@ -79,6 +81,8 @@ public class Application {
 		gameMap.at(middleX, middleY).addActor(new MerchantKale());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
+		Archetypes randArch = archetypeManager.randomArchetype();
+
 		player.addItemToInventory(new GoldenRune());
 		player.addWeaponToInventory(new RemembranceOfTheGrafted());
 

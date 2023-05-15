@@ -30,11 +30,11 @@ public class Invader extends Actor {
     public Invader(int hitPoints, WeaponItem weapon) {
         super("Invader",'ඞ', hitPoints);
         this.addWeaponToInventory(weapon);
-        this.addCapability(Status.ENEMY);
+        this.addCapability(Status.INVADER);
         this.addCapability(Status.FOLLOWER);
 
         // Questionable.
-        this.setBehaviour(0, new AttackBehaviour(false));
+        this.setBehaviour(0, new InvaderAttackBehaviour());
 
         // behaviour at key 1 is reserved for follow behaviour
 
