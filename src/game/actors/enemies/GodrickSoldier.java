@@ -21,7 +21,7 @@ public class GodrickSoldier extends Enemy {
         this.addWeaponToInventory(new HeavyCrossbow());
 
 
-        this.setBehaviour(0, new AttackBehaviour(false));
+        this.setBehaviour(0, new AttackBehaviour(false, Status.ENEMY));
 
         // behaviour at key 1 is reserved for follow behaviour
 

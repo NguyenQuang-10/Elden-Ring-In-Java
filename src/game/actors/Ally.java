@@ -37,8 +37,7 @@ public class Ally extends Actor {
     public Ally(int hitPoints, WeaponItem weapon) {
         super("Ally", 'A', hitPoints);
         this.addWeaponToInventory(weapon);
-        this.addCapability(Status.HOSTILE_TO_ENEMY);
-        this.addCapability(Status.FOLLOWER);
+        this.addCapability(Status.ALLY);
 
         this.setBehaviour(0, new AllyAttackBehaviour());
         this.setBehaviour(1, new DespawnBehaviour(0));

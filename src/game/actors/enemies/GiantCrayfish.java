@@ -23,7 +23,7 @@ public class GiantCrayfish extends Enemy {
         this.addCapability(Status.FOLLOWER);
 
 
-        this.setBehaviour(0, new AttackBehaviour(true));
+        this.setBehaviour(0, new AttackBehaviour(true, Status.ENEMY));
 
         // behaviour at key 1 is reserved for follow behaviour
 
