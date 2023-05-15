@@ -135,35 +135,4 @@ public abstract class Enemy extends Actor implements Resettable {
         }
         return null;
     }
-
-    /**
-     * Determines the action to execute at current turn
-     *
-     * @param actions    collection of possible Actions for this Actor
-     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
-     * @param map        the map containing the Actor
-     * @param display    the I/O object to which messages may be written
-     * @return the action to execute
-     */
-    @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (this.hasCapability(Status.FOLLOWER)) {
-            Location here = map.locationOf(this);
-            for (Exit exit : here.getExits()) {
-                Location destination = exit.getDestination();
-                if (map.isAnActorAt(destination) && map.getActorAt(destination).hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.setBehaviour(1, new FollowBehaviour(map.getActorAt(destination)));
-                    break;
-                }
-            }
-        }
-
-        for (Behaviour behaviour : getBehaviours().values()) {
-            Action action = behaviour.getAction(this, map);
-            if(action != null)
-                return action;
-        }
-        return new DoNothingAction();
-
-    }
 }
