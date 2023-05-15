@@ -40,18 +40,9 @@ public class Ally extends Actor {
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         this.addCapability(Status.FOLLOWER);
 
-        // Questionable, attack behaviour should only target enemies and invaders.
         this.setBehaviour(0, new AllyAttackBehaviour());
-
-        // behaviour at key 1 is reserved for follow behaviour
-
-        ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new DespawnBehaviour(0));
-        behaviours.add(new WanderBehaviour());
-
-        for (int i = 0; i < behaviours.size(); i++) {
-            this.setBehaviour(i+2, behaviours.get(i));
-        }
+        this.setBehaviour(1, new DespawnBehaviour(0));
+        this.setBehaviour(2, new WanderBehaviour());
     }
 
     /**
@@ -82,21 +73,6 @@ public class Ally extends Actor {
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // This play turn returns the action for the next play. Look at the exit if
-
-        // Determines whether to follow an actor, if that actor is an enemy.
-        if (this.hasCapability(Status.FOLLOWER)) {
-            Location here = map.locationOf(this);
-            for (Exit exit : here.getExits()) {
-                Location destination = exit.getDestination();
-                if (map.isAnActorAt(destination) && map.getActorAt(destination).hasCapability(Status.ENEMY)) {
-                    this.setBehaviour(1, new FollowBehaviour(map.getActorAt(destination)));
-                    break;
-                }
-            }
-        }
-
-
-
         for (Behaviour behaviour : getBehaviours().values()) {
             Action action = behaviour.getAction(this, map);
             // Check attack action (ally on perform attack action on an enemy/invader).
