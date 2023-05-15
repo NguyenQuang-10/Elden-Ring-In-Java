@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.enemies.Enemy;
 import game.actors.enemies.EnemyType;
 import game.behaviours.*;
+import game.reset.ResetManager;
 import game.utils.Status;
 
 import java.util.ArrayList;
@@ -45,6 +46,16 @@ public class Invader extends Enemy {
         for (int i = 0; i < behaviours.size(); i++) {
             this.setBehaviour(i+2, behaviours.get(i));
         }
+    }
+
+    @Override
+    public String reset(Actor actor, GameMap map) {
+        if (!actor.isConscious()) {
+            map.removeActor(this);
+            ResetManager.getInstance().removeResettable(this);
+            return this + " has been despawned from game ";
+        }
+        return null;
     }
 }
 
