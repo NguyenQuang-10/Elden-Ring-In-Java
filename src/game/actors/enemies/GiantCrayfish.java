@@ -31,7 +31,7 @@ public class GiantCrayfish extends Enemy {
 
 
         this.setBehaviour(0, new WeaponEffectBehaviour());
-        this.setBehaviour(1, new AttackBehaviour(true));
+        this.setBehaviour(1, new AttackBehaviour(true, Status.ENEMY));
 
         // behaviour at key 2 is reserved for follow behaviour
 

@@ -33,7 +33,7 @@ public class LoneWolf extends Enemy {
 
 
         this.setBehaviour(0, new WeaponEffectBehaviour());
-        this.setBehaviour(1, new AttackBehaviour(false));
+        this.setBehaviour(1, new AttackBehaviour(false, Status.ENEMY));
 
         // behaviour at key 2 is reserved for follow behaviour
 
