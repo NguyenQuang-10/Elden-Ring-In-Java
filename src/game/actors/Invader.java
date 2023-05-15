@@ -35,7 +35,7 @@ public class Invader extends Enemy {
 
         // add weapon effect behaviour
 
-        this.setBehaviour(0, new AttackBehaviour(false));
+        this.setBehaviour(0, new AttackBehaviour(false, Status.INVADER));
 
         // behaviour at key 1 is reserved for follow behaviour
 

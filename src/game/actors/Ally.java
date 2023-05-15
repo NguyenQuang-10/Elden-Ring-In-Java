@@ -39,7 +39,7 @@ public class Ally extends Actor {
         this.addWeaponToInventory(weapon);
         this.addCapability(Status.ALLY);
 
-        this.setBehaviour(0, new AllyAttackBehaviour());
+        this.setBehaviour(0, new AttackBehaviour(false, Status.ALLY));
         this.setBehaviour(1, new DespawnBehaviour(0));
         this.setBehaviour(2, new WanderBehaviour());
     }
