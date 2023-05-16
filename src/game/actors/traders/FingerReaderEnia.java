@@ -1,14 +1,10 @@
-package game.actors;
+package game.actors.traders;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actions.traderactions.BuySellCapable;
-import game.actions.traderactions.BuyWeaponAction;
 import game.actions.traderactions.ExchangeWeaponAction;
-import game.items.PurchaseableWeapon;
-import game.items.SellableWeapon;
 import game.utils.Status;
 import game.weapons.*;
 
