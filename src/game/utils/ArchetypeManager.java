@@ -93,6 +93,10 @@ public class ArchetypeManager {
         return myArchetypes;
     }
 
+    /**
+     * Method that returns a random archetype from the dictionary of archetypes available.
+     * @return A random archetype instance.
+     */
     public Archetypes randomArchetype(){
         Dictionary<String,Archetypes> dictOfArchetypes = this.archetypes;
 
@@ -112,6 +116,10 @@ public class ArchetypeManager {
         return randomArchetype;
     }
 
+    /**
+     * Getters to get the dictionary of archetypes.
+     * @return The dictionary of archetypes.
+     */
     public Dictionary<String,Archetypes> getArchetypes(){
         return this.archetypes;
     }
