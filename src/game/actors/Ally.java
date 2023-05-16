@@ -1,29 +1,21 @@
 package game.actors;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actors.archetypes.Archetypes;
 import game.behaviours.*;
 import game.reset.ResetManager;
 import game.reset.Resettable;
-import game.utils.ArchetypeManager;
 import game.utils.Status;
-
 import java.util.*;
 
 /**
- * Ally should not attack the player or other friendly actors (e.g. other Traders or other allies).
- * They can only be removed from the map if the Player dies.
- * If the player rest do not remove them from the map.
- * Ally can not buy or sell items, and cannot interact with sites of lost grace.
- *
+ * This class describes the characteristics and behaviours of Ally.
+ * @author AppliedSession03Group03
+ * @see Actor
  */
 public class Ally extends Actor implements Resettable {
     /**
@@ -47,17 +39,17 @@ public class Ally extends Actor implements Resettable {
     }
 
     /**
-     * Set behaviours for enemy and its priority
-     * @param key the priority of the behaviour
-     * @param behaviour the behaviour that determines what action to be performed
+     * Set behaviours for enemy and its priority.
+     * @param key The priority of the behaviour.
+     * @param behaviour The behaviour that determines what action to be performed.
      */
     protected void setBehaviour(int key, Behaviour behaviour) {
         this.behaviours.put(key, behaviour);
     }
 
     /**
-     * A getter for behaviours
-     * @return the map of Behaviour for the Enemy
+     * A getter for behaviours.
+     * @return The map of Behaviour for the Enemy.
      */
     public Map<Integer, Behaviour> getBehaviours() {
         return this.behaviours;
@@ -73,7 +65,7 @@ public class Ally extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        // This play turn returns the action for the next play. Look at the exit if
+        // This play turn returns the action for the next play. Look at the exit if.
         for (Behaviour behaviour : getBehaviours().values()) {
             Action action = behaviour.getAction(this, map);
             // Check attack action (ally on perform attack action on an enemy/invader).
@@ -83,6 +75,12 @@ public class Ally extends Actor implements Resettable {
         return new DoNothingAction();
     }
 
+    /**
+     *
+     * @param actor Actor performing the reset.
+     * @param map The game map to reset.
+     * @return
+     */
     @Override
     public String reset(Actor actor, GameMap map) {
         if (!actor.isConscious()) {

@@ -213,7 +213,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	}
 
 	/**
-	 * Checks if Player has the weapon or not
+	 * Checks if Player has the weapon or not.
 	 * @param weapon a weapon
 	 * @return true if the Actor do have weapon in their inventory, false otherwise
 	 */
