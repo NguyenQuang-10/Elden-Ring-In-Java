@@ -26,7 +26,7 @@ public class Cliff extends Ground {
     public void tick(Location location) {
         if (location.containsAnActor()) {
             Actor actor = location.getActor();
-            if (actor.hasCapability(Status.PLAYER)) {
+            if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
                 actor.hurt(Integer.MAX_VALUE);
                 new ResetAction().execute(actor, location.map());
             } else {
