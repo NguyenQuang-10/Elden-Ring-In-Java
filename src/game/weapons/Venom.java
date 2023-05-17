@@ -13,7 +13,7 @@ public class Venom extends WeaponItem implements PurchaseableWeapon {
      * Constructor.
      */
     public Venom() {
-        super("Venom", 'v', 50, "poisons", 90);
+        super("Venom", 'v', 50, "attacks", 90);
     }
 
     public Action getSkill(Actor target, String direction) {

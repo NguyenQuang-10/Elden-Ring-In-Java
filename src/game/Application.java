@@ -13,6 +13,7 @@ import game.actors.Player;
 import game.actors.traders.MerchantKale;
 import game.environments.*;
 import game.items.GoldenRune;
+import game.items.Rune;
 import game.utils.*;
 import game.weapons.RemembranceOfTheGrafted;
 
@@ -52,6 +53,7 @@ public class Application {
 
 		player.addItemToInventory(new GoldenRune());
 		player.addWeaponToInventory(new RemembranceOfTheGrafted());
+		player.addRuneBalance(30000000);
 
 		// Added by Ryan.
 		// HINT: what does it mean to prefer composition to inheritance?
@@ -75,7 +77,7 @@ public class Application {
 		GameMap bossRoom = new GameMap(groundFactory, Maps.BOSS_ROOM);
 
 		limgrave.at(53,7).setGround(new GoldenFogDoor(roundtableHold.at(9, 10), "to Roundtable Hold"));
-		limgrave.at(4, 17).setGround(new GoldenFogDoor(stormveilCastle.at(38, 23), "to StormveilCastle"));
+		limgrave.at(4, 17).setGround(new GoldenFogDoor(stormveilCastle.at(38, 23), "to Stormveil Castle"));
 		scatterGoldenRunes(limgrave, 10);
 
 		roundtableHold.at(9, 10).setGround(new GoldenFogDoor(limgrave.at(53,7), "to Limgrave"));

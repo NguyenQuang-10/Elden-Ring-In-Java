@@ -13,7 +13,7 @@ public class Anesthesia extends WeaponItem implements PurchaseableWeapon {
      * Constructor.
      */
     public Anesthesia() {
-        super("Anesthesia", 'F', 50, "paralyses", 90);
+        super("Anesthesia", 'F', 50, "attacks", 90);
     }
 
     public Action getSkill(Actor target, String direction) {
