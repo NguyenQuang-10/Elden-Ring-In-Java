@@ -76,10 +76,10 @@ public class Ally extends Actor implements Resettable {
     }
 
     /**
-     *
+     * Reset Ally to remove from the game.
      * @param actor Actor performing the reset.
      * @param map The game map to reset.
-     * @return
+     * @return A message saying the Ally have been despawned.
      */
     @Override
     public String reset(Actor actor, GameMap map) {
