@@ -30,7 +30,7 @@ public class Invader extends Enemy {
 
      */
     public Invader(int hitPoints, WeaponItem weapon) {
-        super("Invader", 'ඞ', hitPoints, EnemyType.INVADER);
+        super("Invader", 'ඞ', hitPoints, EnemyType.INVADER, false);
         this.addWeaponToInventory(weapon);
         this.addRune(1358, 5578);
         this.addCapability(Status.FOLLOWER);

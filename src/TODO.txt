@@ -1,1 +1,4 @@
-Test Summoning
+Test creative requirement
+Recheck invader and ally
+Rationale and UML - 1 and 2
+Test req 2

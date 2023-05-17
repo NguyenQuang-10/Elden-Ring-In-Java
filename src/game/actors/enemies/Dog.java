@@ -19,7 +19,7 @@ public class Dog extends Enemy {
      * A public constructor
      */
     public Dog() {
-        super("Dog", 'a', 104, EnemyType.STORMVEIL);
+        super("Dog", 'a', 104, EnemyType.STORMVEIL, false);
         this.addRune(52, 1390);
         this.addCapability(Status.FOLLOWER);
 

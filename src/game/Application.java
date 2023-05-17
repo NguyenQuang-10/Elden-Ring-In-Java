@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.enemies.HeavySkeletalSwordsman;
 import game.actors.traders.FingerReaderEnia;
 import game.actors.Player;
 import game.actors.traders.MerchantKale;
@@ -56,6 +57,7 @@ public class Application {
 		// HINT: what does it mean to prefer composition to inheritance?
 		// Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, limgrave.at(36, 10));
+		limgrave.addActor(new HeavySkeletalSwordsman(), limgrave.at(32,10));
 		player.setLastSiteOfLostGrace(limgrave.at(36, 10));
 
 		world.run();

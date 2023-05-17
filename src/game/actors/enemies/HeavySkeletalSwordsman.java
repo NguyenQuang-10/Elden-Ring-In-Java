@@ -26,7 +26,8 @@ public class HeavySkeletalSwordsman extends Enemy {
      * A public constructor
      */
     public HeavySkeletalSwordsman() {
-        super("Heavy Skeletal Swordsman", 'q', 153, EnemyType.SKELETON);
+        super("Heavy Skeletal Swordsman", 'q', 153, EnemyType.SKELETON, false);
+        this.clearBehaviour();
         this.addRune(35, 892);
         this.addWeaponToInventory(new Grossmesser());
         this.addCapability(Status.FOLLOWER);

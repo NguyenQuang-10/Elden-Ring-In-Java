@@ -16,6 +16,7 @@ import game.reset.ResetManager;
 import game.reset.Resettable;
 import game.utils.Status;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,13 +39,26 @@ public abstract class Enemy extends Actor implements Resettable {
      * @param hitPoints the Enemy's starting hit points
      * @param enemyType the type of the Enemy
      */
-    public Enemy(String name, char displayChar, int hitPoints, EnemyType enemyType) {
+    public Enemy(String name, char displayChar, int hitPoints, EnemyType enemyType, boolean canSlam) {
         super(name, displayChar, hitPoints);
         this.maxHitPoints = hitPoints;
         this.addCapability(Status.ENEMY);
         this.addCapability(Status.SPAWNABLE);
         this.addCapability(enemyType);
         ResetManager.getInstance().registerResettable(this);
+
+        this.setBehaviour(0, new WeaponEffectBehaviour());
+        this.setBehaviour(1, new AttackBehaviour(canSlam, Status.ENEMY));
+
+        // behaviour at key 2 is reserved for follow behaviour
+
+        ArrayList<Behaviour> behaviours = new ArrayList<>();
+        behaviours.add(new DespawnBehaviour(10));
+        behaviours.add(new WanderBehaviour());
+
+        for (int i = 0; i < behaviours.size(); i++) {
+            this.setBehaviour(i+3, behaviours.get(i));
+        }
 
     }
 
@@ -152,7 +166,7 @@ public abstract class Enemy extends Actor implements Resettable {
             for (Exit exit : here.getExits()) {
                 Location destination = exit.getDestination();
                 if (map.isAnActorAt(destination) && map.getActorAt(destination).hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.setBehaviour(1, new FollowBehaviour(map.getActorAt(destination)));
+                    this.setBehaviour(2, new FollowBehaviour(map.getActorAt(destination)));
                     break;
                 }
             }
@@ -165,5 +179,9 @@ public abstract class Enemy extends Actor implements Resettable {
         }
         return new DoNothingAction();
 
+    }
+
+    public void clearBehaviour() {
+        this.behaviours.clear();
     }
 }
