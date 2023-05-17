@@ -39,7 +39,7 @@ public abstract class Enemy extends Actor implements Resettable {
      * @param hitPoints the Enemy's starting hit points
      * @param enemyType the type of the Enemy
      */
-    public Enemy(String name, char displayChar, int hitPoints, EnemyType enemyType, boolean canSlam) {
+    public Enemy(String name, char displayChar, int hitPoints, EnemyType enemyType, boolean canAttackAll) {
         super(name, displayChar, hitPoints);
         this.maxHitPoints = hitPoints;
         this.addCapability(Status.ENEMY);
@@ -48,7 +48,7 @@ public abstract class Enemy extends Actor implements Resettable {
         ResetManager.getInstance().registerResettable(this);
 
         this.setBehaviour(0, new WeaponEffectBehaviour());
-        this.setBehaviour(1, new AttackBehaviour(canSlam, Status.ENEMY));
+        this.setBehaviour(1, new AttackBehaviour(canAttackAll, Status.ENEMY));
 
         // behaviour at key 2 is reserved for follow behaviour
 

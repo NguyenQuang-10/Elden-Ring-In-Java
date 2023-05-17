@@ -14,6 +14,11 @@ import game.weapons.HeavyCrossbow;
 
 import java.util.ArrayList;
 
+/**
+ * The soldier of Godrick, represented by p,
+ * that has 198 hit points and carries around a ranged weapon,
+ * The Heavy Crossbow will be dropped by the soldier of Godrick when they are defeated by the player.
+ */
 public class GodrickSoldier extends Enemy {
     /**
      * A public constructor
@@ -21,6 +26,7 @@ public class GodrickSoldier extends Enemy {
     public GodrickSoldier() {
         super("Godrick Soldier", 'p', 198, EnemyType.STORMVEIL, false);
         this.addRune(38, 70);
+        this.addWeaponToInventory(new HeavyCrossbow());
     }
 
 

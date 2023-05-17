@@ -14,7 +14,13 @@ import game.utils.Status;
 
 import java.util.ArrayList;
 
+/**
+ * Dog enemy, A hostile creature, represented by a,
+ * that has 104 hit points and bites other creatures, dealing 101 damage with 93% attack accuracy
+ * @author AppliedSession03Group03
+ */
 public class Dog extends Enemy {
+
     /**
      * A public constructor
      */
