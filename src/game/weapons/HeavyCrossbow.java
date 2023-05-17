@@ -4,10 +4,14 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.items.PurchaseableWeapon;
 import game.items.SellableWeapon;
 
+/**
+ * A crossbow, represented by }, carried around by the Godrick soldiers.
+ * It deals 64 damage with 57% attack accuracy.
+ * @author AppliedSession03Group03
+ */
 public class HeavyCrossbow extends WeaponItem implements PurchaseableWeapon, SellableWeapon {
     /**
-     * Constructor.
-     *
+     *  A public constructor
      */
     public HeavyCrossbow() {
         super("HeavyCrossbow", '}', 64, "shoots", 57);

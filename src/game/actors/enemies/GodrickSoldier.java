@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * The soldier of Godrick, represented by p,
  * that has 198 hit points and carries around a ranged weapon,
  * The Heavy Crossbow will be dropped by the soldier of Godrick when they are defeated by the player.
+ * @author AppliedSession03Group03
  */
 public class GodrickSoldier extends Enemy {
     /**
