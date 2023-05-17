@@ -48,11 +48,12 @@ public class Application {
 		int middleY = limgrave.getYRange().max() / 2;
 
 		limgrave.at(middleX, middleY).addActor(new MerchantKale());
+		limgrave.at(middleX, middleY+2).addActor(new FingerReaderEnia());
 		ArchetypeManager archetypeManager = new ArchetypeManager(); // Added by Ryan.
 		Player player = archetypeManager.createPlayer();
 
 		player.addItemToInventory(new GoldenRune());
-		player.addWeaponToInventory(new RemembranceOfTheGrafted());
+		player.addItemToInventory(new RemembranceOfTheGrafted());
 		player.addRuneBalance(30000000);
 
 		// Added by Ryan.
