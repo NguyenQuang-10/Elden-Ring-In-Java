@@ -20,6 +20,8 @@ public class FingerReaderEnia extends Trader {
         this.getSellableWeapons().add(new Uchigatana());
         this.getSellableWeapons().add(new Scimitar());
         this.getSellableWeapons().add(new Grossmesser());
+
+        this.getSellableWeapons().add(new RemembranceOfTheGrafted());
     }
 
     @Override

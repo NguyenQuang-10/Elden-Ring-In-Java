@@ -10,7 +10,7 @@ public class RemembranceOfTheGrafted extends WeaponItem implements SellableWeapo
 
      */
     public RemembranceOfTheGrafted() {
-        super("Godrick the Grafted", 'O', 10, "slash", 75);
+        super("Remembrance Of The Grafted", 'O', 0, "", 0);
         this.addCapability(Status.EXCHANGEABLE);
     }
 
