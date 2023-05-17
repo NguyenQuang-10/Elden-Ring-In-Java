@@ -11,7 +11,7 @@ import game.utils.WeaponEffect;
  * Req 5
  *
  * A behaviour that executes WeaponEffect for 3 turns on enemies that were attacked
- * with Weapon that have WeaponEffect such as ConcussionStaff and PoisonedAxe
+ * with Weapon that have WeaponEffect (ConcussionStaff and PoisonedAxe)
  */
 public class WeaponEffectBehaviour implements Behaviour {
 
