@@ -56,6 +56,11 @@ public class Bomb extends WeaponItem implements PurchaseableWeapon {
         }
     }
 
+    /**
+     * Getter for damage of the weapon
+     * Reduces usesLeft when weapon used for normal attack
+     * @return damage amount
+     */
     @Override
     public int damage() {
         this.usesLeft -= 1;
