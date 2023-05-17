@@ -21,9 +21,9 @@ public class MerchantKale extends Trader {
         this.getPurchaseableWeapons().add(new GreatKnife());
         this.getPurchaseableWeapons().add(new Uchigatana());
         this.getPurchaseableWeapons().add(new Scimitar());
-        this.getPurchaseableWeapons().add(new Anesthesia());
+        this.getPurchaseableWeapons().add(new ConcussionStaff());
         this.getPurchaseableWeapons().add(new Bomb());
-        this.getPurchaseableWeapons().add(new Venom());
+        this.getPurchaseableWeapons().add(new PoisonedAxe());
 
         this.getSellableWeapons().add(new Club());
         this.getSellableWeapons().add(new GreatKnife());

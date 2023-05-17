@@ -7,13 +7,13 @@ import game.actions.AddWeaponEffectAction;
 import game.items.PurchaseableWeapon;
 import game.utils.WeaponEffect;
 
-public class Venom extends WeaponItem implements PurchaseableWeapon {
+public class PoisonedAxe extends WeaponItem implements PurchaseableWeapon {
 
     /**
      * Constructor.
      */
-    public Venom() {
-        super("Venom", 'v', 50, "attacks", 90);
+    public PoisonedAxe() {
+        super("Poisoned Axe", 'v', 50, "attacks", 90);
     }
 
     public Action getSkill(Actor target, String direction) {
@@ -27,6 +27,6 @@ public class Venom extends WeaponItem implements PurchaseableWeapon {
 
     @Override
     public WeaponItem purchaseItem() {
-        return new Venom();
+        return new PoisonedAxe();
     }
 }

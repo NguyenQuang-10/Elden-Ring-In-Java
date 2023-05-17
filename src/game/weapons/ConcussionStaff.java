@@ -7,13 +7,13 @@ import game.actions.AddWeaponEffectAction;
 import game.items.PurchaseableWeapon;
 import game.utils.WeaponEffect;
 
-public class Anesthesia extends WeaponItem implements PurchaseableWeapon {
+public class ConcussionStaff extends WeaponItem implements PurchaseableWeapon {
 
     /**
      * Constructor.
      */
-    public Anesthesia() {
-        super("Anesthesia", 'F', 50, "attacks", 90);
+    public ConcussionStaff() {
+        super("Concussion Staff", 'F', 50, "attacks", 90);
     }
 
     public Action getSkill(Actor target, String direction) {
@@ -27,6 +27,6 @@ public class Anesthesia extends WeaponItem implements PurchaseableWeapon {
 
     @Override
     public WeaponItem purchaseItem() {
-        return new Anesthesia();
+        return new ConcussionStaff();
     }
 }
