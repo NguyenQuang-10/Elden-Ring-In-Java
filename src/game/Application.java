@@ -13,9 +13,8 @@ import game.actors.Player;
 import game.actors.traders.MerchantKale;
 import game.environments.*;
 import game.items.GoldenRune;
-import game.items.Rune;
 import game.utils.*;
-import game.weapons.RemembranceOfTheGrafted;
+import game.items.RemembranceOfTheGrafted;
 
 /**
  * The main class to start the game.
