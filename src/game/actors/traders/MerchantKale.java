@@ -9,7 +9,7 @@ import game.weapons.*;
  * Merchant Kale allows the player to purchase weapons
  * @author AppliedSession03Group03
  */
-public class MerchantKale extends Trader {
+public class  MerchantKale extends Trader {
 
     /**
      * A public constructor

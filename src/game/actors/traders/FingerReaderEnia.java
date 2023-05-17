@@ -12,12 +12,25 @@ import game.weapons.*;
 
 import java.util.ArrayList;
 
+/**
+ * A new trader, represented by E,
+ * which can accept the Remembrance of the Grafted from the player to be exchanged for either
+ * the Axe of Godrick or Grafted Dragon.
+ *
+ * The player cannot purchase weapons from this trader,
+ * but they can still sell anything that is sellable to this trader.
+ * @author AppliedSession03Group03
+ */
 public class FingerReaderEnia extends Trader {
-    /**
-     * Constructor.
-     */
 
+    /**
+     * The list of items that the player are allowed to exchange
+     */
     private ArrayList<ExchangeableItem> exchangeableItems = new ArrayList<>();
+
+    /**
+     * A public constructor
+     */
     public FingerReaderEnia() {
         super("Finger Reader Enia", 'E');
 
@@ -30,6 +43,14 @@ public class FingerReaderEnia extends Trader {
         this.exchangeableItems.add(new RemembranceOfTheGrafted());
     }
 
+    /**
+     * Returns sell, buy and exchange actions that Player is allowed to perform
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return the empty ActionList
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = super.allowableActions(otherActor, direction, map);

@@ -17,6 +17,11 @@ import game.utils.Status;
 
 import java.util.ArrayList;
 
+/**
+ * An abstract Trader class to be inherited by Traders
+ * Allows Player to perform sell and buy weapon actions when in surrounding of Trader
+ * @author AppliedSession03Group03
+ */
 public abstract class Trader extends Actor {
 
     /**
@@ -28,19 +33,11 @@ public abstract class Trader extends Actor {
      */
     private ArrayList<SellableWeapon> sellableWeapons = new ArrayList<>();
 
-    protected ArrayList<PurchaseableWeapon> getPurchaseableWeapons() {
-        return purchaseableWeapons;
-    }
-
-    protected ArrayList<SellableWeapon> getSellableWeapons() {
-        return sellableWeapons;
-    }
-
     /**
-     * Constructor
+     * A public constructor
      *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
+     * @param name        the name of the Trader
+     * @param displayChar the character that will represent the Trader in the display
      */
     public Trader(String name, char displayChar) {
         super(name, displayChar, Integer.MAX_VALUE);
@@ -48,6 +45,23 @@ public abstract class Trader extends Actor {
     }
 
     /**
+     * Getter for purchaseableWeapons
+     * @return purchaseableWeapons
+     */
+    protected ArrayList<PurchaseableWeapon> getPurchaseableWeapons() {
+        return purchaseableWeapons;
+    }
+
+    /**
+     * Getter for sellableWeapons
+     * @return sellableWeapons
+     */
+    protected ArrayList<SellableWeapon> getSellableWeapons() {
+        return sellableWeapons;
+    }
+
+    /**
+     * Returns sell and buy actions that Player is allowed to perform
      *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
