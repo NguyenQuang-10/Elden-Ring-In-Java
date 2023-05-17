@@ -11,7 +11,7 @@ import game.utils.WeaponEffect;
  * Req 5
  * PoisonedAxe has a special skill that poisons the target for 3 turns
  * When the target is poisoned the target loses 50 HP every turn
- *
+ * Special skill only works on targets who are enemies
  * @author AppliedSession03Group03
  */
 public class PoisonedAxe extends WeaponItem implements PurchaseableWeapon {

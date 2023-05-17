@@ -11,7 +11,7 @@ import game.utils.WeaponEffect;
  * Req 5
  * ConcussionStaff has a special skill that makes the target fainted for 3 turns
  * When the target has fainted the target will do nothing
- *
+ * Special skill only works on targets who are enemies
  * @author AppliedSession03Group03
  */
 public class ConcussionStaff extends WeaponItem implements PurchaseableWeapon {
