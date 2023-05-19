@@ -1,5 +1,6 @@
 package game.behaviours;
 import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -122,7 +123,9 @@ public class AttackBehaviour implements Behaviour {
         int numOfWeapons = attacker.getWeaponInventory().size();
         if (numOfWeapons >= 1) {
             Weapon weapon = attacker.getWeaponInventory().get(0);
-            if (RandomNumberGenerator.getRandomInt(1, 100) <= 50) {
+            Action weaponSkill = weapon.getSkill(attacker);
+            if (RandomNumberGenerator.getRandomInt(1, 100) <= 50 &&
+                !(weaponSkill instanceof DoNothingAction)  ) {
                 return weapon.getSkill(attacker);
             }
             return new AttackAllAction(attacker.getWeaponInventory().get(0));
@@ -145,8 +148,10 @@ public class AttackBehaviour implements Behaviour {
         if (numOfWeapons >= 1) {
 
             Weapon weapon = attacker.getWeaponInventory().get(0);
+            Action weaponSkill = weapon.getSkill(target, exit.getName());
             if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
-                    && weapon.getSkill(target, exit.getName()) != null) {
+                    && weaponSkill != null
+                    && !(weaponSkill instanceof DoNothingAction)) {
                 return weapon.getSkill(target, exit.getName());
             }
 
