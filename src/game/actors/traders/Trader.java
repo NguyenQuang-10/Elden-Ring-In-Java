@@ -6,10 +6,8 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuyWeaponAction;
 import game.actions.traderactions.BuySellCapable;
-import game.actions.traderactions.SellWeaponAction;
 import game.actors.BuyerSellerList;
 import game.items.ExchangeableItem;
 import game.items.PurchaseableWeapon;
@@ -101,7 +99,7 @@ public abstract class Trader extends Actor {
 
 
             for (ExchangeableItem exchangeItem: this.getExchangeableItems()) {
-                actions.add(exchangeItem.getExchangeWeaponAction(otherActor));
+                actions.add(exchangeItem.getExchangeItemAction(otherActor));
             }
         }
 
