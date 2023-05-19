@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.actions.AddWeaponEffectAction;
 import game.behaviours.*;
 import game.utils.Status;
 
@@ -25,12 +24,16 @@ public class Dog extends Enemy {
      * A public constructor
      */
     public Dog() {
-        super("Dog", 'a', 104, EnemyType.STORMVEIL, false);
+        super("Dog", 'a', 104, EnemyType.STORMVEIL_DOG, false);
         this.addRune(52, 1390);
         this.addCapability(Status.FOLLOWER);
+        this.clearBehaviour();
 
         this.setBehaviour(0, new WeaponEffectBehaviour());
-        this.setBehaviour(1, new AttackBehaviour(false, Status.ENEMY));
+
+        AttackBehaviour atkBeh = new AttackBehaviour(false);
+        atkBeh.addToFriendlyType(EnemyType.STORMVEIL_SOILDER);
+        this.setBehaviour(1, atkBeh);
 
         // behaviour at key 2 is reserved for follow behaviour
 

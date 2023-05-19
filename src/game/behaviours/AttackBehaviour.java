@@ -11,6 +11,8 @@ import game.actors.enemies.Enemy;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
+import java.util.ArrayList;
+
 
 /**
  * A behaviour that determines whether an Actor performs AttackAction to attack a single target
@@ -25,15 +27,15 @@ public class AttackBehaviour implements Behaviour {
      * True if attack surrounding is allowed else False.
      */
     final private boolean canAttackAll;
-    final private Status attackerType;
+    private ArrayList<Enum> friendlyTo = new ArrayList<Enum>();
 
     /**
      * A public constructor.
+     *
      * @param canAttackAll Determines whether the Actor could perform surrounding attack
      */
-    public AttackBehaviour(boolean canAttackAll, Status attackerType) {
+    public AttackBehaviour(boolean canAttackAll) {
         this.canAttackAll = canAttackAll;
-        this.attackerType = attackerType;
     }
 
     /**
@@ -77,13 +79,20 @@ public class AttackBehaviour implements Behaviour {
      * @return          Boolean value representing whether the target is attack-able.
      */
     private boolean determineTargets(Actor attacker, Actor target) {
-        if (this.attackerType == Status.ALLY) {
-            return target.isConscious()
-                    && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.INVADER));
-        } else {
-            return target.isConscious()
-                    && !Enemy.isSameEnemy(attacker, target);
+//        if (this.attackerType == Status.ALLY) {
+//            return target.isConscious()
+//                    && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.INVADER));
+//        } else {
+//            return target.isConscious()
+//                    && !Enemy.isSameEnemy(attacker, target);
+//        }
+        for (Enum type: friendlyTo) {
+            if (target.hasCapability(type)) {
+                return false;
+            }
         }
+
+        return target.isConscious() && !Enemy.isSameEnemy(attacker, target);
     }
 
     /**
@@ -146,5 +155,9 @@ public class AttackBehaviour implements Behaviour {
         else {
             return new AttackAction(target, exit.getName());
         }
+    }
+
+    public void addToFriendlyType(Enum type) {
+        friendlyTo.add(type);
     }
 }

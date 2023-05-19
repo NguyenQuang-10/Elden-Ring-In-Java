@@ -48,7 +48,7 @@ public abstract class Enemy extends Actor implements Resettable {
         ResetManager.getInstance().registerResettable(this);
 
         this.setBehaviour(0, new WeaponEffectBehaviour());
-        this.setBehaviour(1, new AttackBehaviour(canAttackAll, Status.ENEMY));
+        this.setBehaviour(1, new AttackBehaviour(canAttackAll));
 
         // behaviour at key 2 is reserved for follow behaviour
 

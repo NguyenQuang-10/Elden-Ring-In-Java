@@ -1,2 +1,4 @@
-Rationale and UML - 1 and 2
-Test req 2
+Rationale for 2
+UML for 1 and 2
+Add some extra stuff for rationale about Ally, speak about AttackBehaviour here
+For req 2 stormveil, since they dont attack each other they share one instead of two -> explain this please
