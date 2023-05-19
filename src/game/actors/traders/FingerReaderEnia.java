@@ -22,11 +22,6 @@ import java.util.ArrayList;
 public class FingerReaderEnia extends Trader {
 
     /**
-     * The list of items that the player are allowed to exchange
-     */
-    private ArrayList<ExchangeableItem> exchangeableItems = new ArrayList<>();
-
-    /**
      * A public constructor
      */
     public FingerReaderEnia() {
@@ -38,28 +33,6 @@ public class FingerReaderEnia extends Trader {
         this.getSellableWeapons().add(new Scimitar());
         this.getSellableWeapons().add(new Grossmesser());
 
-        this.exchangeableItems.add(new RemembranceOfTheGrafted());
+        this.getExchangeableItems().add(new RemembranceOfTheGrafted());
     }
-
-    /**
-     * Returns sell, buy and exchange actions that Player is allowed to perform
-     *
-     * @param otherActor the Actor that might be performing attack
-     * @param direction  String representing the direction of the other Actor
-     * @param map        current GameMap
-     * @return the empty ActionList
-     */
-    @Override
-    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        ActionList actions = super.allowableActions(otherActor, direction, map);
-
-        if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-            for (ExchangeableItem exchangeItem: this.exchangeableItems) {
-                actions.add(exchangeItem.getExchangeWeaponAction(otherActor));
-            }
-        }
-
-        return actions;
-    }
-
 }

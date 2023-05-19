@@ -8,7 +8,7 @@ import game.items.SellableWeapon;
 import game.utils.Status;
 
 /**
- * Grafted Dragon deals 89 damage with 90% attack accuracy
+ * Grafted Dragon  deals 89 damage with 90% attack accuracy
  * @author AppliedSession03Group03
  */
 public class GraftedDragon extends WeaponItem implements SellableWeapon {
