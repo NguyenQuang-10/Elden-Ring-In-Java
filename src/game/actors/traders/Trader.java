@@ -11,6 +11,7 @@ import game.actions.traderactions.BuyWeaponAction;
 import game.actions.traderactions.BuySellCapable;
 import game.actions.traderactions.SellWeaponAction;
 import game.actors.BuyerSellerList;
+import game.items.ExchangeableItem;
 import game.items.PurchaseableWeapon;
 import game.items.SellableWeapon;
 import game.utils.Status;
@@ -32,6 +33,11 @@ public abstract class Trader extends Actor {
      * The list of item the player are allowed to sell
      */
     private ArrayList<SellableWeapon> sellableWeapons = new ArrayList<>();
+
+    /**
+     * The list of items that the player are allowed to exchange
+     */
+    private ArrayList<ExchangeableItem> exchangeableItems = new ArrayList<>();
 
     /**
      * A public constructor
@@ -61,7 +67,15 @@ public abstract class Trader extends Actor {
     }
 
     /**
-     * Returns sell and buy actions that Player is allowed to perform
+     * Getter for exchangeableItems
+     * @return exchangeableItems
+     */
+    protected ArrayList<ExchangeableItem> getExchangeableItems() {
+        return exchangeableItems;
+    }
+
+    /**
+     * Returns sell, buy and exchange actions that Player is allowed to perform
      *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
@@ -83,6 +97,11 @@ public abstract class Trader extends Actor {
 
             for (SellableWeapon item: this.getSellableWeapons()) {
                 actions.add(item.getSellWeaponAction(otherActor, buyerSeller));
+            }
+
+
+            for (ExchangeableItem exchangeItem: this.getExchangeableItems()) {
+                actions.add(exchangeItem.getExchangeWeaponAction(otherActor));
             }
         }
 
