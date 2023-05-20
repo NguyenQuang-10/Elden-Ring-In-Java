@@ -48,12 +48,9 @@ public class Invader extends Enemy {
      */
     @Override
     public String reset(Actor actor, GameMap map) {
-        if (!actor.isConscious()) {
             map.removeActor(this);
             ResetManager.getInstance().removeResettable(this);
             return this + " has been despawned from game ";
-        }
-        return null;
     }
 }
 
