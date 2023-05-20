@@ -18,6 +18,7 @@ game.actions.traderactions
 game.actors
 game.actors.archetypes
 game.actors.enemies
+game.actors.traders
 game.behaviours
 game.environments
 game.items
