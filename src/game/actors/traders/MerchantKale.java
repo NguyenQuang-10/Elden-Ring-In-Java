@@ -1,10 +1,5 @@
-package game.actors;
+package game.actors.traders;
 
-import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actions.traderactions.ExchangeWeaponAction;
 import game.utils.Status;
 import game.weapons.*;
 
@@ -14,7 +9,7 @@ import game.weapons.*;
  * Merchant Kale allows the player to purchase weapons
  * @author AppliedSession03Group03
  */
-public class MerchantKale extends Trader {
+public class  MerchantKale extends Trader {
 
     /**
      * A public constructor
@@ -26,6 +21,9 @@ public class MerchantKale extends Trader {
         this.getPurchaseableWeapons().add(new GreatKnife());
         this.getPurchaseableWeapons().add(new Uchigatana());
         this.getPurchaseableWeapons().add(new Scimitar());
+        this.getPurchaseableWeapons().add(new ConcussionStaff());
+        this.getPurchaseableWeapons().add(new Bomb());
+        this.getPurchaseableWeapons().add(new PoisonedAxe());
 
         this.getSellableWeapons().add(new Club());
         this.getSellableWeapons().add(new GreatKnife());

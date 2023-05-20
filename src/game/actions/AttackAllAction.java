@@ -61,11 +61,7 @@ public class AttackAllAction extends Action {
             if (destination.containsAnActor()) {
                 Actor target = destination.getActor();
                 if (target.isConscious())
-                    if (weapon == null) {
-                        result += (new AttackAction(target, exit.getName())).execute(actor, map) + "\n";
-                    } else {
-                        result += (new AttackAction(target, exit.getName(), weapon)).execute(actor, map) + "\n";
-                    }
+                    result += retAttackAction(target, actor, exit, map);
             }
         }
 
@@ -81,5 +77,15 @@ public class AttackAllAction extends Action {
     @Override
     public String menuDescription(Actor actor) {
         return actor + " attacks surrounding with " + (weapon != null ? weapon : "Intrinsic Weapon");
+    }
+
+    private String retAttackAction(Actor target, Actor actor, Exit exit, GameMap map) {
+        String result = "";
+        if (weapon == null) {
+            result += (new AttackAction(target, exit.getName())).execute(actor, map) + "\n";
+        } else {
+            result += (new AttackAction(target, exit.getName(), weapon)).execute(actor, map) + "\n";
+        }
+        return result;
     }
 }

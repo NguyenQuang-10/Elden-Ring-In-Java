@@ -1,5 +1,12 @@
 package game.actors.enemies;
 
+import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
+import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
+import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.*;
 import game.utils.Status;
@@ -20,23 +27,12 @@ public class LoneWolf extends Enemy {
      * A public constructor
      */
     public LoneWolf() {
-        super("Lone Wolf", 'h', 102, EnemyType.FOURLEGANIMAL);
+        super("Lone Wolf", 'h', 102, EnemyType.FOURLEGANIMAL, false);
         this.addRune(55, 1470);
         this.addCapability(Status.FOLLOWER);
 
-
-        this.setBehaviour(0, new AttackBehaviour(false));
-
-        // behaviour at key 1 is reserved for follow behaviour
-
-        ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new DespawnBehaviour(0));
-        behaviours.add(new WanderBehaviour());
-
-        for (int i = 0; i < behaviours.size(); i++) {
-            this.setBehaviour(i+2, behaviours.get(i));
-        }
     }
+
 
     /**
      * Returns the default attack capability of LoneWolf without a weapon

@@ -15,5 +15,9 @@ public enum Status {
     SPAWNABLE,
     SITEOFLOSTGRACE,
     FOLLOWER,
-    EXCHANGEABLE
+    EXCHANGEABLE,
+    PLAYER,
+    WALL,
+    ALLY,
+    INVADER
 }

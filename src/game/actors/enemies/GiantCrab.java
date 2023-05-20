@@ -1,5 +1,12 @@
 package game.actors.enemies;
 
+import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
+import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
+import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.*;
 import game.utils.Status;
@@ -18,21 +25,9 @@ public class GiantCrab extends Enemy {
      * A public constructor
      */
     public GiantCrab() {
-        super("Giant Crab", 'C', 407, EnemyType.SEAANIMAL);
+        super("Giant Crab", 'C', 407, EnemyType.SEAANIMAL, true);
         this.addRune(318, 4961);
         this.addCapability(Status.FOLLOWER);
-
-        this.setBehaviour(0, new AttackBehaviour(true));
-
-        // behaviour at key 1 is reserved for follow behaviour
-
-        ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new DespawnBehaviour(10));
-        behaviours.add(new WanderBehaviour());
-
-        for (int i = 0; i < behaviours.size(); i++) {
-            this.setBehaviour(i+2, behaviours.get(i));
-        }
     }
 
     /**
