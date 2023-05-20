@@ -41,7 +41,7 @@ public class PoisonedAxe extends WeaponItem implements PurchaseableWeapon {
      */
     @Override
     public int getPurchasePrice() {
-        return 500;
+        return 5000;
     }
 
     /** Instantiate a new instance of the weapon and return it.

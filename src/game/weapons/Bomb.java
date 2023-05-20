@@ -74,7 +74,7 @@ public class Bomb extends WeaponItem implements PurchaseableWeapon {
      */
     @Override
     public int getPurchasePrice() {
-        return 1000;
+        return 10000;
     }
 
     /** Instantiate a new instance of the weapon and return it.
