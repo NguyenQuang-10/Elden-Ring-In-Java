@@ -1,4 +1,4 @@
-package game.actors;
+package game.actors.traders;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -6,16 +6,21 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.traderactions.BuyWeaponAction;
 import game.actions.traderactions.BuySellCapable;
-import game.actions.traderactions.SellWeaponAction;
+import game.actors.BuyerSellerList;
+import game.items.ExchangeableItem;
 import game.items.PurchaseableWeapon;
 import game.items.SellableWeapon;
 import game.utils.Status;
 
 import java.util.ArrayList;
 
+/**
+ * An abstract Trader class to be inherited by Traders
+ * Allows Player to perform sell and buy weapon actions when in surrounding of Trader
+ * @author AppliedSession03Group03
+ */
 public abstract class Trader extends Actor {
 
     /**
@@ -27,19 +32,16 @@ public abstract class Trader extends Actor {
      */
     private ArrayList<SellableWeapon> sellableWeapons = new ArrayList<>();
 
-    protected ArrayList<PurchaseableWeapon> getPurchaseableWeapons() {
-        return purchaseableWeapons;
-    }
-
-    protected ArrayList<SellableWeapon> getSellableWeapons() {
-        return sellableWeapons;
-    }
+    /**
+     * The list of items that the player are allowed to exchange
+     */
+    private ArrayList<ExchangeableItem> exchangeableItems = new ArrayList<>();
 
     /**
-     * Constructor
+     * A public constructor
      *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
+     * @param name        the name of the Trader
+     * @param displayChar the character that will represent the Trader in the display
      */
     public Trader(String name, char displayChar) {
         super(name, displayChar, Integer.MAX_VALUE);
@@ -47,6 +49,31 @@ public abstract class Trader extends Actor {
     }
 
     /**
+     * Getter for purchaseableWeapons
+     * @return purchaseableWeapons
+     */
+    protected ArrayList<PurchaseableWeapon> getPurchaseableWeapons() {
+        return purchaseableWeapons;
+    }
+
+    /**
+     * Getter for sellableWeapons
+     * @return sellableWeapons
+     */
+    protected ArrayList<SellableWeapon> getSellableWeapons() {
+        return sellableWeapons;
+    }
+
+    /**
+     * Getter for exchangeableItems
+     * @return exchangeableItems
+     */
+    protected ArrayList<ExchangeableItem> getExchangeableItems() {
+        return exchangeableItems;
+    }
+
+    /**
+     * Returns sell, buy and exchange actions that Player is allowed to perform
      *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
@@ -68,6 +95,11 @@ public abstract class Trader extends Actor {
 
             for (SellableWeapon item: this.getSellableWeapons()) {
                 actions.add(item.getSellWeaponAction(otherActor, buyerSeller));
+            }
+
+
+            for (ExchangeableItem exchangeItem: this.getExchangeableItems()) {
+                actions.add(exchangeItem.getExchangeItemAction(otherActor));
             }
         }
 

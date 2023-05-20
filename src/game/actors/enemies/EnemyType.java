@@ -9,6 +9,8 @@ public enum EnemyType {
     FOURLEGANIMAL,
     SEAANIMAL,
     PILEOFBONES,
-    STORMVEIL
+    STORMVEIL_DOG,
+    STORMVEIL_SOILDER,
+    INVADER
 
 }

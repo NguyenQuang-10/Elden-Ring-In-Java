@@ -38,9 +38,10 @@ public class PileOfBones extends Enemy implements Reviver {
      * @param spawner the Actor that spawned Pile of Bones
      */
     public PileOfBones(Actor spawner){
-        super("Pile of Bones", 'X', 10, PILEOFBONES);
+        super("Pile of Bones", 'X', 10, PILEOFBONES, false);
         this.addCapability(EnemyType.SKELETON);
         this.spawner = spawner;
+        this.clearBehaviour();
 
         this.setBehaviour(0,new ReviveBehaviour(this));
     }

@@ -66,6 +66,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		this.addCapability(Status.PLAYER);
 		this.flaskOfCrimsonTears = new FlaskOfCrimsonTears();
 		this.addItemToInventory(this.flaskOfCrimsonTears);
 		ResetManager.getInstance().registerResettable(this);
@@ -82,6 +83,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		super(name, displayChar, archetypes.getHP());
 		this.addWeaponToInventory(archetypes.getWeapon());
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		this.addCapability(Status.PLAYER);
 		this.flaskOfCrimsonTears = new FlaskOfCrimsonTears();
 		this.addItemToInventory(this.flaskOfCrimsonTears);
 		ResetManager.getInstance().registerResettable(this);
@@ -103,11 +105,6 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		this.locationLastTurn = map.locationOf(this);
 
 		// Handle multi-turn Actions
-
-		if (map.locationOf(this).getGround() != null
-				&& map.locationOf(this).getGround().hasCapability(Status.SITEOFLOSTGRACE)) {
-			this.setLastSiteOfLostGrace(map.locationOf(this));
-		}
 
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -144,6 +141,9 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 		if (!this.isConscious()) {
 			map.removeActor(this);
 			map.addActor(this, this.lastSiteOfLostGrace);
+		} else if (map.locationOf(this).getGround() != null
+				&& map.locationOf(this).getGround().hasCapability(Status.SITEOFLOSTGRACE)) {
+			this.setLastSiteOfLostGrace(map.locationOf(this));
 		}
 
 		this.removeItemFromInventory(this.flaskOfCrimsonTears);
@@ -213,7 +213,7 @@ public class Player extends Actor implements Resettable, BuySellCapable {
 	}
 
 	/**
-	 * Checks if Player has the weapon or not
+	 * Checks if Player has the weapon or not.
 	 * @param weapon a weapon
 	 * @return true if the Actor do have weapon in their inventory, false otherwise
 	 */

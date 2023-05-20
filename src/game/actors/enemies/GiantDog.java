@@ -1,5 +1,12 @@
 package game.actors.enemies;
 
+import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
+import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
+import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.*;
 import game.utils.Status;
@@ -18,23 +25,12 @@ public class GiantDog extends Enemy {
      * A public constructor
      */
     public GiantDog() {
-        super("Giant Dog", 'G', 693, EnemyType.FOURLEGANIMAL);
+        super("Giant Dog", 'G', 693, EnemyType.FOURLEGANIMAL, true);
         this.addRune(313, 1808);
         this.addCapability(Status.FOLLOWER);
 
-
-        this.setBehaviour(0, new AttackBehaviour(true));
-
-        // behaviour at key 1 is reserved for follow behaviour
-
-        ArrayList<Behaviour> behaviours = new ArrayList<>();
-        behaviours.add(new DespawnBehaviour(10));
-        behaviours.add(new WanderBehaviour());
-
-        for (int i = 0; i < behaviours.size(); i++) {
-            this.setBehaviour(i+2, behaviours.get(i));
-        }
     }
+
 
     /**
      * Returns the default attack capability of GiantDog without a weapon

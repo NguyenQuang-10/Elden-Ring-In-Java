@@ -15,7 +15,7 @@ public class SpawnAction extends Action {
     /**
      * The Enemy to be spawned
      */
-    private Enemy toSpawn;
+    final private Enemy toSpawn;
 
     /**
      * A public constructor

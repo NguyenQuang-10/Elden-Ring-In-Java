@@ -1,8 +1,5 @@
 package game.utils;
-import game.actors.archetypes.Archetypes;
-import game.actors.archetypes.Bandit;
-import game.actors.archetypes.Samurai;
-import game.actors.archetypes.Wretch;
+import game.actors.archetypes.*;
 import game.actors.Player;
 import java.util.*;
 import edu.monash.fit2099.engine.displays.Display;
@@ -50,6 +47,7 @@ public class ArchetypeManager {
                 display.println("b: Bandit");
                 display.println("s: Samurai");
                 display.println("w: Wretch");
+                display.println("a: Astrologger");
                 chosenArchetype = scanner.nextLine();   // chosenArchetype is a single letter.
                 // Loop to match the chosenArchetype to the archetype in the dictionary.
                 for (Enumeration<String> aEnum = this.archetypes.keys(); aEnum.hasMoreElements();){
@@ -89,8 +87,40 @@ public class ArchetypeManager {
         myArchetypes.put("s", new Samurai());
         myArchetypes.put("b", new Bandit());
         myArchetypes.put("w", new Wretch());
+        myArchetypes.put("a", new Astrologer());
 
         // Return the dictionary of archetype, to be initialised as an attribute of this class.
         return myArchetypes;
+    }
+
+    /**
+     * Method that returns a random archetype from the dictionary of archetypes available.
+     * @return A random archetype instance.
+     */
+    public Archetypes randomArchetype(){
+        Dictionary<String,Archetypes> dictOfArchetypes = this.archetypes;
+
+        int randomIndex = new Random().nextInt(dictOfArchetypes.size());
+        int currentIndex = 0;
+        Archetypes randomArchetype = null;
+        for (Enumeration<String> aEnum = this.archetypes.keys(); aEnum.hasMoreElements();){
+            String nextElement = aEnum.nextElement();
+            if (currentIndex == randomIndex){
+                randomArchetype = dictOfArchetypes.get(nextElement);
+                break;
+            }
+            else {
+                currentIndex++;
+            }
+        }
+        return randomArchetype;
+    }
+
+    /**
+     * Getters to get the dictionary of archetypes.
+     * @return The dictionary of archetypes.
+     */
+    public Dictionary<String,Archetypes> getArchetypes(){
+        return this.archetypes;
     }
 }
