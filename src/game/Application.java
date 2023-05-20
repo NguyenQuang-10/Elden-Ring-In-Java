@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.enemies.HeavySkeletalSwordsman;
+import game.actors.enemies.*;
 import game.actors.traders.FingerReaderEnia;
 import game.actors.Player;
 import game.actors.traders.MerchantKale;
@@ -15,6 +15,8 @@ import game.environments.*;
 import game.items.GoldenRune;
 import game.utils.*;
 import game.items.RemembranceOfTheGrafted;
+
+import javax.security.auth.login.LoginException;
 
 /**
  * The main class to start the game.
@@ -53,13 +55,16 @@ public class Application {
 
 		player.addItemToInventory(new GoldenRune());
 		player.addItemToInventory(new RemembranceOfTheGrafted());
-		player.addRuneBalance(30000000);
+//		player.addRuneBalance(30000000); # for testing
 
 		// Added by Ryan.
 		// HINT: what does it mean to prefer composition to inheritance?
 		// Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, limgrave.at(36, 10));
-		limgrave.addActor(new HeavySkeletalSwordsman(), limgrave.at(32,10));
+//		limgrave.addActor(new Dog(), limgrave.at(32,10));
+//		limgrave.addActor(new GodrickSoldier(), limgrave.at(33,10));
+//		limgrave.addActor(new HeavySkeletalSwordsman(), limgrave.at(32,9));
+//		limgrave.addActor(new LoneWolf(), limgrave.at(33,9));
 		player.setLastSiteOfLostGrace(limgrave.at(36, 10));
 
 		world.run();

@@ -34,7 +34,7 @@ public class HeavySkeletalSwordsman extends Enemy {
 
         this.setBehaviour(0, new SpawnBehaviour(new PileOfBones(this)));
         this.setBehaviour(1, new WeaponEffectBehaviour());
-        this.setBehaviour(2, new AttackBehaviour(false, Status.ENEMY));
+        this.setBehaviour(2, new AttackBehaviour(false));
 
         // behaviour at key 3 is reserved for follow behaviour
 

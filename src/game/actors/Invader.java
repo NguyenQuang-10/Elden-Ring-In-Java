@@ -29,7 +29,7 @@ public class Invader extends Enemy {
         this.addCapability(Status.FOLLOWER);
 
         // Add weapon effect behaviour.
-        this.setBehaviour(0, new AttackBehaviour(false, Status.INVADER));
+        this.setBehaviour(0, new AttackBehaviour(false));
 
         // Behaviour at key 1 is reserved for follow behaviour.
         ArrayList<Behaviour> behaviours = new ArrayList<>();

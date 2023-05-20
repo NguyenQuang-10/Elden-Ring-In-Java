@@ -33,7 +33,9 @@ public class Ally extends Actor implements Resettable {
         this.addWeaponToInventory(weapon);
         this.addCapability(Status.ALLY);
 
-        this.setBehaviour(0, new AttackBehaviour(false, Status.ALLY));
+        AttackBehaviour atkBeh = new AttackBehaviour(false);
+        atkBeh.addToFriendlyType(Status.HOSTILE_TO_ENEMY);
+        this.setBehaviour(0, atkBeh);
         this.setBehaviour(1, new DespawnBehaviour(0));
         this.setBehaviour(2, new WanderBehaviour());
     }

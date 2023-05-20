@@ -1,5 +1,6 @@
 package game.behaviours;
 import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -10,6 +11,8 @@ import game.actions.AttackAllAction;
 import game.actors.enemies.Enemy;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
+
+import java.util.ArrayList;
 
 
 /**
@@ -25,15 +28,15 @@ public class AttackBehaviour implements Behaviour {
      * True if attack surrounding is allowed else False.
      */
     final private boolean canAttackAll;
-    final private Status attackerType;
+    private ArrayList<Enum> friendlyTo = new ArrayList<Enum>();
 
     /**
      * A public constructor.
+     *
      * @param canAttackAll Determines whether the Actor could perform surrounding attack
      */
-    public AttackBehaviour(boolean canAttackAll, Status attackerType) {
+    public AttackBehaviour(boolean canAttackAll) {
         this.canAttackAll = canAttackAll;
-        this.attackerType = attackerType;
     }
 
     /**
@@ -77,13 +80,20 @@ public class AttackBehaviour implements Behaviour {
      * @return          Boolean value representing whether the target is attack-able.
      */
     private boolean determineTargets(Actor attacker, Actor target) {
-        if (this.attackerType == Status.ALLY) {
-            return target.isConscious()
-                    && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.INVADER));
-        } else {
-            return target.isConscious()
-                    && !Enemy.isSameEnemy(attacker, target);
+//        if (this.attackerType == Status.ALLY) {
+//            return target.isConscious()
+//                    && (target.hasCapability(Status.ENEMY) || target.hasCapability(Status.INVADER));
+//        } else {
+//            return target.isConscious()
+//                    && !Enemy.isSameEnemy(attacker, target);
+//        }
+        for (Enum type: friendlyTo) {
+            if (target.hasCapability(type)) {
+                return false;
+            }
         }
+
+        return target.isConscious() && !Enemy.isSameEnemy(attacker, target);
     }
 
     /**
@@ -113,7 +123,9 @@ public class AttackBehaviour implements Behaviour {
         int numOfWeapons = attacker.getWeaponInventory().size();
         if (numOfWeapons >= 1) {
             Weapon weapon = attacker.getWeaponInventory().get(0);
-            if (RandomNumberGenerator.getRandomInt(1, 100) <= 50) {
+            Action weaponSkill = weapon.getSkill(attacker);
+            if (RandomNumberGenerator.getRandomInt(1, 100) <= 50 &&
+                !(weaponSkill instanceof DoNothingAction)  ) {
                 return weapon.getSkill(attacker);
             }
             return new AttackAllAction(attacker.getWeaponInventory().get(0));
@@ -136,8 +148,10 @@ public class AttackBehaviour implements Behaviour {
         if (numOfWeapons >= 1) {
 
             Weapon weapon = attacker.getWeaponInventory().get(0);
+            Action weaponSkill = weapon.getSkill(target, exit.getName());
             if (RandomNumberGenerator.getRandomInt(1, 100) <= 50
-                    && weapon.getSkill(target, exit.getName()) != null) {
+                    && weaponSkill != null
+                    && !(weaponSkill instanceof DoNothingAction)) {
                 return weapon.getSkill(target, exit.getName());
             }
 
@@ -146,5 +160,9 @@ public class AttackBehaviour implements Behaviour {
         else {
             return new AttackAction(target, exit.getName());
         }
+    }
+
+    public void addToFriendlyType(Enum type) {
+        friendlyTo.add(type);
     }
 }

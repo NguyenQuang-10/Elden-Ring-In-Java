@@ -25,9 +25,26 @@ public class GodrickSoldier extends Enemy {
      * A public constructor
      */
     public GodrickSoldier() {
-        super("Godrick Soldier", 'p', 198, EnemyType.STORMVEIL, false);
+        super("Godrick Soldier", 'p', 198, EnemyType.STORMVEIL_SOILDER, false);
         this.addRune(38, 70);
         this.addWeaponToInventory(new HeavyCrossbow());
+        this.clearBehaviour();
+
+        this.setBehaviour(0, new WeaponEffectBehaviour());
+
+        AttackBehaviour atkBeh = new AttackBehaviour(false);
+        atkBeh.addToFriendlyType(EnemyType.STORMVEIL_DOG);
+        this.setBehaviour(1, atkBeh);
+
+        // behaviour at key 2 is reserved for follow behaviour
+
+        ArrayList<Behaviour> behaviours = new ArrayList<>();
+        behaviours.add(new DespawnBehaviour(10));
+        behaviours.add(new WanderBehaviour());
+
+        for (int i = 0; i < behaviours.size(); i++) {
+            this.setBehaviour(i+3, behaviours.get(i));
+        }
     }
 
 
